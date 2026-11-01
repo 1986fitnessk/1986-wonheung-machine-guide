@@ -40,3 +40,8 @@
 @media(min-width:601px) and (max-width:1000px){.intro{gap:28px;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)}.intro h1{font-size:38px}.intro .lead{font-size:14px}.intro .lead span{font-size:11px}.intro .routine-heading h2{font-size:20px}.intro .routine-slot{padding:16px 10px}.intro .routine-slot strong{font-size:19px}.intro .routine-index{display:none}}
 @media(max-width:600px){.intro{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;padding:24px 0}.intro .routine-heading{margin-bottom:12px}.intro .routine-heading .eyebrow,.intro .routine-heading>p{display:none}.intro .routine-heading h2{font-size:18px}.intro .routine-slot{padding:14px 10px;min-height:98px;gap:10px}.intro .routine-slot strong{font-size:18px}.intro .routine-bottom{font-size:0;padding-top:0}.intro .routine-slots{gap:8px}.finder{padding-top:22px}}
 @media(max-width:359px){.intro .routine-slot{padding:12px 8px;min-height:92px}.intro .routine-slot strong{font-size:17px}}
+
+/* Brand mascot fills the mobile title's open right side without adding height. */
+.hero-title{position:relative}.hero-mascot{display:none}
+@media(max-width:600px){.hero-title{display:flex;align-items:center;justify-content:space-between;gap:2px}.hero-title h1{flex-shrink:0}.hero-mascot{display:block;width:128px;height:128px;object-fit:contain;flex-shrink:1;min-width:0;margin:-18px -8px -18px 0}}
+@media(max-width:359px){.hero-mascot{width:100px;height:100px;margin-right:-6px}}
