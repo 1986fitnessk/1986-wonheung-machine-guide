@@ -54,3 +54,13 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
   https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=20
 
 4초 반복 SVG 애니메이션, 일시정지/재생 제공. 동작 줄이기 환경설정에서는 정지 상태로 시작합니다.
+
+## 리니어 로우 (2026-11-01)
+- 사진: 사용자가 제공한 원흥점 사진에서 전경의 검은 기구를 투명 배경으로 분리. 무손실 WebP 적용.
+- 제조사는 사진에서 확인되지 않아 특정 브랜드로 표시하지 않음.
+- 세팅·원리: MIKOLO S7 가슴 지지형 linear rail row 제조사 설명을 공통 동작 참고로 사용. 동일 모델로 단정하지 않음.
+  https://gym-mikolo.com/products/t-bar-linear-row-machine-s7
+- 당기기와 사용 근육: Cybex Row 제조사 매뉴얼의 로우 동작과 근육 안내 참고.
+  https://kb.cybexintl.com/Owners_Manuals/Strength/16090-999-4.pdf
+- 트레이너의 팁은 사용자가 제공한 원문 유지. 힙힌지 설명과 통증 발생 시 중단 안내는 별도 기재.
+- 독자 제작 SVG: 3방향 근육 지도 및 손잡이가 직선 레일을 따라 이동하는 4초 루프, 관절 위치는 역기구학으로 계산. 실제 머신의 정확한 이동 범위를 재현하는 목적은 아님.

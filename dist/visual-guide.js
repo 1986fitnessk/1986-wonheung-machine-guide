@@ -1,5 +1,6 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+ '07':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 몸통은 고정',action:'레일을 따라 당기기 → 천천히 펴기'},
  '01':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 팔꿈치는 뒤로',action:'당기기 → 천천히 펴기'},
  '02':{primary:['chest'],secondary:['shoulder'],main:'대흉근',assist:'전면 삼각근',cue:'팔꿈치 각도를 유지하며 가슴 앞으로',action:'모으기 → 천천히 벌리기'},
  '03':{primary:['shoulder'],secondary:['triceps'],main:'전면·측면 삼각근',assist:'상완삼두근',cue:'복부를 고정하고 손잡이를 위로',action:'밀어 올리기 → 천천히 내리기'},
@@ -87,7 +88,8 @@ function motionFigure(id){
  const profile=()=>shape('M-10-5 C-10-13-5-18 2-18 C9-18 13-13 13-5 L12-2 L17 2 Q18 4 13 5 L12 9 Q8 13 2 11 L1 18 L-8 16 L-6 8 Q-10 3-10-5 Z')+line('M1-2 Q-3-5-4 0 Q-4 5 0 3 M9-3 H11 M7 8 H11',palette.edge,.8);
  const head=(x,y,angle=0,end,angleEnd=angle)=>translate([x,y],end,rotate(angle,angleEnd,profile()));
  const segment=(length,wide,narrow,fill=palette.skin)=>shape(`M${-wide} 2 C${-wide} ${-wide} ${wide} ${-wide} ${wide} 2 C${wide*1.15} ${length*.3} ${narrow*1.15} ${length*.72} ${narrow} ${length-2} Q${narrow} ${length+3} 0 ${length+3} Q${-narrow} ${length+3} ${-narrow} ${length-2} C${-narrow*1.15} ${length*.7} ${-wide*1.1} ${length*.3} ${-wide} 2 Z`,fill);
- const arm=({x,y,to,upper=35,lower=34,a=[0,0],bend=[0,0],focus='',opacity=1,scale=1})=>{
+ const arm=({x,y,to,upper=35,lower=34,a=[0,0],bend=[0,0],focus='',opacity=1,scale=1,aValues,bendValues})=>{
+  const joint=(range,values,content)=>values?`<g transform="rotate(${values[0]})">${animation('transform',values.map(number),'rotate')}${content}</g>`:rotate(range[0],range[1],content);
   let upperArt=segment(upper,7.5*scale,4.2*scale);
   if(focus==='shoulder')upperArt+=shape('M-7 1 C-7-7 6-7 8 1 Q9 10 1 15 Q-6 11-7 1 Z',palette.muscle);
   if(focus==='biceps')upperArt+=shape(`M1 7 C8 8 8 ${upper*.59} 3 ${upper-6} Q0 ${upper-3}-2 ${upper-8} C0 ${upper*.56}-3 12 1 7 Z`,palette.muscle);
@@ -96,7 +98,7 @@ function motionFigure(id){
   const forearm=segment(lower,5.4*scale,3.1*scale)+line(`M2 9 L0 ${lower-6}`,palette.edge,.65)
    +shape(`M-3 ${lower-1} Q-5 ${lower+3}-3 ${lower+7} L2 ${lower+9} Q6 ${lower+8} 5 ${lower+3} L3 ${lower-1} Z`)
    +line(`M-5 ${lower+4} H6`,'#3b4840',3)+line(`M-2 ${lower+2} L2 ${lower+5}`,palette.shade,2);
-  return `<g opacity="${opacity}">${translate([x,y],to,rotate(a[0],a[1],upperArt+translate([0,upper],null,rotate(bend[0],bend[1],forearm))))}</g>`;
+  return `<g opacity="${opacity}">${translate([x,y],to,joint(a,aValues,upperArt+translate([0,upper],null,joint(bend,bendValues,forearm))))}</g>`;
  };
  const pointOnArm=(spec,p)=>{
   const angle=(spec.a[0]+(spec.a[1]-spec.a[0])*p)*Math.PI/180;
@@ -131,6 +133,26 @@ function motionFigure(id){
    +leg([112,146],[111,175],[103,203],.5)+leg([111,146],[91,175],[78,202])
    +torso(111,147,35,'back')+head(157,80,35)
    +arm(pulling)+bolt(151,123,3);
+ }
+ if(id==='07'){
+  // Solve the elbow at each shared phase so the hand follows the straight rail.
+  const shoulder=[147,93],upper=35,lower=34;
+  const hands=phases.map(p=>[177-25*p,154-30*p]);
+  const angles=hands.map(([x,y])=>{
+   const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
+   const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
+   const angle=Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend));
+   return [angle*180/Math.PI,bend*180/Math.PI];
+  });
+  const carriage=shape('M-8-5 H8 V5 H-8 Z',palette.metal)+line('M-9 0 H9','#c8cbbf',3)+bolt(0,0,3);
+  art=line('M65 211 H216 M94 207 L152 123 M152 123 L204 211',palette.metal,6)
+   +line('M194 175 L138 107','#99a69d',4)
+   +translate(hands[0],hands[16],carriage)
+   +shape('M143 109 L164 92 Q168 90 171 94 L174 100 L152 121 Z',palette.pad)
+   +line('M64 209 L96 204','#899a8c',5)
+   +leg([112,146],[111,175],[103,203],.5)+leg([111,146],[91,175],[78,202])
+   +torso(111,147,35,'back')+head(157,80,35)
+   +arm({x:147,y:93,upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:'assist'});
  }
  if(id==='02'){
   const left={x:120,y:130,upper:42,lower:38,a:[116,180],bend:[34,34]};
