@@ -1,0 +1,8 @@
+.DS_Store
+.env
+.env.*
+node_modules/
+/*.png
+/DESIGN_BRIEF.md
+/dist/preview.html
+/dist/assets/tricep-extension.png
