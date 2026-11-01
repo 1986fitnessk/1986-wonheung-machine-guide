@@ -45,3 +45,13 @@
 .hero-title{position:relative}.hero-mascot{display:none}
 @media(max-width:600px){.hero-title{display:flex;align-items:center;justify-content:space-between;gap:2px}.hero-title h1{flex-shrink:0}.hero-mascot{display:block;width:128px;height:128px;object-fit:contain;flex-shrink:1;min-width:0;margin:-18px -8px -18px 0}}
 @media(max-width:359px){.hero-mascot{width:100px;height:100px;margin-right:-6px}}
+
+/* Four illustrated press poses, played forward and back with no reset jump. */
+.hero-mascot{border:0;padding:0;background-color:transparent;background-image:url('assets/tiger-press-sprite.png');background-size:400% 100%;background-repeat:no-repeat;animation:tiger-press 1.8s steps(1,end) infinite;cursor:pointer}
+.hero-mascot[aria-pressed=true]{animation-play-state:paused}.hero-mascot:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+@keyframes tiger-press{0%,100%{background-position:0% 0}16.667%,83.333%{background-position:33.333333% 0}33.333%,66.667%{background-position:66.666667% 0}50%{background-position:100% 0}}
+@media(max-width:600px){.hero-mascot{width:108px;height:144px;margin:-26px 0;flex-shrink:0}}
+@media(max-width:359px){.hero-mascot{width:90px;height:120px;margin:-20px -2px -20px 0}}
+@media(prefers-reduced-motion:reduce){.hero-mascot{animation:none;background-position:33.333333% 0}}
+
+.hero-mascot{clip-path:inset(0 3px)}
