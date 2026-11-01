@@ -130,7 +130,31 @@ const machines = [
     "source": "https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=20",
     "sourceLabel": "Life Fitness Optima 매뉴얼 · OSBC",
     "note": "손목을 꺾거나 어깨를 들어 올리지 않도록 해주세요."
-  }
+  },
+{
+  "id": "07",
+  "name": "리니어 로우",
+  "en": "LINEAR ROW",
+  "category": "등",
+  "aliases": "리니어로우 linear row 리니어 티바로우",
+  "image": "linear-row.webp",
+  "imageWidth": 1448,
+  "imageHeight": 1086,
+  "brand": "CHEST-SUPPORTED / LINEAR ROW",
+  "setup": [
+    "가벼운 중량을 준비하고 양발을 발판에 안정적으로 올리세요.",
+    "무릎을 살짝 굽히고 엉덩이를 뒤로 보내 상체를 기울인 뒤, 가슴을 패드에 대고 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "복부에 힘을 주고 허리가 둥글게 말리거나 과하게 꺾이지 않도록 자세를 유지하세요.",
+    "가슴을 패드에 붙인 채 팔꿈치를 뒤로 보내며 손잡이를 몸통 쪽으로 당기세요.",
+    "몸통을 들거나 반동을 쓰지 말고, 레일을 따라 천천히 팔을 펴 돌아오세요."
+  ],
+  "tip": "허리가 아프지 않게 햄스트링 스트레칭 후 힙힌지를 잘 걸어서 사용하시면 등 근육 자극에 더욱 효과적입니다 !",
+  "source": "https://gym-mikolo.com/products/t-bar-linear-row-machine-s7",
+  "sourceLabel": "MIKOLO · 가슴 지지형 리니어 로우",
+  "note": "같은 방식의 기구 자료를 참고했습니다. 패드·발판 조절은 현장 직원에게 확인해주세요. 힙힌지는 허리를 굽히는 대신 엉덩이를 뒤로 보내는 동작입니다. 허리에 통증이 생기면 운동을 멈추고 직원에게 자세를 확인해주세요."
+}
 ];
 let category='전체';
 const search=document.querySelector('#search'), list=document.querySelector('#machines'), dialog=document.querySelector('#detail');
@@ -140,7 +164,7 @@ const filters=document.querySelector('.filters');
 function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||m.category===category)&&normalize(m.name+m.aliases+m.category).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>showMachine(m);list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
 let disposeMotion=()=>{};
 function open(content){disposeMotion();disposeMotion=()=>{};document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
-function showMachine(m){open(`<p class="eyebrow" style="margin-top:24px">${m.category} / ${m.en}</p><h2 id="detail-title">${m.name}</h2><p class="detail-sub">${m.brand}</p><figure class="machine-photo"><img src="assets/${m.image}" alt="${m.name} 머신" width="1086" height="1448" decoding="async"><figcaption>1986 원흥점</figcaption></figure>${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary><a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p></details>`);dialog.scrollTop=0;disposeMotion=initMotion();}
+function showMachine(m){open(`<p class="eyebrow" style="margin-top:24px">${m.category} / ${m.en}</p><h2 id="detail-title">${m.name}</h2><p class="detail-sub">${m.brand}</p><figure class="machine-photo"><img src="assets/${m.image}" alt="${m.name} 머신" width="${m.imageWidth||1086}" height="${m.imageHeight||1448}" decoding="async"><figcaption>1986 원흥점</figcaption></figure>${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary><a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p></details>`);dialog.scrollTop=0;disposeMotion=initMotion();}
 search.addEventListener('input',render);
 document.querySelector('#reset').onclick=()=>{search.value='';filters.querySelector('button').click();search.focus();};
 document.querySelector('#close').onclick=()=>dialog.close();
