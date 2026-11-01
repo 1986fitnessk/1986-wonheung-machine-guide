@@ -28,8 +28,10 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 
 편집 프롬프트: 중앙의 해당 머신만 추출. 주변 기구·사람·바닥·거울 제거. 원본 시점·구조·재질·라벨 유지. 투명 PNG 출력.
 
-## 초보자 루틴 3종
-2026-11-01 추가. 전신·상체는 등록된 머신과 맨몸 운동을 조합한 시작 구성. 하체는 실제 하체 머신 미등록 상태이므로 맨몸 중심으로 명시함. 운동량은 처음 1세트부터, 익숙해지면 2세트로 진행하도록 편집.
+## 초보자 루틴 3종 — 과거 초안 기록 (현재 미제공)
+현재는 사용자 요청에 따라 3종 선택 슬롯과 준비 중 안내만 제공합니다. 아래 구성과 검증은 이전 초안의 기록이며 현행 기능 검증이 아닙니다.
+
+2026-11-01 초기 초안. 전신·상체는 등록된 머신과 맨몸 운동을 조합한 시작 구성. 하체는 실제 하체 머신 미등록 상태이므로 맨몸 중심으로 명시함. 운동량은 처음 1세트부터, 익숙해지면 2세트로 진행하도록 편집.
 - https://www.betterhealth.vic.gov.au/health/HealthyLiving/resistance-training-health-benefits
 - https://www.nhs.uk/live-well/exercise/strength-exercises/
 
