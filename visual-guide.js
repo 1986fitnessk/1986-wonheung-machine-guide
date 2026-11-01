@@ -1,6 +1,6 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
- '07':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 몸통은 고정',action:'레일을 따라 당기기 → 천천히 펴기'},
+ '07':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'엉덩이는 패드에 · 힙힌지 유지',action:'레일을 따라 당기기 → 천천히 펴기'},
  '01':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 팔꿈치는 뒤로',action:'당기기 → 천천히 펴기'},
  '02':{primary:['chest'],secondary:['shoulder'],main:'대흉근',assist:'전면 삼각근',cue:'팔꿈치 각도를 유지하며 가슴 앞으로',action:'모으기 → 천천히 벌리기'},
  '03':{primary:['shoulder'],secondary:['triceps'],main:'전면·측면 삼각근',assist:'상완삼두근',cue:'복부를 고정하고 손잡이를 위로',action:'밀어 올리기 → 천천히 내리기'},
@@ -145,12 +145,14 @@ function motionFigure(id){
    return [angle*180/Math.PI,bend*180/Math.PI];
   });
   const carriage=shape('M-8-5 H8 V5 H-8 Z',palette.metal)+line('M-9 0 H9','#c8cbbf',3)+bolt(0,0,3);
-  art=line('M65 211 H216 M94 207 L152 123 M152 123 L204 211',palette.metal,6)
+  art=line('M65 211 H216 M80 207 L89 140 M89 140 L112 211',palette.metal,6)
    +line('M194 175 L138 107','#99a69d',4)
    +translate(hands[0],hands[16],carriage)
-   +shape('M143 109 L164 92 Q168 90 171 94 L174 100 L152 121 Z',palette.pad)
-   +line('M64 209 L96 204','#899a8c',5)
-   +leg([112,146],[111,175],[103,203],.5)+leg([111,146],[91,175],[78,202])
+   +shape('M84 120 Q87 117 92 120 L103 151 Q104 155 98 158 L92 159 L81 127 Q80 123 84 120 Z',palette.pad)
+   +line('M89 141 H61','#d8c7a6',1)
+   +'<text x="52" y="130" fill="#d8c7a6" font-size="10" text-anchor="middle">엉덩이 지지</text>'
+   +line('M133 212 L174 204','#899a8c',5)
+   +leg([112,146],[128,175],[143,201],.5)+leg([111,146],[137,173],[153,200])
    +torso(111,147,35,'back')+head(157,80,35)
    +arm({x:147,y:93,upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:'assist'});
  }
