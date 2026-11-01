@@ -154,6 +154,60 @@ const machines = [
     "source": null,
     "sourceLabel": "1986 원흥점 · 현장 사용 안내",
     "note": "엉덩이 쪽을 패드에 지지하는 원흥점 사용 방식입니다. 힙힌지는 허리를 굽히는 대신 엉덩이를 뒤로 보내는 동작입니다. 패드·발판 조절은 현장 직원에게 확인하고, 허리에 통증이 생기면 운동을 멈춰주세요."
+  },
+  {
+    "id": "08",
+    "name": "어시스트 풀업 · 딥스",
+    "en": "ASSISTED PULL-UP / DIP",
+    "category": "등 · 가슴 · 팔",
+    "categories": [
+      "등",
+      "가슴",
+      "팔"
+    ],
+    "aliases": "어시스트풀업 어시스트딥스 풀업 풀다운 턱걸이 딥스 딥 dip chin assisted pullup pull-up",
+    "image": "assisted-pullup-dip.webp",
+    "brand": "IKK SPORTS / 2-IN-1",
+    "modes": [
+      {
+        "source": "https://www.manualslib.com/manual/2274445/Life-Fitness-Insignia-Series.html?page=11",
+        "sourceLabel": "Life Fitness · Assisted Dip/Chin 매뉴얼 (공통 원리 참고)",
+        "note": "선택 중량은 몸을 들어주는 보조 무게입니다. 숫자가 클수록 운동이 쉬워집니다. 이 머신은 보조 발판에 발을 올리는 방식입니다. 손잡이를 잡은 채 발판을 천천히 복귀시키고, 현장 직원이 안내한 순서로 고정 계단을 이용해 내려오세요. 움직이는 발판에서 뛰어내리지 마세요.",
+        "id": "08-pull",
+        "name": "어시스트 풀업",
+        "en": "ASSISTED PULL-UP",
+        "category": "등",
+        "setup": [
+          "몸을 안정적으로 들어 올릴 수 있는 보조 무게를 선택하세요. 처음에는 충분한 보조를 받으며 시작하세요.",
+          "고정 계단에 올라 위쪽 풀업 손잡이를 잡고, 움직이는 보조 발판에 발을 올려 안정적으로 지지하세요."
+        ],
+        "steps": [
+          "복부에 힘을 주고 몸통이 앞뒤로 흔들리지 않도록 준비하세요.",
+          "팔꿈치를 아래로 내린다는 느낌으로 몸을 끌어 올리세요. 목을 억지로 빼서 올라가지 마세요.",
+          "어깨가 편안한 범위까지 천천히 팔을 펴며 내려오세요."
+        ],
+        "tip": "몸통이 앞뒤로 흔들리지 않게 복압에 신경쓰고 쇄골을 천장으로 올린다는 느낌으로 당겨주세요 !"
+      },
+      {
+        "source": "https://www.manualslib.com/manual/2274445/Life-Fitness-Insignia-Series.html?page=11",
+        "sourceLabel": "Life Fitness · Assisted Dip/Chin 매뉴얼 (공통 원리 참고)",
+        "note": "선택 중량은 몸을 들어주는 보조 무게입니다. 숫자가 클수록 운동이 쉬워집니다. 이 머신은 보조 발판에 발을 올리는 방식입니다. 손잡이를 잡은 채 발판을 천천히 복귀시키고, 현장 직원이 안내한 순서로 고정 계단을 이용해 내려오세요. 움직이는 발판에서 뛰어내리지 마세요.",
+        "id": "08-dip",
+        "name": "어시스트 딥스",
+        "en": "ASSISTED DIP",
+        "category": "가슴 · 팔",
+        "setup": [
+          "동작을 천천히 조절할 수 있을 만큼 충분한 보조 무게를 선택하세요.",
+          "고정 계단에 올라 몸 옆 딥스 손잡이를 잡고, 움직이는 보조 발판에 발을 올려 안정적으로 지지하세요."
+        ],
+        "steps": [
+          "손잡이를 누르며 몸을 지지하고, 어깨를 으쓱하지 않도록 준비하세요.",
+          "팔꿈치를 천천히 굽혀 몸을 낮추되, 어깨가 불편해지기 전까지만 내려가세요.",
+          "손잡이를 아래로 밀어 몸을 올리고, 팔꿈치를 튕기거나 과하게 잠그지 마세요."
+        ],
+        "tip": "어깨가 과사용 되지 않도록 흉곽을 약간 말아서 딥스를 시도해보세요 !"
+      }
+    ]
   }
 ];
 let category='전체';
@@ -161,10 +215,20 @@ const search=document.querySelector('#search'), list=document.querySelector('#ma
 const normalize=value=>value.toLowerCase().replace(/\s/g,'');
 const filters=document.querySelector('.filters');
 ['전체','가슴','등','어깨','복부','팔'].forEach(name=>{const button=document.createElement('button');button.textContent=name;button.setAttribute('aria-pressed',name==='전체');button.onclick=()=>{category=name;filters.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));render();};filters.append(button);});
-function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||m.category===category)&&normalize(m.name+m.aliases+m.category).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>showMachine(m);list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
+function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||(m.categories||[m.category]).includes(category))&&normalize(m.name+m.aliases+m.category).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>{const mode=m.modes?.findIndex(v=>normalize(v.name+v.en).includes(query)&&query!=='');showMachine(m,mode>=0?mode:0);};list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
 let disposeMotion=()=>{};
 function open(content){disposeMotion();disposeMotion=()=>{};document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
-function showMachine(m){open(`<p class="eyebrow" style="margin-top:24px">${m.category} / ${m.en}</p><h2 id="detail-title">${m.name}</h2><p class="detail-sub">${m.brand}</p><figure class="machine-photo"><img src="assets/${m.image}" alt="${m.name} 머신" width="${m.imageWidth||1086}" height="${m.imageHeight||1448}" decoding="async"><figcaption>1986 원흥점</figcaption></figure>${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary>${m.source?`<a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p>`:`<p>${m.sourceLabel}</p><p>패드 위치와 사용 방식은 센터에서 확인한 설명을 반영했습니다. 동작 그림은 이를 단순화한 안내입니다.</p>`}</details>`);dialog.scrollTop=0;disposeMotion=initMotion();}
+function exerciseContent(m){return `${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary>${m.source?`<a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p>`:`<p>${m.sourceLabel}</p><p>패드 위치와 사용 방식은 센터에서 확인한 설명을 반영했습니다. 동작 그림은 이를 단순화한 안내입니다.</p>`}</details>`;}
+function showMachine(machine,modeIndex=0){
+ const m=machine.modes?machine.modes[modeIndex]:machine;
+ open(`<p class="eyebrow" style="margin-top:24px">${machine.category} / ${machine.en}</p><h2 id="detail-title">${machine.name}</h2><p class="detail-sub">${machine.brand}</p><figure class="machine-photo"><img src="assets/${machine.image}" alt="${machine.name} 머신" width="${machine.imageWidth||1086}" height="${machine.imageHeight||1448}" decoding="async"><figcaption>1986 원흥점${machine.modes?' · 하나의 머신, 두 가지 운동':''}</figcaption></figure>${machine.modes?`<section class="exercise-picker" aria-label="운동 선택"><p>운동을 선택하면 해당 사용법과 팁이 표시됩니다.</p><div class="exercise-mode-buttons">${machine.modes.map((mode,i)=>`<button type="button" data-mode="${i}" aria-pressed="${i===modeIndex}" aria-controls="exercise-panel">${mode.name}<small>${mode.category}</small></button>`).join('')}</div></section>`:''}<section id="exercise-panel" aria-label="${m.name} 안내">${machine.modes?`<h3 class="mode-title">${m.name}</h3>`:''}${exerciseContent(m)}</section>`);
+ dialog.scrollTop=0;disposeMotion=initMotion();
+ document.querySelectorAll('[data-mode]').forEach(button=>button.onclick=()=>{
+  const next=Number(button.dataset.mode);if(next===modeIndex)return;
+  const scrollTop=dialog.scrollTop;showMachine(machine,next);dialog.scrollTop=scrollTop;
+  document.querySelector(`[data-mode="${next}"]`).focus({preventScroll:true});
+ });
+}
 search.addEventListener('input',render);
 document.querySelector('#reset').onclick=()=>{search.value='';filters.querySelector('button').click();search.focus();};
 document.querySelector('#close').onclick=()=>dialog.close();
