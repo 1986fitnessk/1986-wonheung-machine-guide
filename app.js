@@ -215,7 +215,7 @@ const search=document.querySelector('#search'), list=document.querySelector('#ma
 const normalize=value=>value.toLowerCase().replace(/\s/g,'');
 const filters=document.querySelector('.filters');
 ['전체','가슴','등','어깨','복부','팔'].forEach(name=>{const button=document.createElement('button');button.textContent=name;button.setAttribute('aria-pressed',name==='전체');button.onclick=()=>{category=name;filters.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));render();};filters.append(button);});
-function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||(m.categories||[m.category]).includes(category))&&normalize(m.name+m.aliases+m.category).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>{const mode=m.modes?.findIndex(v=>normalize(v.name+v.en).includes(query)&&query!=='');showMachine(m,mode>=0?mode:0);};list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
+function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||(m.categories||[m.category]).includes(category))&&normalize([m.name,m.en,m.aliases,m.category,...(m.modes||[]).flatMap(mode=>[mode.name,mode.en])].join(' ')).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>{const matched=m.modes?.findIndex(v=>query!==''&&normalize(v.name+v.en).includes(query));const byCategory=m.modes?.findIndex(v=>category!=='전체'&&v.category.split(' · ').includes(category));showMachine(m,matched>=0?matched:byCategory>=0?byCategory:0);};list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
 let disposeMotion=()=>{};
 function open(content){disposeMotion();disposeMotion=()=>{};document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
 function exerciseContent(m){return `${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary>${m.source?`<a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p>`:`<p>${m.sourceLabel}</p><p>패드 위치와 사용 방식은 센터에서 확인한 설명을 반영했습니다. 동작 그림은 이를 단순화한 안내입니다.</p>`}</details>`;}
@@ -247,8 +247,20 @@ document.querySelector('#beginner-level').onclick=showBeginner;
 document.querySelectorAll('[data-level]').forEach(button=>button.onclick=()=>{open(`<p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / TRAINING GUIDE</p><h2 id="detail-title">${button.dataset.level} 운동 가이드</h2><div class="routine-rule"><p><strong>준비 중입니다.</strong></p><p>머신 등록 후 단계에 맞는 루틴을 안내해드릴게요.</p></div>`);dialog.scrollTop=0;});
 
 const mascot = document.querySelector('.hero-mascot');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let mascotPaused = false;
+function syncMascot() {
+  if (!mascot) return;
+  mascot.disabled = reducedMotion.matches;
+  mascot.setAttribute('aria-pressed', String(mascotPaused || reducedMotion.matches));
+  const label = reducedMotion.matches ? '움직임 줄이기 설정으로 정지된 마스코트' : mascotPaused ? '마스코트 덤벨 운동 재생' : '마스코트 덤벨 운동 일시정지';
+  mascot.setAttribute('aria-label', label);
+  mascot.title = label;
+}
 mascot?.addEventListener('click', () => {
-  const paused = mascot.getAttribute('aria-pressed') !== 'true';
-  mascot.setAttribute('aria-pressed', String(paused));
-  mascot.setAttribute('aria-label', paused ? '마스코트 덤벨 운동 재생' : '마스코트 덤벨 운동 일시정지');
+  if (reducedMotion.matches) return;
+  mascotPaused = !mascotPaused;
+  syncMascot();
 });
+reducedMotion.addEventListener('change', syncMascot);
+syncMascot();
