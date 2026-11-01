@@ -61,3 +61,13 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 - 기본 설정, 사용법, 패드 위치 및 동작 그림은 위 현장 설명을 기준으로 정정. 트레이너 팁 원문 유지.
 - 3방향 근육 지도와 직선 레일 동작 도식은 이해용이며 실제 가동 범위를 정밀 재현하지 않음.
 - 사진 누끼·무손실 WebP 유지. 제조사 미확인으로 특정 브랜드를 표기하지 않음.
+
+## 어시스트 풀업 · 딥스 복합 머신 (2026-11-01)
+- 사진상 IKK SPORTS 표기. 하나의 머신 레코드와 공통 이미지에 2개 운동 모드를 구성.
+- 사용자가 제공한 운동별 트레이너 팁은 각각 원문 유지.
+- Life Fitness Assisted Dip Chin 제조사 매뉴얼(다른 모델): 보조 중량 원리, 운동 방향, 풀업의 광배근·이두근 및 딥스의 삼두근·대흉근·전면 삼각근 설명 참고.
+  https://www.manualslib.com/manual/2274445/Life-Fitness-Insignia-Series.html?page=11
+- HOIST RS-1700 제조사 안내: 손잡이를 먼저 잡고 보조 받침에 올라가는 공통 승하차 원리 참고. 지지 방식은 모델마다 다르므로 동일 모델로 단정하지 않음.
+  https://www.hoistfitness.com/pages/rs-1700-chin-dip-assist
+
+- 현장 확인: 사용자가 보조 받침에 발을 올리는 방식임을 확인. 풀업·딥스 모션 모두 손은 고정 손잡이에, 발은 상하 이동하는 보조 발판에 유지되도록 작성.

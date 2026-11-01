@@ -1,5 +1,7 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+ '08-pull':{primary:['lats'],secondary:['biceps','midback'],main:'광배근',assist:'상완이두근 · 등 상부 근육',cue:'몸통 흔들림 없이 · 팔꿈치를 아래로',action:'당겨 올라가기 → 천천히 내려오기'},
+ '08-dip':{primary:['triceps','chest'],secondary:['shoulder'],main:'상완삼두근 · 대흉근',assist:'전면 삼각근',cue:'어깨가 편안한 범위에서 · 반동 없이',action:'천천히 내려가기 → 밀어 올라오기'},
  '07':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'엉덩이는 패드에 · 힙힌지 유지',action:'레일을 따라 당기기 → 천천히 펴기'},
  '01':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 팔꿈치는 뒤로',action:'당기기 → 천천히 펴기'},
  '02':{primary:['chest'],secondary:['shoulder'],main:'대흉근',assist:'전면 삼각근',cue:'팔꿈치 각도를 유지하며 가슴 앞으로',action:'모으기 → 천천히 벌리기'},
@@ -124,6 +126,28 @@ function motionFigure(id){
  const seatedLegs=()=>leg([111,149],[150,162],[160,202],.5)+leg([113,151],[158,158],[171,203]);
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
+ if(id==='08-pull'||id==='08-dip'){
+  const pull=id==='08-pull';
+  const shift=pull?-34:24,hip=pull?145:132,ankle=pull?198:184;
+  const shoulder=[147,hip-60],hand=pull?[165,20]:[166,132],upper=34,lower=34;
+  // Hands remain on fixed handles while body, feet and assistance platform travel together.
+  const angles=phases.map(p=>{
+   const dx=hand[0]-shoulder[0],dy=hand[1]-(shoulder[1]+shift*p),length=lower+4;
+   const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
+   const angle=Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend));
+   return [angle*180/Math.PI,bend*180/Math.PI];
+  });
+  const platform=shape(`M119 ${ankle+10} H176 V${ankle+16} H119 Z`,palette.pad)+line(`M176 ${ankle+13} H222`,palette.metal,5);
+  const body=leg([134,hip],[137,hip+28],[143,ankle],.45)+leg([137,hip],[147,hip+28],[152,ankle])
+   +torso(135,hip,0,pull?'back':'chest')+head(135,hip-83);
+  art=line('M208 222 H240 M222 222 V14 M222 14 H159',palette.metal,6)
+   +line(pull?'M154 20 H179':'M157 132 H192 M192 132 H222','#adb4a5',5)
+   +line('M222 42 V202','#96a392',1)
+   +translate([0,0],[0,shift],platform+body)
+   +arm({x:shoulder[0],y:shoulder[1],to:[shoulder[0],shoulder[1]+shift],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:pull?'biceps':'triceps'})
+   +'<text x="79" y="206" fill="#d8c7a6" font-size="10" text-anchor="middle">발판 보조</text>';
+ }
+
  if(id==='01'){
   const pulling={x:147,y:93,upper:35,lower:34,a:[-25,46],bend:[-3,-100],focus:'assist'};
   art=line('M69 211 H190 M96 207 L153 122 M151 122 L183 211',palette.metal,6)
