@@ -245,3 +245,10 @@ function showBeginner(){
 }
 document.querySelector('#beginner-level').onclick=showBeginner;
 document.querySelectorAll('[data-level]').forEach(button=>button.onclick=()=>{open(`<p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / TRAINING GUIDE</p><h2 id="detail-title">${button.dataset.level} 운동 가이드</h2><div class="routine-rule"><p><strong>준비 중입니다.</strong></p><p>머신 등록 후 단계에 맞는 루틴을 안내해드릴게요.</p></div>`);dialog.scrollTop=0;});
+
+const mascot = document.querySelector('.hero-mascot');
+mascot?.addEventListener('click', () => {
+  const paused = mascot.getAttribute('aria-pressed') !== 'true';
+  mascot.setAttribute('aria-pressed', String(paused));
+  mascot.setAttribute('aria-label', paused ? '마스코트 덤벨 운동 재생' : '마스코트 덤벨 운동 일시정지');
+});
