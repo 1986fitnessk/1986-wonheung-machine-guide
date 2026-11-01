@@ -181,4 +181,24 @@ function motionFigure(id){
  return `<svg class="motion-svg" viewBox="0 0 300 230" role="img" aria-label="${visualGuides[id].action} 동작 이해용 애니메이션">${id==='02'?'':line('M42 216 H273','#34443a',1)}${art}</svg>`;
 }
 function renderVisualGuide(m){const v=visualGuides[m.id];return `<section class="visual-guide" aria-label="사용 근육과 동작 안내"><div class="visual-heading"><p class="eyebrow">MUSCLE MAP</p><h3>어디에 힘이 들어가나요?</h3></div><div class="muscle-views">${['front','side','back'].map(view=>muscleFigure(view,v)).join('')}</div><div class="muscle-key"><p><i class="primary-dot"></i><strong>주요 근육</strong> ${v.main}</p>${v.secondary.length?`<p><i class="secondary-dot"></i><strong>보조 근육</strong> ${v.assist}</p>`:''}</div><p class="visual-footnote">주요 부위를 간략히 표시한 그림입니다. 자세와 손잡이에 따라 자극 부위가 달라집니다.</p><div class="motion-panel"><div class="motion-heading"><div><p class="eyebrow">MOVEMENT</p><h3>동작을 한눈에</h3></div><button type="button" id="motion-toggle" aria-pressed="false">일시정지</button></div>${motionFigure(m.id)}<p class="motion-action">${v.action}</p><p class="motion-cue">${v.cue}</p><p class="visual-footnote">동작 이해용 그림 · 실제 머신의 형태·이동 범위와는 차이가 있습니다.</p></div></section>`;}
-function initMotion(){const svg=document.querySelector('.motion-svg'),button=document.querySelector('#motion-toggle');if(!svg||!button)return;let paused=matchMedia('(prefers-reduced-motion: reduce)').matches;const update=()=>{paused?svg.pauseAnimations():svg.unpauseAnimations();button.textContent=paused?'재생':'일시정지';button.setAttribute('aria-pressed',String(paused));};button.onclick=()=>{paused=!paused;update();};update();}
+// Pause off-screen work and detach all listeners when the dialog changes.
+function initMotion(){
+ const svg=document.querySelector('.motion-svg'),button=document.querySelector('#motion-toggle');
+ if(!svg||!button)return ()=>{};
+ const preference=matchMedia('(prefers-reduced-motion: reduce)');
+ let userPaused=preference.matches,inView=true;
+ const update=()=>{
+  const paused=userPaused||document.hidden||!inView;
+  paused?svg.pauseAnimations():svg.unpauseAnimations();
+  button.textContent=userPaused?'재생':'일시정지';
+  button.setAttribute('aria-pressed',String(userPaused));
+ };
+ const toggle=()=>{userPaused=!userPaused;update();};
+ const changePreference=event=>{userPaused=event.matches;update();};
+ button.addEventListener('click',toggle);
+ document.addEventListener('visibilitychange',update);
+ preference.addEventListener('change',changePreference);
+ const observer=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;update();},{threshold:0});
+ observer.observe(svg);update();
+ return ()=>{observer.disconnect();svg.pauseAnimations();button.removeEventListener('click',toggle);document.removeEventListener('visibilitychange',update);preference.removeEventListener('change',changePreference);};
+}

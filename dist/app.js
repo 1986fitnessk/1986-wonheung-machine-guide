@@ -5,7 +5,7 @@ const machines = [
     "en": "T-BAR ROW",
     "category": "등",
     "aliases": "티바로우 tbar row",
-    "image": "t-bar-row.png",
+    "image": "t-bar-row.webp",
     "brand": "GOOD FITNESS",
     "setup": [
       "가벼운 중량으로 시작하고 양발을 발판에 안정적으로 올리세요.",
@@ -27,7 +27,7 @@ const machines = [
     "en": "PECTORAL FLY",
     "category": "가슴",
     "aliases": "해머플라이 펙덱 펙터럴 플라이 hammer fly",
-    "image": "hammer-fly.png",
+    "image": "hammer-fly.webp",
     "brand": "HAMMER STRENGTH",
     "setup": [
       "손잡이를 잡았을 때 팔꿈치가 어깨보다 약간 낮도록 의자 높이를 맞추세요.",
@@ -49,7 +49,7 @@ const machines = [
     "en": "VIKING PRESS",
     "category": "어깨",
     "aliases": "바이킹프레스 viking press",
-    "image": "viking-press.png",
+    "image": "viking-press.webp",
     "brand": "IKK SPORTS",
     "setup": [
       "가벼운 중량을 준비하고 손잡이 앞에서 발을 어깨너비로 벌리세요.",
@@ -71,7 +71,7 @@ const machines = [
     "en": "ABDOMINAL",
     "category": "복부",
     "aliases": "앱도미널 앱도미날 복근 abdominal life fitness",
-    "image": "abdominal.png",
+    "image": "abdominal.webp",
     "brand": "LIFE FITNESS / OPTIMA",
     "setup": [
       "가벼운 중량을 선택하고 앉아 허리를 요추 패드에 붙이세요.",
@@ -93,7 +93,7 @@ const machines = [
     "en": "TRICEP EXTENSION",
     "category": "팔",
     "aliases": "트라이셉 트라이셉스 삼두 익스텐션 triceps extension life fitness",
-    "image": "tricep-extension-v2.png",
+    "image": "tricep-extension-v2.webp",
     "brand": "LIFE FITNESS / OPTIMA",
     "setup": [
       "위팔 뒤쪽이 패드에 충분히 닿도록 의자 높이를 조절하세요.",
@@ -115,7 +115,7 @@ const machines = [
     "en": "BICEP CURL",
     "category": "팔",
     "aliases": "바이셉 바이셉스 이두 암컬 biceps curl life fitness",
-    "image": "bicep-curl.png",
+    "image": "bicep-curl.webp",
     "brand": "LIFE FITNESS / OPTIMA",
     "setup": [
       "위팔 뒤쪽이 패드에 충분히 닿도록 의자 높이를 조절하세요.",
@@ -138,12 +138,13 @@ const normalize=value=>value.toLowerCase().replace(/\s/g,'');
 const filters=document.querySelector('.filters');
 ['전체','가슴','등','어깨','복부','팔'].forEach(name=>{const button=document.createElement('button');button.textContent=name;button.setAttribute('aria-pressed',name==='전체');button.onclick=()=>{category=name;filters.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));render();};filters.append(button);});
 function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||m.category===category)&&normalize(m.name+m.aliases+m.category).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>showMachine(m);list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
-function open(content){document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
-function showMachine(m){open(`<p class="eyebrow" style="margin-top:24px">${m.category} / ${m.en}</p><h2 id="detail-title">${m.name}</h2><p class="detail-sub">${m.brand}</p><figure class="machine-photo"><img src="assets/${m.image}" alt="${m.name} 머신" width="640" height="620"><figcaption>1986 원흥점</figcaption></figure>${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary><a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p></details>`);dialog.scrollTop=0;initMotion();}
+let disposeMotion=()=>{};
+function open(content){disposeMotion();disposeMotion=()=>{};document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
+function showMachine(m){open(`<p class="eyebrow" style="margin-top:24px">${m.category} / ${m.en}</p><h2 id="detail-title">${m.name}</h2><p class="detail-sub">${m.brand}</p><figure class="machine-photo"><img src="assets/${m.image}" alt="${m.name} 머신" width="1086" height="1448" decoding="async"><figcaption>1986 원흥점</figcaption></figure>${renderVisualGuide(m)}<section class="detail-section"><h3><span>01</span>기본 설정</h3><ul class="setup-list">${m.setup.map(t=>`<li>${t}</li>`).join('')}</ul></section><section class="detail-section"><h3><span>02</span>사용법 3단계</h3><ol class="exercise-steps">${m.steps.map(t=>`<li>${t}</li>`).join('')}</ol></section><section class="detail-section trainer-tip"><h3><span>03</span>트레이너의 팁!</h3><p>${m.tip.replaceAll('\n','<br>')}</p></section><p class="machine-note">${m.note}</p><details class="sources"><summary>사용법 참고 자료</summary><a href="${m.source}" target="_blank" rel="noopener noreferrer">${m.sourceLabel} ↗</a><p>기본 설정과 사용법은 참고 자료를 요약했습니다. 트레이너의 팁은 센터에서 제공한 안내입니다.</p></details>`);dialog.scrollTop=0;disposeMotion=initMotion();}
 search.addEventListener('input',render);
 document.querySelector('#reset').onclick=()=>{search.value='';filters.querySelector('button').click();search.focus();};
 document.querySelector('#close').onclick=()=>dialog.close();
-dialog.addEventListener('close',()=>{document.body.style.overflow='';});
+dialog.addEventListener('close',()=>{disposeMotion();disposeMotion=()=>{};document.body.style.overflow='';});
 dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
 document.querySelector('#help').onclick=()=>open('<h2 id="detail-title">머신 가이드 이용 안내</h2><p class="detail-sub">머신과 블랙보드에 부착한 같은 QR로 이 페이지에 접속합니다.</p><section class="detail-section"><h3>01 · 이름 또는 운동 부위로 찾기</h3><p>머신에 적힌 이름을 검색하거나 부위 버튼을 눌러보세요. 띄어쓰기를 하지 않아도 검색됩니다.</p></section><section class="detail-section"><h3>02 · 머신 선택 후 안내 확인</h3><p>세팅, 사용법, 티칭 포인트 순서로 확인할 수 있도록 구성했습니다.</p></section><section class="detail-section"><h3>03 · 도움이 필요할 때</h3><p>머신을 찾기 어렵거나 조절 방법이 궁금하면 현장 직원에게 문의해주세요.</p></section><p class="draft">처음 이용하는 머신의 무게와 조절 방법은 현장 직원에게 확인해주세요.</p>');
 render();
