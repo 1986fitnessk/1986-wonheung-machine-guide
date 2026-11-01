@@ -34,3 +34,23 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 - https://www.nhs.uk/live-well/exercise/strength-exercises/
 
 3종 모달 열기/닫기, 상체 루틴→머신 상세→루틴 복귀, 390px 슬롯 배치 확인. 개인별 처방이나 트레이너 검수 완료를 의미하지 않음.
+
+## 사용 근육 / 반복 동작 도식 (2026-11-01)
+
+사이트 내 SVG는 직접 작성한 단순화 도식이며 외부 영상이나 삽화를 복제하지 않았습니다. 정면·측면·후면의 주요 부위 표시이며 모든 안정근을 망라하거나 자극 강도를 수치화하지 않습니다. 애니메이션은 실제 기구의 궤적·관절 가동 범위를 정밀 재현하지 않습니다.
+
+- T바 로우: Titan Fitness 가슴 지지형 로우 및 Titanium Strength 제품 설명 — 광배근, 능형근, 승모근 / 이두근 등 보조.
+  https://titan.fitness/products/chest-supported-t-bar-row-machine-adjustable
+  https://www.titaniumstrength.co.uk/productpdf/download/file/id/716/name/Chest-Supported_T-Bar_Row.pdf/
+- 해머 플라이: Life Fitness Optima 제조사 매뉴얼 — 대흉근, 전면 삼각근; 가슴 앞으로 모으는 동작.
+  https://fitnesssuperstore.info/pdfs/Life%20Fitness%20Optima%20Series%20Strength%20Manual.pdf
+- 바이킹 프레스: Onnit Academy — 전면·측면 삼각근, 상완삼두근; 위로 밀기.
+  https://www.onnit.com/blogs/the-edge/how-to-do-the-viking-press-like-an-expert
+- 앱도미널: Life Fitness Optima OSAB 매뉴얼 p28 — 복부, 아래 갈비뼈와 골반 사이를 좁히는 몸통 굴곡.
+  https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=28
+- 트라이셉 익스텐션: Life Fitness 트라이셉 익스텐션 안내 — 상완삼두근, 팔꿈치 신전. 기존 Optima OSTE 매뉴얼 세팅 유지.
+  https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/axiom-series-triceps-extension
+- 바이셉 컬: Life Fitness Optima OSBC 매뉴얼 p20 — 상완이두근, 위팔 고정 후 팔꿈치 굴곡.
+  https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=20
+
+4초 반복 SVG 애니메이션, 일시정지/재생 제공. 동작 줄이기 환경설정에서는 정지 상태로 시작합니다.
