@@ -134,7 +134,9 @@ function motionFigure(id){
   const hip=[120,154],lean=-15;
   const bodyPoint=(x,y)=>[hip[0]+x*Math.cos(lean*Math.PI/180)-y*Math.sin(lean*Math.PI/180),hip[1]+x*Math.sin(lean*Math.PI/180)+y*Math.cos(lean*Math.PI/180)];
   const shoulder=bodyPoint(10,-60),headPos=bodyPoint(0,-83);
-  const start=[145,98],end=id==='10'?[163,51]:id==='12'?[177,126]:[181,108];
+  // Decline is a chest press: drive forward from the lower chest, with only a slight downward angle.
+  const start=id==='12'?[139,104]:[145,98];
+  const end=id==='10'?[163,51]:id==='12'?[182,108]:[181,108];
   const upper=36,lower=35;
   const hands=phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]);
   const angles=hands.map(([x,y])=>{
