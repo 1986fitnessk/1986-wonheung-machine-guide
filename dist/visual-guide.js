@@ -142,13 +142,15 @@ function motionFigure(id){
    const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
    return [(Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
   });
-  const pivot=id==='10'?[207,104]:[207,35];
+  // Place the press axis on the ear/chest line, behind the athlete rather than in front.
+  const axisX=number(headPos[0]);
+  const pivot=[axisX,id==='10'?104:35];
   const leverValues=hands.map(h=>`M${pivot.join(' ')} L${h.map(number).join(' ')}`);
   const pressing={x:shoulder[0],y:shoulder[1],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:'triceps'};
   // Rear upright and diagonal brace visibly support the back pad and share the floor base.
   const backSupport=line('M62 212 H217 M72 210 V72 M72 82 H88 M72 139 L105 148 M72 177 L101 150',palette.metal,6)
    +line('M82 78 L103 151','#899a8c',5)+bolt(72,82)+bolt(72,139);
-  art=backSupport+seat+line(`M207 212 V${pivot[1]}`,palette.metal,6)
+  art=backSupport+line(`M${axisX} 212 V${pivot[1]} M72 177 H${axisX}`,palette.metal,6)+seat
    +shape('M86 79 L94 76 L115 151 L103 154 Z',palette.pad)
    +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',leverValues)}</path>`+bolt(...pivot,4)
    +leg([118,155],[151,165],[162,203],.45)+leg([122,156],[159,164],[173,203])
