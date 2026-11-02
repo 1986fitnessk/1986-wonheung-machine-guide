@@ -1,5 +1,11 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+ '13':{primary:['glutes'],secondary:['hamstrings'],main:'대둔근',assist:'햄스트링',cue:'등 상부와 발은 지지 · 허리 과신전 없이',action:'엉덩이 올리기 → 천천히 내려오기'},
+ '14':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'무릎은 발끝 방향 · 발바닥 전체로',action:'패드와 함께 앉기 → 밀어 일어서기'},
+ '15':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'등과 엉덩이는 패드에 · 무릎 튕기지 않기',action:'발판 받아오기 → 앞쪽으로 밀기'},
+ '16':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'몸은 패드에 · 발은 고정 발판에',action:'레일 따라 내려오기 → 밀어 올라가기'},
+ '17':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'골반 고정 · 발바닥 전체로 밀기',action:'무릎 굽혀 받아오기 → 레일 따라 밀기'},
+
  '09':{primary:['chest'],secondary:['triceps','shoulder'],main:'대흉근',assist:'상완삼두근 · 전면 삼각근',cue:'등은 패드에 · 앞쪽으로 모아 밀기',action:'앞쪽으로 밀기 → 천천히 받아오기'},
  '10':{primary:['chest','shoulder'],secondary:['triceps'],main:'대흉근 상부 · 전면 삼각근',assist:'상완삼두근',cue:'앞쪽 위로 밀기 · 허리 과신전 없이',action:'대각선 위로 밀기 → 천천히 받아오기'},
  '11':{primary:['lats'],secondary:['triceps'],main:'광배근',assist:'상완삼두근 장두 등',cue:'팔꿈치는 패드에 · 몸통은 고정',action:'패드를 아래로 누르기 → 머리 위로 천천히 돌아가기'},
@@ -35,8 +41,8 @@ function muscleFigure(view,v){
    +neutral('M46 96 L50 102 L58 112 L48 108 Z M74 96 L70 102 L62 112 L72 108 Z');
   const abs=[['M51 73 Q54 71 59 72 L59 80 L51 80 Z','M61 72 Q66 71 69 73 L69 80 L61 80 Z'],['M51 82 L59 82 L59 90 L51 90 Z','M61 82 L69 82 L69 90 L61 90 Z'],['M51 92 L59 92 L59 100 Q54 102 51 98 Z','M61 92 L69 92 L69 98 Q66 102 61 100 Z'],['M53 102 L59 103 L59 113 L55 109 Z','M61 103 L67 102 L65 109 L61 113 Z']];
   muscles+=abs.flat().map(d=>muscle('abs',d)).join('')
-   +neutral('M45 115 Q49 113 55 119 L55 134 Q53 145 49 151 Q44 143 44 132 Z')
-   +neutral('M75 115 Q71 113 65 119 L65 134 Q67 145 71 151 Q76 143 76 132 Z')
+   +muscle('quads','M45 115 Q49 113 55 119 L55 134 Q53 145 49 151 Q44 143 44 132 Z')
+   +muscle('quads','M75 115 Q71 113 65 119 L65 134 Q67 145 71 151 Q76 143 76 132 Z')
    +neutral('M57 120 L59 128 L56 149 L53 155 L51 150 Z M63 120 L61 128 L64 149 L67 155 L69 150 Z')
    +neutral('M46 159 Q50 156 54 159 L52 172 L49 182 L47 181 Z M74 159 Q70 156 66 159 L68 172 L71 182 L73 181 Z');
   details=line('M54 36 L57 44 L60 47 L63 44 L66 36 M44 46 L54 46 M66 46 L76 46 M60 51 V69 M46 155 Q50 153 54 155 M66 155 Q70 153 74 155 M47 184 L52 184 M68 184 L73 184')
@@ -53,8 +59,8 @@ function muscleFigure(view,v){
    +muscle('triceps','M89 68 Q85 65 81 66 L84 83 L88 92 L93 88 Z')
    +neutral('M28 94 L33 91 L29 105 L24 116 L22 113 Z M92 94 L87 91 L91 105 L96 116 L98 113 Z')
    +neutral('M55 84 L59 88 L58 109 L49 111 L46 104 Z M65 84 L61 88 L62 109 L71 111 L74 104 Z')
-   +neutral('M47 112 Q54 109 59 114 L59 126 Q49 131 43 123 Z M73 112 Q66 109 61 114 L61 126 Q71 131 77 123 Z')
-   +neutral('M44 130 Q48 132 55 130 L55 143 L51 155 L47 151 Z M76 130 Q72 132 65 130 L65 143 L69 155 L73 151 Z')
+   +muscle('glutes','M47 112 Q54 109 59 114 L59 126 Q49 131 43 123 Z M73 112 Q66 109 61 114 L61 126 Q71 131 77 123 Z')
+   +muscle('hamstrings','M44 130 Q48 132 55 130 L55 143 L51 155 L47 151 Z M76 130 Q72 132 65 130 L65 143 L69 155 L73 151 Z')
    +neutral('M46 159 Q49 154 53 159 L54 166 L50 179 L47 174 Z M74 159 Q71 154 67 159 L66 166 L70 179 L73 174 Z');
   details=line('M60 39 V112 M46 54 Q43 62 48 68 M74 54 Q77 62 72 68 M59 115 V125 M49 180 L49 187 M71 180 L71 187 M46 156 H53 M67 156 H74')
    +line('M51 27 Q60 30 69 27 M54 32 L54 37 M66 32 L66 37',.4);
@@ -68,9 +74,9 @@ function muscleFigure(view,v){
    +muscle('biceps','M63 71 L68 68 Q68 81 62 92 L59 93 L60 83 Z')
    +muscle('triceps','M53 70 L59 72 L58 82 L57 94 L54 90 L52 80 Z')
    +neutral('M58 98 L62 95 L66 109 L70 117 L67 118 L62 110 Z')
-   +neutral('M47 107 Q53 102 63 107 L66 118 Q56 127 45 121 Z')
-   +neutral('M64 125 L70 122 L67 140 L62 154 L56 153 L55 143 Z')
-   +neutral('M45 126 L51 129 L55 146 L54 154 L50 145 Z')
+   +muscle('glutes','M47 107 Q53 102 63 107 L66 118 Q56 127 45 121 Z')
+   +muscle('quads','M64 125 L70 122 L67 140 L62 154 L56 153 L55 143 Z')
+   +muscle('hamstrings','M45 126 L51 129 L55 146 L54 154 L50 145 Z')
    +neutral('M56 160 Q62 156 64 161 L63 171 L59 182 L57 181 Z');
   details=line('M59 22 Q55 20 55 25 Q55 29 59 27 M68 22 H70 M64 34 L69 34 M54 36 L59 43 M48 50 L52 48 M54 155 Q59 158 64 155 M58 185 L64 185')
    +line('M69 80 L72 80 M68 87 L70 88 M66 94 L68 95 M61 114 Q54 119 49 117',.5);
@@ -130,6 +136,49 @@ function motionFigure(id){
  const seatedLegs=()=>leg([111,149],[150,162],[160,202],.5)+leg([113,151],[158,158],[171,203]);
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
+
+ if(['13','14','15','16','17'].includes(id)){
+  // Fixed-length thigh/shin IK keeps feet attached to the moving or fixed footplate.
+  const hipThrust=id==='13',squat=id==='14'||id==='16',hack=id==='16';
+  const poses=phases.map(p=>{
+   let hip,ankle,lean;
+   if(hipThrust){
+    lean=-60-30*p;const r=lean*Math.PI/180;
+    hip=[88-(10*Math.cos(r)+60*Math.sin(r)),125-(10*Math.sin(r)-60*Math.cos(r))];ankle=[190,202];
+   }else if(squat){
+    hip=hack?[103+22*p,157-34*p]:[112+13*p,151-32*p];ankle=[170,202];lean=hack?-24:-8;
+   }else{hip=[110,177];ankle=id==='15'?[168+28*p,141-17*p]:[164+29*p,142-29*p];lean=-55;}
+   const length=squat?49:hipThrust?46:59;
+   const dx=ankle[0]-hip[0],dy=ankle[1]-hip[1],d=Math.hypot(dx,dy);
+   const height=Math.sqrt(Math.max(0,length*length-d*d/4));
+   const knee=[(hip[0]+ankle[0])/2+dy/d*height,(hip[1]+ankle[1])/2-dx/d*height];
+   return {hip,ankle,knee,lean,length};
+  });
+  const moving=(points,content)=>`<g transform="translate(${points[0].join(' ')})">${animation('transform',points.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
+  const turning=(angles,content)=>`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${content}</g>`;
+  const bone=(from,to,len,width,fill)=>moving(from,turning(from.map((a,i)=>Math.atan2(-(to[i][0]-a[0]),to[i][1]-a[1])*180/Math.PI),segment(len,width,4,fill)));
+  const hips=poses.map(p=>p.hip),knees=poses.map(p=>p.knee),feet=poses.map(p=>p.ankle),leans=poses.map(p=>p.lean);
+  const legs=bone(hips,knees,poses[0].length,10,hipThrust?palette.skin:palette.muscle)+bone(knees,feet,poses[0].length,7,palette.skin)
+   +moving(feet,shape('M-6-4 H5 L16 2 Q19 7 13 8 H-5 Z',palette.skin));
+  const grip=squat?{a:[-65,-65],bend:[-115,-115]}:{a:[-8,-8],bend:[-15,-15]};
+  const upper=moving(hips,turning(leans,torso(0,0,0)+(hipThrust?shape('M-16-5 Q-5-9 5 1 L0 10 L-13 8 Z',palette.muscle):'')+head(0,-83)+arm({x:10,y:-60,upper:30,lower:28,...grip})));
+  let frame='',pad='';
+  if(hipThrust){
+   frame=line('M52 212 H227 M78 212 V134 M60 134 H100',palette.metal,6)+shape('M61 124 H103 V134 H61 Z',palette.pad)+line('M177 212 H220',palette.metal,7);
+   pad=moving(hips,shape('M-13-10 H15 Q22-6 15 2 H-13 Q-20-3-13-10 Z',palette.pad));
+  }else if(squat){
+   frame=line(hack?'M49 212 L111 43 M62 212 H220':'M55 212 H220 M62 212 V112',palette.metal,6)+shape('M149 210 H202 V216 H149 Z',palette.pad);
+   pad=moving(hips,turning(leans,shape('M-24-70 H-15 V9 H-24 Z M-24-73 H16 V-64 H-24 Z',palette.pad)));
+   if(!hack){const links=poses.map(p=>`M62 112 L${p.hip[0]-22} ${p.hip[1]-25}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(62,112);}
+  }else{
+   frame=line('M38 212 H252 M64 212 L47 145 M112 212 V187',palette.metal,6)+shape('M38 139 L44 131 L113 178 L108 187 Z',palette.pad);
+   if(id==='17')frame+=line('M139 190 L221 92 M151 201 L233 103',palette.metal,5);
+   else{const links=feet.map(a=>`M242 207 L${a[0]+10} ${a[1]}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(242,207);}
+   pad=moving(feet,shape('M-13-20 L-7-25 L29 11 L23 17 Z',palette.pad));
+  }
+  art=frame+pad+legs+upper+(hipThrust?pad:'')+'<text x="248" y="225" text-anchor="middle" fill="#aeb8ac" font-size="9">측면 도식</text>';
+ }
+
  if(['09','10','12'].includes(id)){
   const hip=[120,154],lean=-15;
   const bodyPoint=(x,y)=>[hip[0]+x*Math.cos(lean*Math.PI/180)-y*Math.sin(lean*Math.PI/180),hip[1]+x*Math.sin(lean*Math.PI/180)+y*Math.cos(lean*Math.PI/180)];

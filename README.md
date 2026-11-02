@@ -22,7 +22,7 @@
 사용자 사진 순서와 팁을 보존했습니다. 배경 제거 머신 사진은 WebP로 제공하고, 원본 PNG도 dist/assets에 보관합니다. 기본 설정과 3단계 사용법의 출처는 CONTENT_SOURCES.md 및 각 상세 안내 하단에 있습니다. T바 로우와 바이킹 프레스는 정확한 실기 모델 설명서가 아닌 공통 동작 참고입니다.
 
 ## 확인
-머신 12개·운동 안내 13종. 머신 이미지는 WebP, 마스코트는 투명 PNG 스프라이트입니다. 초보자 전신·상체·하체 및 중급자·상급자 루틴은 준비 중 화면입니다. 최신 실제 검사 및 한계는 REVIEW.md와 SECURITY.md를 확인하세요. 검색 회귀 검사: `node tests/search.test.cjs dist/app.js`. 별도 빌드 과정 없음. 공개 사이트: https://1986fitnessk.github.io/1986-wonheung-machine-guide/
+머신 17개·운동 안내 18종. 머신 이미지는 WebP, 마스코트는 투명 PNG 스프라이트입니다. 초보자 전신·상체·하체 및 중급자·상급자 루틴은 준비 중 화면입니다. 최신 실제 검사 및 한계는 REVIEW.md와 SECURITY.md를 확인하세요. 검색 회귀 검사: `node tests/search.test.cjs dist/app.js`. 별도 빌드 과정 없음. 공개 사이트: https://1986fitnessk.github.io/1986-wonheung-machine-guide/
 
 저장소: https://github.com/1986fitnessk/1986-wonheung-machine-guide
 

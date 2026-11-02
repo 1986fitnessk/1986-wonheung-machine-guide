@@ -85,3 +85,13 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 - 디클라인: 앉은 자세에서 앞·아래로 미는 궤적과 가슴 하부 강조 참고. 팁의 ‘몸을 누워’는 등받이에 기대는 뜻으로 안내.
   https://shop.lifefitness.com/products/hammer-strength-plate-loaded-iso-lateral-decline-chest-press
 - 사진은 배경 제거 후 투명 무손실 WebP로 저장. 근육 지도 및 반복 동작은 이해용 도식이며 정확한 관절 각도나 개인별 가동 범위를 처방하지 않음.
+
+## 하체 머신 5종 (2026-11-02)
+- 13 힙 쓰러스트, 14 브이스쿼트, 15 스쿼트프레스, 16 핵스쿼트, 17 레그프레스. 사용자 요청에 따라 긴 팁은 중복을 덜어 2~3문장으로 압축. 패드 접촉·발 지지·느린 복귀를 유지하고 깊이와 체중 비율은 강제 지시로 표현하지 않음.
+- 브이스쿼트는 요청한 이름을 유지하되 사진의 GOODFITNESS 표기를 별도 명시. 다른 제조사의 같은 운동 원리만 참고.
+- 힙 쓰러스트 공통 원리: Life Fitness Australia 공식 Glute Drive 안내(사진과 다른 모델). https://www.youtube.com/watch?v=amcaUtVnjkY
+- V 스쿼트 공통 원리: https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/plate-loaded-v-squat
+- 스쿼트프레스: Cybex 16150 제조사 매뉴얼의 발판·손잡이·지지대 조작 원리. https://kb.cybexintl.com/Owners_Manuals/Strength/16150-999-4.pdf
+- 핵스쿼트: Cybex 16200 제조사 매뉴얼의 패드 접촉, 캐리지 이동, 안전장치 원리. https://kb.cybexintl.com/Owners_Manuals/Strength/16200-999-4.pdf
+- 레그프레스: Cybex 16110 제조사 매뉴얼의 공통 자세 참고. 사진의 정확한 모델은 미확인으로 동일 모델이라 단정하지 않으며, 모션은 사진의 직선 레일 구조에 맞춤. https://kb.cybexintl.com/Owners_Manuals/Strength/16110-999-4.pdf
+- 5개 사진은 투명 배경 WebP로 저장. 모션은 실제 촬영 영상이 아닌 반복 동작 이해용 도식. 주동근과 보조근은 일반적인 운동 기준이며 개인별 자세에 따라 달라짐.
