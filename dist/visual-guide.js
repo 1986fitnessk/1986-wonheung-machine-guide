@@ -2,6 +2,7 @@
 const visualGuides={
  '13':{primary:['glutes'],secondary:['hamstrings'],main:'대둔근',assist:'햄스트링',cue:'등 상부와 발은 지지 · 허리 과신전 없이',action:'엉덩이 올리기 → 천천히 내려오기'},
  '14':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'무릎은 발끝 방향 · 발바닥 전체로',action:'패드와 함께 앉기 → 밀어 일어서기'},
+ '14-reverse':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'어깨 아래 정강이 · 엉덩이는 뒤로',action:'어깨 지지하며 앉기 → 밀어 일어서기'},
  '15':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'등과 엉덩이는 패드에 · 무릎 튕기지 않기',action:'발판 받아오기 → 앞쪽으로 밀기'},
  '16':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'몸은 패드에 · 발은 고정 발판에',action:'레일 따라 내려오기 → 밀어 올라가기'},
  '17':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'골반 고정 · 발바닥 전체로 밀기',action:'무릎 굽혀 받아오기 → 레일 따라 밀기'},
@@ -137,21 +138,27 @@ function motionFigure(id){
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
 
- if(['13','14','15','16','17'].includes(id)){
+ if(['13','14','14-reverse','15','16','17'].includes(id)){
   // Fixed-length thigh/shin IK keeps feet attached to the moving or fixed footplate.
-  const hipThrust=id==='13',squat=id==='14'||id==='16',hack=id==='16';
+  const reverse=id==='14-reverse',hipThrust=id==='13',squat=id==='14'||reverse||id==='16',hack=id==='16';
   const poses=phases.map(p=>{
    let hip,ankle,lean;
    if(hipThrust){
     lean=-60-30*p;const r=lean*Math.PI/180;
     hip=[88-(10*Math.cos(r)+60*Math.sin(r)),125-(10*Math.sin(r)-60*Math.cos(r))];ankle=[190,202];
+   }else if(reverse){
+    // Hinge back on descent: shoulder stays above the planted shin, pelvis travels behind it.
+    hip=[160-29*p,158-46*p];ankle=[112,202];lean=-42+27*p;
    }else if(squat){
-    hip=hack?[103+22*p,157-34*p]:[112+13*p,151-32*p];ankle=[170,202];lean=hack?-24:-8;
+    // Hack carriage, back pad and torso share the exact incline of the rail.
+    hip=hack?[147-(38*62/169)*p,164-38*p]:[112+13*p,151-32*p];
+    ankle=hack?[211,202]:[170,202];lean=hack?-Math.atan2(62,169)*180/Math.PI:-8;
    }else{hip=[110,177];ankle=id==='15'?[168+28*p,141-17*p]:[164+29*p,142-29*p];lean=-55;}
    const length=squat?49:hipThrust?46:59;
    const dx=ankle[0]-hip[0],dy=ankle[1]-hip[1],d=Math.hypot(dx,dy);
    const height=Math.sqrt(Math.max(0,length*length-d*d/4));
-   const knee=[(hip[0]+ankle[0])/2+dy/d*height,(hip[1]+ankle[1])/2-dx/d*height];
+   const side=reverse?-1:1;
+   const knee=[(hip[0]+ankle[0])/2+side*dy/d*height,(hip[1]+ankle[1])/2-side*dx/d*height];
    return {hip,ankle,knee,lean,length};
   });
   const moving=(points,content)=>`<g transform="translate(${points[0].join(' ')})">${animation('transform',points.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
@@ -159,24 +166,41 @@ function motionFigure(id){
   const bone=(from,to,len,width,fill)=>moving(from,turning(from.map((a,i)=>Math.atan2(-(to[i][0]-a[0]),to[i][1]-a[1])*180/Math.PI),segment(len,width,4,fill)));
   const hips=poses.map(p=>p.hip),knees=poses.map(p=>p.knee),feet=poses.map(p=>p.ankle),leans=poses.map(p=>p.lean);
   const legs=bone(hips,knees,poses[0].length,10,hipThrust?palette.skin:palette.muscle)+bone(knees,feet,poses[0].length,7,palette.skin)
-   +moving(feet,shape('M-6-4 H5 L16 2 Q19 7 13 8 H-5 Z',palette.skin));
+   +moving(feet,(id==='15'||id==='17')
+    // The whole sole follows the footplate's near face (y = x - 7).
+    // Both endpoints move with the plate, so heel and forefoot never lift off.
+    ?shape('M-4 5 L-9-5 Q-17-13-12-19 L12 5 Q15 10 7 11 Z',palette.skin)+line('M-12-19 L12 5','#65745e',1.5)+line('M-8-5 L-1 1',palette.edge,.8)
+    :`<g transform="scale(${reverse?-1:1} 1)">${shape('M-6-4 H5 L16 2 Q19 7 13 8 H-5 Z',palette.skin)}</g>`);
   const grip=squat?{a:[-65,-65],bend:[-115,-115]}:{a:[-8,-8],bend:[-15,-15]};
-  const upper=moving(hips,turning(leans,torso(0,0,0)+(hipThrust?shape('M-16-5 Q-5-9 5 1 L0 10 L-13 8 Z',palette.muscle):'')+head(0,-83)+arm({x:10,y:-60,upper:30,lower:28,...grip})));
+  const upper=moving(hips,turning(leans,`<g transform="scale(${reverse?-1:1} 1)">`+torso(0,0,0)+(hipThrust?shape('M-16-5 Q-5-9 5 1 L0 10 L-13 8 Z',palette.muscle):'')+head(0,-83)+arm({x:10,y:-60,upper:30,lower:28,...grip})+'</g>'));
   let frame='',pad='';
   if(hipThrust){
-   frame=line('M52 212 H227 M78 212 V134 M60 134 H100',palette.metal,6)+shape('M61 124 H103 V134 H61 Z',palette.pad)+line('M177 212 H220',palette.metal,7);
-   pad=moving(hips,shape('M-13-10 H15 Q22-6 15 2 H-13 Q-20-3-13-10 Z',palette.pad));
+   // Two distinct supports: articulated upper-back pad and fixed starting seat.
+   // The torso rotates around the same shoulder anchor as the back-pad assembly.
+   frame=line('M46 216 H230 M88 216 V145 M130 216 V184',palette.metal,7)
+    +moving(hips,turning(leans,shape('M-26-72 Q-30-72-30-67 V-28 Q-30-23-25-23 H-18 V-72 Z','#647267')))
+    +shape('M116 179 H158 Q163 179 163 184 V189 H113 V184 Q113 179 116 179 Z','#647267')
+    +shape('M178 210 H221 V217 H178 Z',palette.pad)
+    +bolt(88,145,5)
+    +'<text x="25" y="135" fill="#bfc9ba" font-size="9">등받이 패드</text><text x="103" y="204" fill="#bfc9ba" font-size="9">엉덩이 패드</text>';
+   const links=hips.map(h=>`M88 145 L${number(h[0])} ${number(h[1]-7)}`);
+   frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',links)}</path>`;
+   pad=moving(hips,shape('M-13-14 H15 Q22-9 15-3 H-13 Q-20-8-13-14 Z',palette.pad));
   }else if(squat){
-   frame=line(hack?'M49 212 L111 43 M62 212 H220':'M55 212 H220 M62 212 V112',palette.metal,6)+shape('M149 210 H202 V216 H149 Z',palette.pad);
-   pad=moving(hips,turning(leans,shape('M-24-70 H-15 V9 H-24 Z M-24-73 H16 V-64 H-24 Z',palette.pad)));
-   if(!hack){const links=poses.map(p=>`M62 112 L${p.hip[0]-22} ${p.hip[1]-25}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(62,112);}
+   frame=line(hack?'M82 212 L144 43 M69 212 L131 43 M62 216 H230':'M55 212 H220 M62 212 V112',palette.metal,6)+shape(hack?'M171 210 H238 V217 H171 Z':'M52 210 H202 V216 H52 Z',palette.pad);
+   pad=moving(hips,turning(leans,shape(reverse?'M-24-73 H16 V-64 H-24 Z':'M-24-70 H-15 V9 H-24 Z M-24-73 H16 V-64 H-24 Z',palette.pad)));
+   if(hack)frame+=moving(hips,turning(leans,line('M-51-56 V-8 M-51-51 H-25 M-51-13 H-25',palette.metal,5)+bolt(-51,-51,4)+bolt(-51,-13,4)));
+   if(!hack){const links=poses.map(p=>{const r=p.lean*Math.PI/180;const end=reverse?[p.hip[0]-10*Math.cos(r)+64*Math.sin(r),p.hip[1]-10*Math.sin(r)-64*Math.cos(r)]:[p.hip[0]-22,p.hip[1]-25];return `M62 112 L${end.map(number).join(' ')}`;});frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(62,112);}
   }else{
    frame=line('M38 212 H252 M64 212 L47 145 M112 212 V187',palette.metal,6)+shape('M38 139 L44 131 L113 178 L108 187 Z',palette.pad);
    if(id==='17')frame+=line('M139 190 L221 92 M151 201 L233 103',palette.metal,5);
    else{const links=feet.map(a=>`M242 207 L${a[0]+10} ${a[1]}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(242,207);}
    pad=moving(feet,shape('M-13-20 L-7-25 L29 11 L23 17 Z',palette.pad));
   }
-  art=frame+pad+legs+upper+(hipThrust?pad:'')+'<text x="248" y="225" text-anchor="middle" fill="#aeb8ac" font-size="9">측면 도식</text>';
+  const assembly=frame+pad+legs+upper+(hipThrust?pad:'');
+  const hackRail=line('M177 212 L239 43 M164 212 L226 43 M42 216 H252',palette.metal,6);
+  const hackLinks=hack?[-51,-13].map(y=>{const paths=poses.map(p=>{const r=p.lean*Math.PI/180;const end=[300-(p.hip[0]-25*Math.cos(r)-y*Math.sin(r)),p.hip[1]-25*Math.sin(r)+y*Math.cos(r)];const railX=177+(212-end[1])*62/169;return `M${number(railX)} ${number(end[1])} L${end.map(number).join(' ')}`;});return `<path d="${paths[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',paths)}</path>`;}).join(''):'';
+  art=(hack?hackRail+hackLinks+`<g transform="translate(300 0) scale(-1 1)">${shape('M171 210 H238 V217 H171 Z',palette.pad)+pad+legs+upper}</g>`:assembly)+'<text x="248" y="225" text-anchor="middle" fill="#aeb8ac" font-size="9">측면 도식</text>';
  }
 
  if(['09','10','12'].includes(id)){
