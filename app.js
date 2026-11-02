@@ -328,11 +328,12 @@ const machines = [
 },
 {
   "id": "14",
-  "name": "싸이벡스 브이스쿼트",
+  "name": "브이스쿼트",
   "en": "V-SQUAT",
   "image": "v-squat.webp",
-  "imageWidth": 1086, "imageHeight": 1448,
-  "aliases": "브이스쿼트 브이 스쿼트 v squat goodfitness 굿피트니스",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "aliases": "브이스쿼트 브이 스쿼트 v squat goodfitness 굿피트니스 정방향 역방향 리버스 어깨 밀착 등 밀착",
   "setup": [
     "발판에 발을 안정적으로 놓고 등과 어깨를 패드에 맞추세요.",
     "손잡이를 잡고 가볍게 일어서 지지한 뒤 안전장치를 해제하세요. 잠금 방식은 직원과 확인하세요."
@@ -345,9 +346,49 @@ const machines = [
   "tip": "어깨를 편안하게 열고, 무릎은 앞으로·엉덩이는 뒤로 보내며 앉으세요. 바닥 지점에서 무릎이 발끝 방향을 향하게 살짝 열고, 엄지발가락 아래와 뒤꿈치를 함께 누르며 키가 커지듯 일어나세요.",
   "source": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/plate-loaded-v-squat",
   "sourceLabel": "Hammer Strength · V-Squat (다른 모델의 공통 원리)",
-  "note": "센터에서 제공한 기구명을 사용했습니다. 사진의 프레임 로고는 GoodFitness이며, 제조사·모델을 Cybex로 확정하지 않았습니다. 깊이는 패드 접촉과 발바닥 지지가 유지되는 범위로 조절하세요.",
+  "note": "깊이는 패드 접촉과 발바닥 지지가 유지되는 범위로 조절하세요.",
   "brand": "GOODFITNESS · 사진 표기",
-  "category": "하체"
+  "category": "하체",
+  "modes": [
+    {
+      "id": "14",
+      "category": "하체",
+      "setup": [
+        "발판에 발을 안정적으로 놓고 등과 어깨를 패드에 맞추세요.",
+        "손잡이를 잡고 가볍게 일어서 지지한 뒤 안전장치를 해제하세요. 잠금 방식은 직원과 확인하세요."
+      ],
+      "steps": [
+        "발바닥 전체를 붙이고 복부에 힘을 주세요.",
+        "무릎이 발끝 방향을 따라 움직이도록 고관절과 무릎을 함께 굽혀 내려가세요.",
+        "발판을 지그시 밀어 일어나고, 종료할 때 안전장치를 걸어 지지된 것을 확인하세요."
+      ],
+      "tip": "어깨를 편안하게 열고, 무릎은 앞으로·엉덩이는 뒤로 보내며 앉으세요. 바닥 지점에서 무릎이 발끝 방향을 향하게 살짝 열고, 엄지발가락 아래와 뒤꿈치를 함께 누르며 키가 커지듯 일어나세요.",
+      "source": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/plate-loaded-v-squat",
+      "sourceLabel": "Hammer Strength · V-Squat (다른 모델의 공통 원리)",
+      "note": "깊이는 패드 접촉과 발바닥 지지가 유지되는 범위로 조절하세요.",
+      "name": "등 밀착 스쿼트",
+      "en": "BACK-SUPPORTED V-SQUAT"
+    },
+    {
+      "id": "14-reverse",
+      "category": "하체",
+      "setup": [
+        "기구를 바라보고 서서 양어깨를 어깨 패드 아래에 넣고 손잡이를 잡으세요.",
+        "발판에 발바닥 전체를 붙이고, 현장 직원과 안전장치 및 발 위치를 확인하세요."
+      ],
+      "steps": [
+        "어깨 패드 접촉과 복부 긴장을 유지하며 준비하세요.",
+        "어깨를 패드 아래에 둔 채 상체를 앞으로 기울이고, 정강이를 비교적 세우며 엉덩이를 뒤로 보내 천천히 앉으세요.",
+        "발바닥 전체로 밀어 일어나세요. 마칠 때 안전장치를 고정한 후 내려오세요."
+      ],
+      "tip": "어깨 패드 아래에 정강이가 오도록 발 위치를 맞추고, 엉덩이를 뒤로 빼며 힙힌지를 만들어 주세요. 허리를 둥글게 말지 않고 발바닥 전체로 밀어 일어나세요.",
+      "source": "",
+      "sourceLabel": "센터 요청 · 기구를 바라보는 어깨 패드 지지 방식",
+      "note": "등 밀착 동작과 반대 방향을 바라보는 방식입니다. 어깨 패드로 지지하며, 허리를 과하게 젖히지 않는 범위에서 움직이세요. 구체적인 세팅은 현장 안내를 따르세요.",
+      "name": "어깨 밀착 스쿼트",
+      "en": "REVERSE V-SQUAT"
+    }
+  ]
 },
 {
   "id": "15",
@@ -434,8 +475,13 @@ function showMachine(machine,modeIndex=0){
  dialog.scrollTop=0;disposeMotion=initMotion();
  document.querySelectorAll('[data-mode]').forEach(button=>button.onclick=()=>{
   const next=Number(button.dataset.mode);if(next===modeIndex)return;
-  const scrollTop=dialog.scrollTop;showMachine(machine,next);dialog.scrollTop=scrollTop;
-  document.querySelector(`[data-mode="${next}"]`).focus({preventScroll:true});
+  const scrollTop=dialog.scrollTop;disposeMotion();modeIndex=next;
+  const mode=machine.modes[next],panel=document.querySelector('#exercise-panel');
+  panel.setAttribute('aria-label',`${mode.name} 안내`);
+  panel.innerHTML=`<h3 class="mode-title">${mode.name}</h3>${exerciseContent(mode)}`;
+  document.querySelectorAll('[data-mode]').forEach(item=>item.setAttribute('aria-pressed',String(Number(item.dataset.mode)===next)));
+  disposeMotion=initMotion();dialog.scrollTop=scrollTop;
+  button.focus({preventScroll:true});
  });
 }
 search.addEventListener('input',render);
