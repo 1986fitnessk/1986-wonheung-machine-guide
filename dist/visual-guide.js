@@ -1,5 +1,9 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+ '09':{primary:['chest'],secondary:['triceps','shoulder'],main:'대흉근',assist:'상완삼두근 · 전면 삼각근',cue:'등은 패드에 · 앞쪽으로 모아 밀기',action:'앞쪽으로 밀기 → 천천히 받아오기'},
+ '10':{primary:['chest','shoulder'],secondary:['triceps'],main:'대흉근 상부 · 전면 삼각근',assist:'상완삼두근',cue:'앞쪽 위로 밀기 · 허리 과신전 없이',action:'대각선 위로 밀기 → 천천히 받아오기'},
+ '11':{primary:['lats'],secondary:['triceps'],main:'광배근',assist:'상완삼두근 장두 등',cue:'팔꿈치는 패드에 · 몸통은 고정',action:'패드를 아래로 누르기 → 머리 위로 천천히 돌아가기'},
+ '12':{primary:['chest'],secondary:['triceps','shoulder'],main:'대흉근 (하부 중심)',assist:'상완삼두근 · 전면 삼각근',cue:'등받이에 기대어 · 앞쪽 아래로 밀기',action:'앞쪽 아래로 밀기 → 천천히 받아오기'},
  '08-pull':{primary:['lats'],secondary:['biceps','midback'],main:'광배근',assist:'상완이두근 · 등 상부 근육',cue:'몸통 흔들림 없이 · 팔꿈치를 아래로',action:'당겨 올라가기 → 천천히 내려오기'},
  '08-dip':{primary:['triceps','chest'],secondary:['shoulder'],main:'상완삼두근 · 대흉근',assist:'전면 삼각근',cue:'어깨가 편안한 범위에서 · 반동 없이',action:'천천히 내려가기 → 밀어 올라오기'},
  '07':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'엉덩이는 패드에 · 힙힌지 유지',action:'레일을 따라 당기기 → 천천히 펴기'},
@@ -126,6 +130,39 @@ function motionFigure(id){
  const seatedLegs=()=>leg([111,149],[150,162],[160,202],.5)+leg([113,151],[158,158],[171,203]);
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
+ if(['09','10','12'].includes(id)){
+  const hip=[120,154],lean=-15;
+  const bodyPoint=(x,y)=>[hip[0]+x*Math.cos(lean*Math.PI/180)-y*Math.sin(lean*Math.PI/180),hip[1]+x*Math.sin(lean*Math.PI/180)+y*Math.cos(lean*Math.PI/180)];
+  const shoulder=bodyPoint(10,-60),headPos=bodyPoint(0,-83);
+  const start=[145,98],end=id==='10'?[163,51]:id==='12'?[177,126]:[181,108];
+  const upper=36,lower=35;
+  const hands=phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]);
+  const angles=hands.map(([x,y])=>{
+   const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
+   const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
+   return [(Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
+  });
+  const pivot=id==='10'?[207,104]:[207,35];
+  const leverValues=hands.map(h=>`M${pivot.join(' ')} L${h.map(number).join(' ')}`);
+  const pressing={x:shoulder[0],y:shoulder[1],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:'triceps'};
+  art=seat+line(`M207 212 V${pivot[1]}`,palette.metal,6)
+   +shape('M86 79 L94 76 L115 151 L103 154 Z',palette.pad)
+   +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',leverValues)}</path>`+bolt(...pivot,4)
+   +leg([118,155],[151,165],[162,203],.45)+leg([122,156],[159,164],[173,203])
+   +arm({...pressing,x:shoulder[0]-3,y:shoulder[1]-2,opacity:.35})
+   +torso(...hip,lean,'chest')+head(...headPos,lean)+arm(pressing)
+   +'<text x="232" y="192" fill="#aeb8ac" font-size="10" text-anchor="middle">측면 도식</text>';
+ }
+ if(id==='11'){
+  const hip=[120,154],lean=-15,shoulder=[114,94];
+  const pulling={x:shoulder[0],y:shoulder[1],upper:36,lower:34,a:[-160,-8],bend:[-70,-70],focus:'assist'};
+  const pad=shape('M-12 30 H10 V42 H-12 Z',palette.pad)+line('M0 0 V36',palette.metal,4);
+  art=seat+line('M78 211 V94 H114',palette.metal,6)
+   +shape('M86 79 L94 76 L115 151 L103 154 Z',palette.pad)
+   +seatedLegs()+torso(...hip,lean,'back')+head(98.5,73.8,lean)
+   +translate(shoulder,null,rotate(-160,-8,pad))+arm(pulling)+bolt(...shoulder,3)
+   +'<text x="220" y="173" fill="#d8c7a6" font-size="10" text-anchor="middle">팔꿈치 패드</text>';
+ }
  if(id==='08-pull'||id==='08-dip'){
   const pull=id==='08-pull';
   const shift=pull?-34:24,hip=pull?145:132,ankle=pull?198:184;

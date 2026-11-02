@@ -73,3 +73,15 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
   https://www.hoistfitness.com/pages/rs-1700-chin-dip-assist
 
 - 현장 확인: 사용자가 보조 받침에 발을 올리는 방식임을 확인. 풀업·딥스 모션 모두 손은 고정 손잡이에, 발은 상하 이동하는 보조 발판에 유지되도록 작성.
+
+## 해머 머신 4종 (2026-11-02)
+- 사진 순서대로 09 와이드 체스트, 10 슈퍼 인클라인 프레스, 11 ISO 풀오버, 12 디클라인 프레스 등록. 사용자 트레이너 팁 원문 유지.
+- 와이드 체스트: 제조사의 앉은 자세, 넓은 시작 위치, 모이며 내려가는 프레스 원리 참고.
+  https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-wide-chest
+- 슈퍼 인클라인: 위·앞으로 미는 궤적, 상부 가슴·어깨 및 삼두근 참고.
+  https://shop.lifefitness.com/products/hammer-strength-plate-loaded-iso-lateral-super-incline-press
+- 풀오버: 제조사 PL-PO 매뉴얼의 팔꿈치 패드, 머리 위에서 아래로 누르는 동작 참고. 사진 속 ISO 모델과 동일 모델로 단정하지 않으며 공통 원리만 적용.
+  https://kb.cybexintl.com/Owners_Manuals/Strength/Hammer_Strength_Plate_Loaded_Owners_Manual.pdf
+- 디클라인: 앉은 자세에서 앞·아래로 미는 궤적과 가슴 하부 강조 참고. 팁의 ‘몸을 누워’는 등받이에 기대는 뜻으로 안내.
+  https://shop.lifefitness.com/products/hammer-strength-plate-loaded-iso-lateral-decline-chest-press
+- 사진은 배경 제거 후 투명 무손실 WebP로 저장. 근육 지도 및 반복 동작은 이해용 도식이며 정확한 관절 각도나 개인별 가동 범위를 처방하지 않음.

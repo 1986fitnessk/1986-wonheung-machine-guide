@@ -208,7 +208,101 @@ const machines = [
         "tip": "어깨가 과사용 되지 않도록 흉곽을 약간 말아서 딥스를 시도해보세요 !"
       }
     ]
-  }
+  },
+{
+  "id": "09",
+  "name": "ISO-레터럴 와이드 체스트(해머)",
+  "en": "ISO-LATERAL WIDE CHEST",
+  "category": "가슴",
+  "aliases": "와이드체스트 와이드 체스트 프레스 해머 hammer chest press",
+  "image": "hammer-wide-chest.webp",
+  "setup": [
+    "가벼운 중량을 양쪽에 동일하게 준비하고, 손잡이가 가슴 중앙보다 약간 아래에 오도록 의자를 맞추세요.",
+    "등과 어깨를 패드에 붙이고 발을 안정적으로 둔 뒤, 손목이 꺾이지 않게 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "복부에 힘을 주고 허리가 과하게 젖혀지지 않도록 준비하세요.",
+    "숨을 내쉬며 양쪽 손잡이를 앞쪽으로 모아 밀고, 팔꿈치를 세게 잠그지 마세요.",
+    "숨을 들이마시며 천천히 돌아오되, 어깨가 편안한 범위까지만 팔꿈치를 뒤로 보내세요."
+  ],
+  "tip": "허리가 과하게 젖혀지지 않게 앉은 후 숨을 들이마셔 가슴에 채우고 밀어낸 뒤 어깨선까지 팔꿈치를 뒤로 보내 늘려주며 반복해 주세요. 밀어낼 때 숨을 내쉬고 몸으로 받아낼 때 마시며 진행해 주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-wide-chest",
+  "sourceLabel": "Hammer Strength · Iso-Lateral Wide Chest",
+  "note": "넓게 시작해 앞쪽으로 모이며 약간 아래로 밀리는 궤적의 머신입니다. 어깨를 억지로 뒤로 젖히지 말고 통증 없는 범위에서 진행하세요.",
+  "brand": "HAMMER STRENGTH"
+},
+{
+  "id": "10",
+  "name": "ISO-레터럴 슈퍼 인클라인 프레스(해머)",
+  "en": "ISO-LATERAL SUPER INCLINE PRESS",
+  "category": "가슴 · 어깨",
+  "categories": [
+    "가슴",
+    "어깨"
+  ],
+  "aliases": "슈퍼인클라인 슈퍼 인클라인 프레스 윗가슴 상부가슴 해머 hammer incline press",
+  "image": "hammer-super-incline.webp",
+  "setup": [
+    "가벼운 중량을 준비하고, 등을 패드에 붙였을 때 손잡이를 편하게 잡을 수 있도록 의자 높이를 맞추세요.",
+    "발을 안정적으로 두고, 손목과 팔꿈치가 정렬되는 그립으로 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "등과 엉덩이를 패드에 유지하고 복부에 힘을 주세요.",
+    "숨을 내쉬면서 머신 궤적을 따라 앞쪽 위로 밀어 올리세요.",
+    "팔꿈치를 튕기지 말고, 숨을 들이마시며 시작 위치까지 천천히 받아주세요."
+  ],
+  "tip": "중간 너비로 팔꿈치와 손목이 수직을 이룰 정도로 그립을 잡은 후 궤적에 따라 밀어 올려 주세요. 팔꿈치가 과하게 펴지지 않게 주의해 주시고, 받아낼 때 빠르게 떨어지지 않게 호흡을 마시며 지긋이 무게를 받아 주세요.",
+  "source": "https://shop.lifefitness.com/products/hammer-strength-plate-loaded-iso-lateral-super-incline-press",
+  "sourceLabel": "Hammer Strength · Iso-Lateral Super Incline Press",
+  "note": "일반 인클라인 프레스보다 위쪽으로 밀며 가슴 상부와 전면 어깨가 함께 사용됩니다. 허리를 과하게 꺾거나 어깨를 으쓱하지 마세요.",
+  "brand": "HAMMER STRENGTH"
+},
+{
+  "id": "11",
+  "name": "ISO-풀오버(해머)",
+  "en": "ISO PULLOVER",
+  "category": "등",
+  "aliases": "풀오버 풀 오버 풀오바 광배근 해머 hammer pullover pull over",
+  "image": "hammer-pullover.webp",
+  "setup": [
+    "가벼운 중량을 준비하고 등과 엉덩이가 패드에 안정적으로 닿도록 앉으세요. 고정 벨트가 있으면 몸에 맞게 잠그세요.",
+    "팔꿈치를 움직이는 패드에 대고 위쪽 손잡이를 잡으세요. 시작 높이와 의자 조절은 현장 직원과 확인하세요."
+  ],
+  "steps": [
+    "복부에 힘을 주고 몸통이 들리거나 허리가 꺾이지 않게 고정하세요.",
+    "숨을 내쉬며 팔꿈치 패드를 몸 앞쪽 아래로 눌러 내려주세요.",
+    "숨을 들이마시며 천천히 머리 위쪽으로 돌아오고, 어깨가 불편해지기 전까지만 늘려주세요."
+  ],
+  "tip": "처음 몸에 힘을 강하게 준 뒤 배꼽 아래까지 누르고, 복부에 힘을 강하게 준 뒤 천천히 머리 위로 늘려주세요. 정수리를 넘어갈 때 어깨가 불편할 수 있으니 정수리 앞뒤 구간은 천천히 가동범위를 잡아가며 진행해 주세요. 머리 위로 올라갈 때 호흡을 마시고 배꼽으로 내릴 때 내쉬어 주세요.",
+  "source": "https://kb.cybexintl.com/Owners_Manuals/Strength/Hammer_Strength_Plate_Loaded_Owners_Manual.pdf",
+  "sourceLabel": "Hammer Strength 매뉴얼 · Pullover (PL-PO, 공통 원리)",
+  "note": "제조사 풀오버 자료의 팔꿈치 패드 사용 원리를 참고했습니다. 사진 속 ISO 기구와 세부 구조는 다를 수 있습니다. 배꼽 아래라는 팁보다 본인의 통증 없는 가동범위를 우선하세요.",
+  "brand": "HAMMER STRENGTH"
+},
+{
+  "id": "12",
+  "name": "ISO-레터럴 디클라인 프레스(해머)",
+  "en": "ISO-LATERAL DECLINE PRESS",
+  "category": "가슴",
+  "aliases": "디클라인 디클라인프레스 아랫가슴 하부가슴 해머 hammer decline chest press",
+  "image": "hammer-decline.webp",
+  "imageWidth": 1087,
+  "imageHeight": 1447,
+  "setup": [
+    "가벼운 중량을 준비하고, 등받이에 등을 기댄 상태에서 손잡이가 가슴 아래쪽에 오도록 의자를 맞추세요.",
+    "발을 안정적으로 두고 손목과 팔꿈치를 손잡이의 이동 방향에 맞추세요. 고정 벨트가 있으면 잠그세요."
+  ],
+  "steps": [
+    "등과 엉덩이를 패드에 붙이고 복부에 힘을 준 채 준비하세요.",
+    "숨을 내쉬며 손바닥으로 손잡이를 앞쪽 아래 방향으로 밀어내세요.",
+    "숨을 들이마시며 같은 궤적을 따라 천천히 돌아오고, 어깨가 과하게 뒤로 젖혀지지 않게 조절하세요."
+  ],
+  "tip": "몸을 누워 어깨-가슴-손목 궤적을 동일하게 만든 뒤 손바닥 면을 앞으로 밀어내 주세요. 어깨를 뒤로 젖히면 가슴이 늘어나는 느낌이 들지만 관절에 부담이 갈 수 있으니 잘 조절해 주세요. 호흡을 마시며 가슴 쪽으로 늘려주시고 밀어내는 타이밍에 맞추어 내쉬어 주세요. 손잡이와 같은 방향으로 늘려주세요",
+  "source": "https://shop.lifefitness.com/products/hammer-strength-plate-loaded-iso-lateral-decline-chest-press",
+  "sourceLabel": "Hammer Strength · Iso-Lateral Decline Chest Press",
+  "note": "이 기구는 등받이에 기대어 앉는 디클라인 프레스입니다. 팁의 “몸을 누워”는 바닥에 눕는 뜻이 아니라 등받이에 몸을 지지하는 자세로 이해해주세요.",
+  "brand": "HAMMER STRENGTH"
+}
 ];
 let category='전체';
 const search=document.querySelector('#search'), list=document.querySelector('#machines'), dialog=document.querySelector('#detail');
