@@ -302,13 +302,128 @@ const machines = [
   "sourceLabel": "Hammer Strength · Iso-Lateral Decline Chest Press",
   "note": "이 기구는 등받이에 기대어 앉는 디클라인 프레스입니다. 팁의 “몸을 누워”는 바닥에 눕는 뜻이 아니라 등받이에 몸을 지지하는 자세로 이해해주세요.",
   "brand": "HAMMER STRENGTH"
+},
+{
+  "id": "13",
+  "name": "힙 쓰러스트",
+  "en": "HIP THRUST",
+  "image": "hip-thrust.webp",
+  "imageWidth": 1086, "imageHeight": 1448,
+  "aliases": "힙쓰러스트 힙스러스트 엉덩이 둔근 glute drive",
+  "setup": [
+    "가벼운 중량을 준비하고 등 상부를 패드에 안정적으로 기대세요.",
+    "골반 앞쪽에 롤러 패드를 맞추고 발을 골반 너비로 놓으세요. 잠금장치 조작은 현장 직원에게 먼저 확인하세요."
+  ],
+  "steps": [
+    "발바닥을 붙이고 복부에 힘을 준 상태에서 준비하세요.",
+    "숨을 내쉬며 엉덩이를 들어 몸통과 허벅지가 이어지는 위치까지만 올리세요.",
+    "허리를 꺾지 않고 둔근의 긴장을 유지하며 천천히 내려오세요."
+  ],
+  "tip": "패드는 고관절과 아랫배 사이에 맞추고, 발은 골반 너비로 몸 쪽에 당겨 놓으세요. 가슴을 열고 어깨를 낮춘 채 발과 어깨의 지지를 유지하며 엉덩이를 올리고, 무게를 느끼며 천천히 내려오세요.",
+  "source": "https://www.youtube.com/watch?v=amcaUtVnjkY",
+  "sourceLabel": "Life Fitness Australia · Glute Drive (공통 원리)",
+  "note": "사진 속 제조사는 확인되지 않았습니다. 다른 모델의 힙 신전 원리만 참고했으며, 롤러가 복부를 강하게 누르지 않도록 위치를 확인하세요.",
+  "brand": "",
+  "category": "하체"
+},
+{
+  "id": "14",
+  "name": "싸이벡스 브이스쿼트",
+  "en": "V-SQUAT",
+  "image": "v-squat.webp",
+  "imageWidth": 1086, "imageHeight": 1448,
+  "aliases": "브이스쿼트 브이 스쿼트 v squat goodfitness 굿피트니스",
+  "setup": [
+    "발판에 발을 안정적으로 놓고 등과 어깨를 패드에 맞추세요.",
+    "손잡이를 잡고 가볍게 일어서 지지한 뒤 안전장치를 해제하세요. 잠금 방식은 직원과 확인하세요."
+  ],
+  "steps": [
+    "발바닥 전체를 붙이고 복부에 힘을 주세요.",
+    "무릎이 발끝 방향을 따라 움직이도록 고관절과 무릎을 함께 굽혀 내려가세요.",
+    "발판을 지그시 밀어 일어나고, 종료할 때 안전장치를 걸어 지지된 것을 확인하세요."
+  ],
+  "tip": "어깨를 편안하게 열고, 무릎은 앞으로·엉덩이는 뒤로 보내며 앉으세요. 바닥 지점에서 무릎이 발끝 방향을 향하게 살짝 열고, 엄지발가락 아래와 뒤꿈치를 함께 누르며 키가 커지듯 일어나세요.",
+  "source": "https://www.lifefitness.com/en-gb/catalog/strength-training/plate-loaded/plate-loaded-v-squat",
+  "sourceLabel": "Hammer Strength · V-Squat (다른 모델의 공통 원리)",
+  "note": "센터에서 제공한 기구명을 사용했습니다. 사진의 프레임 로고는 GoodFitness이며, 제조사·모델을 Cybex로 확정하지 않았습니다. 깊이는 패드 접촉과 발바닥 지지가 유지되는 범위로 조절하세요.",
+  "brand": "GOODFITNESS · 사진 표기",
+  "category": "하체"
+},
+{
+  "id": "15",
+  "name": "싸이벡스 스쿼트프레스",
+  "en": "SQUAT PRESS",
+  "image": "cybex-squat-press.webp",
+  "imageWidth": 1536, "imageHeight": 1024,
+  "aliases": "스쿼트프레스 스쿼트 프레스 cybex",
+  "setup": [
+    "등받이와 시작 위치를 맞추고 등·엉덩이를 패드에 붙이세요. 양쪽에 같은 중량을 준비하세요.",
+    "발판을 가볍게 밀어 무게를 지지한 뒤 안전장치를 해제하고 고정 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "발을 골반 너비로 놓고 무릎을 발끝 방향에 맞추세요.",
+    "엉덩이가 들리지 않는 범위에서 발판을 천천히 받아오세요.",
+    "숨을 내쉬며 발판을 밀고, 종료 시 안전장치를 잠근 뒤 지지 여부를 확인하세요."
+  ],
+  "tip": "엉덩이를 패드에 붙이고 손잡이를 당기며 가슴을 열어주세요. 엄지발가락이 뜨지 않게 무릎과 고관절을 접고, 무릎은 발끝 방향으로 살짝 열어주세요. 엄지발가락 아래와 뒤꿈치로 지그시 밀어주세요.",
+  "source": "https://kb.cybexintl.com/Owners_Manuals/Strength/16150-999-4.pdf",
+  "sourceLabel": "Cybex · Squat Press 매뉴얼",
+  "note": "사진 속 세부 모델 번호는 미확인입니다. 안전장치 위치는 현장 기구 안내를 우선하고, 무릎을 튕기거나 완전히 잠그지 마세요.",
+  "brand": "CYBEX",
+  "category": "하체"
+},
+{
+  "id": "16",
+  "name": "싸이벡스 핵스쿼트",
+  "en": "HACK SQUAT",
+  "image": "cybex-hack-squat.webp",
+  "imageWidth": 1086, "imageHeight": 1448,
+  "aliases": "핵스쿼트 핵 스쿼트 해크스쿼트 hack cybex",
+  "setup": [
+    "양쪽에 같은 중량을 준비하고 등·엉덩이·어깨를 패드에 맞추세요.",
+    "발을 골반 너비로 놓고 가볍게 일어서서 무게를 지지한 뒤 안전장치를 해제하세요."
+  ],
+  "steps": [
+    "손잡이를 잡고 발바닥 전체를 발판에 붙이세요.",
+    "패드 접촉을 유지하며 무릎과 고관절을 굽혀 레일을 따라 내려오세요.",
+    "숨을 내쉬며 발판을 밀어 올라오고, 종료할 때 안전장치를 다시 잠그세요."
+  ],
+  "tip": "등·엉덩이·어깨를 패드에 붙이고, 발은 골반 너비로 두되 뒤꿈치 쪽에 조금 더 무게를 실으세요. 무릎이 발끝 방향을 따라가도록 접어 내려간 뒤, 패드 접촉을 유지하며 발바닥 전체로 밀어주세요.",
+  "source": "https://kb.cybexintl.com/Owners_Manuals/Strength/16200-999-4.pdf",
+  "sourceLabel": "Cybex · Hack Squat 매뉴얼",
+  "note": "3:7 비율은 뒤꿈치 쪽 지지를 강조하는 센터 큐로 요약했습니다. 발 앞쪽도 붙여 두고, 엉덩이가 뜨거나 통증이 생기기 전까지만 내려오세요.",
+  "brand": "CYBEX",
+  "category": "하체"
+},
+{
+  "id": "17",
+  "name": "싸이벡스 레그프레스",
+  "en": "LEG PRESS",
+  "image": "cybex-leg-press.webp",
+  "imageWidth": 1086, "imageHeight": 1448,
+  "aliases": "레그프레스 레그 프레스 legpress cybex",
+  "setup": [
+    "등받이를 맞추고 등·엉덩이를 패드에 붙이세요. 양쪽에 같은 중량을 준비하세요.",
+    "발판에 발을 골반 너비로 놓고 가볍게 밀어 무게를 지지한 뒤 안전장치를 해제하세요."
+  ],
+  "steps": [
+    "손잡이를 잡고 복부에 힘을 주며 발바닥 전체를 붙이세요.",
+    "골반이 말리거나 엉덩이가 뜨기 전까지 고관절·무릎을 굽혀 받아오세요.",
+    "무릎을 튕기지 않고 발판을 밀어내세요. 종료 시 안전장치를 잠그고 지지 여부를 확인하세요."
+  ],
+  "tip": "엉덩이를 패드에 붙이고 손잡이를 당기며 가슴을 열어주세요. 발은 골반 너비로 두고 뒤꿈치 쪽에 조금 더 무게를 실어 천천히 접어주세요. 엉덩이와 발바닥 전체의 긴장을 유지하며 무릎을 튕기지 않고 밀어주세요.",
+  "source": "https://kb.cybexintl.com/Owners_Manuals/Strength/16110-999-4.pdf",
+  "sourceLabel": "Cybex · Leg Press 매뉴얼 (공통 원리)",
+  "note": "사진 속 기구는 경사 레일형입니다. 참고 매뉴얼과 세부 모델이 다를 수 있어 공통 설정 원리만 반영했습니다. 3:7은 뒤꿈치 지지를 강조하는 큐이며 발 앞쪽을 떼지 마세요.",
+  "brand": "CYBEX",
+  "category": "하체"
 }
 ];
 let category='전체';
 const search=document.querySelector('#search'), list=document.querySelector('#machines'), dialog=document.querySelector('#detail');
 const normalize=value=>value.toLowerCase().replace(/\s/g,'');
 const filters=document.querySelector('.filters');
-['전체','가슴','등','어깨','복부','팔'].forEach(name=>{const button=document.createElement('button');button.textContent=name;button.setAttribute('aria-pressed',name==='전체');button.onclick=()=>{category=name;filters.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));render();};filters.append(button);});
+['전체','가슴','등','어깨','복부','팔','하체'].forEach(name=>{const button=document.createElement('button');button.textContent=name;button.setAttribute('aria-pressed',name==='전체');button.onclick=()=>{category=name;filters.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b===button));render();};filters.append(button);});
 function render(){const query=normalize(search.value);const found=machines.filter(m=>(category==='전체'||(m.categories||[m.category]).includes(category))&&normalize([m.name,m.en,m.aliases,m.category,...(m.modes||[]).flatMap(mode=>[mode.name,mode.en])].join(' ')).includes(query));document.querySelector('#count').textContent=`${category} · 머신 ${found.length}개`;list.replaceChildren();found.forEach(m=>{const button=document.createElement('button');button.className='machine';button.innerHTML=`<span class="machine-number">${m.id}</span><span class="machine-text"><strong>${m.name}</strong><small>${m.category} &nbsp; / &nbsp; ${m.en}</small></span><span class="machine-arrow" aria-hidden="true">↗</span>`;button.setAttribute('aria-label',`${m.name} 안내 보기`);button.onclick=()=>{const matched=m.modes?.findIndex(v=>query!==''&&normalize(v.name+v.en).includes(query));const byCategory=m.modes?.findIndex(v=>category!=='전체'&&v.category.split(' · ').includes(category));showMachine(m,matched>=0?matched:byCategory>=0?byCategory:0);};list.append(button);});document.querySelector('#empty').hidden=found.length!==0;}
 let disposeMotion=()=>{};
 function open(content){disposeMotion();disposeMotion=()=>{};document.querySelector('#detail-content').innerHTML=content;if(!dialog.open)dialog.showModal();document.body.style.overflow='hidden';}
