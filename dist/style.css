@@ -80,3 +80,9 @@
  .muscle-key p{font-size:12px}
  .exercise-mode-buttons button{line-height:1.5;overflow-wrap:anywhere}
 }
+
+.routine-load-guide{margin:20px 0 28px;padding:18px;border:1px solid var(--line,#444);border-radius:12px;line-height:1.8;word-break:keep-all;overflow-wrap:anywhere}
+.routine-load-guide h3{font-size:16px;margin:0 0 8px}.routine-load-guide h3:not(:first-child){margin-top:20px}
+.routine-load-guide p{font-size:14px;margin:8px 0}.routine-load-guide summary{cursor:pointer;font-size:14px;padding:12px 0}
+.routine-dose{display:block;font-size:13px;color:#e5d5ad;margin:8px 0;line-height:1.7;word-break:keep-all}
+.routine-weight{font-weight:600;color:#e5d5ad}
