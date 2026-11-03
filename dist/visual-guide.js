@@ -164,7 +164,8 @@ function motionFigure(id){
  if(['29-ab','29-ad','32','33'].includes(id)){
   const standing=id==='31',inward=['29-ad','33'].includes(id),hipY=standing?116:130;
   const from=inward?34:8,to=inward?8:34;
-  const frontBody=shape(`M134 ${hipY-65} Q150 ${hipY-71} 166 ${hipY-65} Q174 ${hipY-54} 168 ${hipY-36} L163 ${hipY-8} L137 ${hipY-8} L132 ${hipY-36} Q126 ${hipY-54} 134 ${hipY-65} Z`)
+  const frontBody=shape(`M144 ${hipY-82} H156 L157 ${hipY-70} L163 ${hipY-64} Q150 ${hipY-59} 137 ${hipY-64} L143 ${hipY-70} Z`)
+   +shape(`M134 ${hipY-65} Q150 ${hipY-71} 166 ${hipY-65} Q174 ${hipY-54} 168 ${hipY-36} L163 ${hipY-8} L137 ${hipY-8} L132 ${hipY-36} Q126 ${hipY-54} 134 ${hipY-65} Z`)
    +shape(`M134 ${hipY-59} Q143 ${hipY-64} 149 ${hipY-57} V${hipY-42} Q139 ${hipY-39} 133 ${hipY-47} Z M166 ${hipY-59} Q157 ${hipY-64} 151 ${hipY-57} V${hipY-42} Q161 ${hipY-39} 167 ${hipY-47} Z`,'#d3d4c7')
    +line(`M150 ${hipY-39} V${hipY-15} M140 ${hipY-31} H160 M141 ${hipY-23} H159`,palette.edge,.8)
    +shape(`M137 ${hipY-10} H163 L169 ${hipY+8} L153 ${hipY+14} L150 ${hipY+5} L147 ${hipY+14} L131 ${hipY+8} Z`,palette.shorts)
@@ -210,6 +211,7 @@ function motionFigure(id){
   art=line('M76 216 H244 M184 215 V108 M183 125 L220 213 M89 215 H160',palette.metal,6)
    +movingLeg(5,9,.4)+movingLeg(0,-17,1)
    +shape('M169 91 L178 94 L175 120 L166 116 Z',palette.pad)
+   +translate([125,135],null,rotate(30,30,shape('M-7-78 H5 L7-62 L-8-59 Z')))
    +torso(125,135,30)+head(166,63,20)
    +shape('M111 126 Q119 119 128 125 L126 134 L114 137 Z',palette.muscle)
    +arm({x:164,y:88,upper:27,lower:24,a:[-35,-35],bend:[-60,-60]})
