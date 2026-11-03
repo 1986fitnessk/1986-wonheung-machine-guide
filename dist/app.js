@@ -211,10 +211,10 @@ const machines = [
   },
 {
   "id": "09",
-  "name": "ISO-레터럴 와이드 체스트(해머)",
+  "name": "해머 ISO 레터럴 와이드 체스트",
   "en": "ISO-LATERAL WIDE CHEST",
   "category": "가슴",
-  "aliases": "와이드체스트 와이드 체스트 프레스 해머 hammer chest press",
+  "aliases": "와이드체스트 와이드 체스트 프레스 해머 hammer chest press ISO-레터럴 와이드 체스트(해머)",
   "image": "hammer-wide-chest.webp",
   "setup": [
     "가벼운 중량을 양쪽에 동일하게 준비하고, 손잡이가 가슴 중앙보다 약간 아래에 오도록 의자를 맞추세요.",
@@ -233,14 +233,14 @@ const machines = [
 },
 {
   "id": "10",
-  "name": "ISO-레터럴 슈퍼 인클라인 프레스(해머)",
+  "name": "해머 ISO 레터럴 슈퍼 인클라인 프레스",
   "en": "ISO-LATERAL SUPER INCLINE PRESS",
   "category": "가슴 · 어깨",
   "categories": [
     "가슴",
     "어깨"
   ],
-  "aliases": "슈퍼인클라인 슈퍼 인클라인 프레스 윗가슴 상부가슴 해머 hammer incline press",
+  "aliases": "슈퍼인클라인 슈퍼 인클라인 프레스 윗가슴 상부가슴 해머 hammer incline press ISO-레터럴 슈퍼 인클라인 프레스(해머)",
   "image": "hammer-super-incline.webp",
   "setup": [
     "가벼운 중량을 준비하고, 등을 패드에 붙였을 때 손잡이를 편하게 잡을 수 있도록 의자 높이를 맞추세요.",
@@ -259,10 +259,10 @@ const machines = [
 },
 {
   "id": "11",
-  "name": "ISO-풀오버(해머)",
+  "name": "해머 ISO 풀오버",
   "en": "ISO PULLOVER",
   "category": "등",
-  "aliases": "풀오버 풀 오버 풀오바 광배근 해머 hammer pullover pull over",
+  "aliases": "풀오버 풀 오버 풀오바 광배근 해머 hammer pullover pull over ISO-풀오버(해머)",
   "image": "hammer-pullover.webp",
   "setup": [
     "가벼운 중량을 준비하고 등과 엉덩이가 패드에 안정적으로 닿도록 앉으세요. 고정 벨트가 있으면 몸에 맞게 잠그세요.",
@@ -281,10 +281,10 @@ const machines = [
 },
 {
   "id": "12",
-  "name": "ISO-레터럴 디클라인 프레스(해머)",
+  "name": "해머 ISO 레터럴 디클라인 프레스",
   "en": "ISO-LATERAL DECLINE PRESS",
   "category": "가슴",
-  "aliases": "디클라인 디클라인프레스 아랫가슴 하부가슴 해머 hammer decline chest press",
+  "aliases": "디클라인 디클라인프레스 아랫가슴 하부가슴 해머 hammer decline chest press ISO-레터럴 디클라인 프레스(해머)",
   "image": "hammer-decline.webp",
   "imageWidth": 1087,
   "imageHeight": 1447,
@@ -392,11 +392,11 @@ const machines = [
 },
 {
   "id": "15",
-  "name": "싸이벡스 스쿼트프레스",
+  "name": "싸이벡스 스쿼트 프레스",
   "en": "SQUAT PRESS",
   "image": "cybex-squat-press.webp",
   "imageWidth": 1536, "imageHeight": 1024,
-  "aliases": "스쿼트프레스 스쿼트 프레스 cybex",
+  "aliases": "스쿼트프레스 스쿼트 프레스 cybex 싸이벡스 스쿼트프레스",
   "setup": [
     "등받이와 시작 위치를 맞추고 등·엉덩이를 패드에 붙이세요. 양쪽에 같은 중량을 준비하세요.",
     "발판을 가볍게 밀어 무게를 지지한 뒤 안전장치를 해제하고 고정 손잡이를 잡으세요."
@@ -415,11 +415,11 @@ const machines = [
 },
 {
   "id": "16",
-  "name": "싸이벡스 핵스쿼트",
+  "name": "싸이벡스 핵 스쿼트",
   "en": "HACK SQUAT",
   "image": "cybex-hack-squat.webp",
   "imageWidth": 1086, "imageHeight": 1448,
-  "aliases": "핵스쿼트 핵 스쿼트 해크스쿼트 hack cybex",
+  "aliases": "핵스쿼트 핵 스쿼트 해크스쿼트 hack cybex 싸이벡스 핵스쿼트",
   "setup": [
     "양쪽에 같은 중량을 준비하고 등·엉덩이·어깨를 패드에 맞추세요.",
     "발을 골반 너비로 놓고 가볍게 일어서서 무게를 지지한 뒤 안전장치를 해제하세요."
@@ -438,11 +438,11 @@ const machines = [
 },
 {
   "id": "17",
-  "name": "싸이벡스 레그프레스",
+  "name": "싸이벡스 레그 프레스",
   "en": "LEG PRESS",
   "image": "cybex-leg-press.webp",
   "imageWidth": 1086, "imageHeight": 1448,
-  "aliases": "레그프레스 레그 프레스 legpress cybex",
+  "aliases": "레그프레스 레그 프레스 legpress cybex 싸이벡스 레그프레스",
   "setup": [
     "등받이를 맞추고 등·엉덩이를 패드에 붙이세요. 양쪽에 같은 중량을 준비하세요.",
     "발판에 발을 골반 너비로 놓고 가볍게 밀어 무게를 지지한 뒤 안전장치를 해제하세요."
@@ -461,14 +461,14 @@ const machines = [
 },
 {
   "id": "18",
-  "name": "ISO 레터럴 하이로우",
+  "name": "해머 ISO 레터럴 하이 로우",
   "en": "ISO-LATERAL HIGH ROW",
   "image": "iso-high-row.webp",
   "imageWidth": 1086,
   "imageHeight": 1448,
   "brand": "HAMMER STRENGTH",
   "category": "등",
-  "aliases": "하이로우 하이 로우 해머 highrow",
+  "aliases": "하이로우 하이 로우 해머 highrow ISO 레터럴 하이로우",
   "setup": [
     "좌석 높이를 조절해 가슴을 앞 패드에 편안하게 붙이고 발을 안정적으로 놓으세요.",
     "양쪽에 같은 가벼운 중량을 준비하고, 상체를 들지 않고 위쪽 손잡이를 잡을 수 있게 맞추세요."
@@ -485,14 +485,14 @@ const machines = [
 },
 {
   "id": "19",
-  "name": "ISO 레터럴 프론트 렛풀다운",
+  "name": "해머 ISO 레터럴 프론트 랫풀다운",
   "en": "ISO-LATERAL FRONT LAT PULLDOWN",
   "image": "iso-front-lat-pulldown.webp",
   "imageWidth": 1086,
   "imageHeight": 1448,
   "brand": "HAMMER STRENGTH",
   "category": "등",
-  "aliases": "프론트 랫풀다운 렛풀다운 랫 풀 다운 해머 lat pulldown",
+  "aliases": "프론트 랫풀다운 렛풀다운 랫 풀 다운 해머 lat pulldown ISO 레터럴 프론트 렛풀다운",
   "setup": [
     "좌석과 허벅지 패드를 조절해 당길 때 몸이 들리지 않도록 맞추세요.",
     "양쪽에 같은 가벼운 중량을 준비하고 위쪽 손잡이를 편안하게 잡으세요."
@@ -509,14 +509,14 @@ const machines = [
 },
 {
   "id": "20",
-  "name": "ISO 레터럴 벤치 프레스",
+  "name": "해머 ISO 레터럴 벤치 프레스",
   "en": "ISO-LATERAL BENCH PRESS",
   "image": "iso-bench-press.webp",
   "imageWidth": 1086,
   "imageHeight": 1448,
   "brand": "HAMMER STRENGTH",
   "category": "가슴",
-  "aliases": "벤치프레스 벤치 프레스 해머 체스트프레스",
+  "aliases": "벤치프레스 벤치 프레스 해머 체스트프레스 ISO 레터럴 벤치 프레스",
   "setup": [
     "좌석을 조절해 손잡이가 가슴 중앙 높이에 오도록 맞추세요.",
     "등과 엉덩이를 등받이에 붙이고 발바닥을 안정적으로 둔 뒤 양쪽에 같은 중량을 준비하세요."
@@ -533,14 +533,14 @@ const machines = [
 },
 {
   "id": "21",
-  "name": "ISO 레터럴 숄더프레스",
+  "name": "해머 ISO 레터럴 숄더 프레스",
   "en": "ISO-LATERAL SHOULDER PRESS",
   "image": "iso-shoulder-press.webp",
   "imageWidth": 1086,
   "imageHeight": 1448,
   "brand": "HAMMER STRENGTH",
   "category": "어깨",
-  "aliases": "숄더프레스 숄더 프레스 해머 shoulder press",
+  "aliases": "숄더프레스 숄더 프레스 해머 shoulder press ISO 레터럴 숄더프레스",
   "setup": [
     "좌석 높이를 조절해 손잡이가 어깨 높이 또는 귀 옆에 오도록 맞추세요.",
     "등을 등받이에 붙이고 발을 안정적으로 놓은 뒤 양쪽에 같은 가벼운 중량을 준비하세요."
@@ -557,14 +557,14 @@ const machines = [
 },
 {
   "id": "22",
-  "name": "ISO 레터럴로우",
+  "name": "해머 ISO 레터럴 로우",
   "en": "ISO-LATERAL ROW",
   "image": "iso-row.webp",
   "imageWidth": 1089,
   "imageHeight": 1445,
   "brand": "HAMMER STRENGTH",
   "category": "등",
-  "aliases": "레터럴 로우 레터럴로우 해머 시티드로우 seated row",
+  "aliases": "레터럴 로우 레터럴로우 해머 시티드로우 seated row ISO 레터럴로우",
   "setup": [
     "좌석을 조절해 가슴이 앞 패드에 안정적으로 닿도록 맞추세요.",
     "발을 지지하고 양쪽에 같은 중량을 준비한 뒤, 몸을 떼지 않고 손잡이를 잡으세요."
@@ -633,14 +633,14 @@ const machines = [
 },
 {
   "id": "25",
-  "name": "라이프 피트니스 숄더프레스",
+  "name": "라이프 피트니스 숄더 프레스",
   "en": "LIFE FITNESS SHOULDER PRESS",
   "image": "life-shoulder-press.webp",
   "imageWidth": 1086,
   "imageHeight": 1448,
   "brand": "LIFE FITNESS",
   "category": "어깨",
-  "aliases": "라이프 숄더 프레스 어깨",
+  "aliases": "라이프 숄더 프레스 어깨 라이프 피트니스 숄더프레스",
   "setup": [
     "손잡이가 어깨 높이 부근에 오도록 좌석을 조절하고 가벼운 중량을 선택하세요.",
     "등과 엉덩이를 패드에 붙이고 발바닥을 안정적으로 지지하세요."
@@ -830,10 +830,10 @@ const machines = [
 },
 {
   "id": "32",
-  "name": "라이프피트니스 어브덕션",
+  "name": "라이프 피트니스 어브덕션",
   "en": "LIFE FITNESS HIP ABDUCTION",
   "category": "하체",
-  "aliases": "라이프 피트니스 아웃타이 중둔근",
+  "aliases": "라이프 피트니스 아웃타이 중둔근 라이프피트니스 어브덕션",
   "setup": [
     "패드의 접촉면이 무릎 바깥쪽을 받치도록 돌려 고정하세요.",
     "등과 엉덩이를 등받이·좌석에 붙이고 발을 받침에 올리세요."
@@ -850,14 +850,14 @@ const machines = [
   "image": "life-hip-abduction.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
-  "brand": "Life Fitness"
+  "brand": "LIFE FITNESS"
 },
 {
   "id": "33",
-  "name": "라이프피트니스 어덕션",
+  "name": "라이프 피트니스 어덕션",
   "en": "LIFE FITNESS HIP ADDUCTION",
   "category": "하체",
-  "aliases": "라이프 피트니스 이너타이 내전근",
+  "aliases": "라이프 피트니스 이너타이 내전근 라이프피트니스 어덕션",
   "setup": [
     "패드의 접촉면이 무릎 안쪽을 받치도록 돌려 고정하세요.",
     "무리 없이 벌릴 수 있는 시작 각도로 맞추고 등과 엉덩이를 밀착하세요."
@@ -874,14 +874,14 @@ const machines = [
   "image": "life-hip-adduction.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
-  "brand": "Life Fitness"
+  "brand": "LIFE FITNESS"
 },
 {
   "id": "34",
-  "name": "라이프 피트니스 레그컬",
+  "name": "라이프 피트니스 레그 컬",
   "en": "LIFE FITNESS LYING LEG CURL",
   "category": "하체",
-  "aliases": "라잉 레그 컬 햄스트링",
+  "aliases": "라잉 레그 컬 햄스트링 라이프 피트니스 레그컬",
   "setup": [
     "무릎이 기구 회전축과 맞고 롤러가 발목 바로 위에 닿도록 조절하세요.",
     "엎드려 골반을 패드에 밀착하고 앞쪽 손잡이를 잡으세요."
@@ -898,7 +898,7 @@ const machines = [
   "image": "life-lying-leg-curl.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
-  "brand": "Life Fitness"
+  "brand": "LIFE FITNESS"
 }
 ];
 let category='전체';
