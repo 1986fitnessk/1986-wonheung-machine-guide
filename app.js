@@ -578,6 +578,154 @@ const machines = [
   "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-row",
   "sourceLabel": "Hammer Strength · ISO-LATERAL ROW",
   "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "23",
+  "name": "로만체어(백 익스텐션)",
+  "en": "ROMAN CHAIR / BACK EXTENSION",
+  "image": "roman-chair.webp",
+  "imageWidth": 1186,
+  "imageHeight": 1327,
+  "brand": "1986 원흥점",
+  "category": "하체",
+  "aliases": "로만 체어 백익스텐션 허리 둔근",
+  "setup": [
+    "패드 윗부분이 고관절을 접는 데 방해되지 않도록 허벅지 위쪽에 맞추세요.",
+    "발판에 발을 놓고 발목 받침에 다리를 안정적으로 고정하세요."
+  ],
+  "steps": [
+    "복부에 힘을 주고 고관절을 접어 상체를 천천히 숙이세요.",
+    "뒤꿈치로 지지하며 엉덩이에 힘을 줘 상체를 들어 올리세요.",
+    "몸통과 다리가 일직선이 되면 멈추고, 허리를 뒤로 젖히지 않은 채 반복하세요."
+  ],
+  "tip": "올라올 때 턱을 가볍게 당기고 가슴을 들어주세요. 뒤꿈치를 누르며 엉덩이를 강하게 수축하되, 몸이 일직선이 되는 지점까지만 올라오세요.",
+  "source": "https://www.konami.com/sportsclub/fitness/machine/back-extension.html",
+  "sourceLabel": "Konami Sports · 백 익스텐션 사용 안내",
+  "note": "사진의 패드와 조절 장치를 기준으로 세팅하고, 처음에는 가벼운 강도로 편안한 가동 범위를 확인하세요.",
+  "categories": [
+    "등",
+    "하체"
+  ]
+},
+{
+  "id": "24",
+  "name": "뉴텍 킥백 머신",
+  "en": "NEWTECH GLUTE KICKBACK",
+  "image": "newtech-kickback.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "NEWTECH",
+  "category": "하체",
+  "aliases": "글루트 킥 백 힙 엉덩이",
+  "setup": [
+    "가벼운 중량을 선택하고 몸통 지지 패드와 손잡이에 상체를 안정적으로 지지하세요.",
+    "지지하는 다리는 무릎 패드에, 운동하는 발은 움직이는 발 받침에 놓으세요."
+  ],
+  "steps": [
+    "골반을 정면으로 유지하고 복부에 힘을 주세요.",
+    "발 받침을 뒤로 밀며 엉덩이를 수축하세요. 허리를 꺾어 다리를 더 높이 들지 마세요.",
+    "무게를 천천히 받아 시작 위치로 돌아온 뒤 반대쪽도 반복하세요."
+  ],
+  "tip": "뒤꿈치와 발바닥 바깥쪽에서 무게감을 느끼며 발 받침을 지그시 눌러주세요. 발목이 바깥으로 꺾이지 않게 하고 골반과 몸통은 고정해 주세요.",
+  "source": "https://newtechworldwide.com/products/glute-kick-back-2",
+  "sourceLabel": "Newtech · 글루트 킥백 운동 개요 (다른 모델)",
+  "note": "참고 자료는 다른 뉴텍 킥백 모델의 운동 개요입니다. 현장 머신의 무릎·몸통·발 받침 위치는 직원에게 확인해 주세요."
+},
+{
+  "id": "25",
+  "name": "라이프 피트니스 숄더프레스",
+  "en": "LIFE FITNESS SHOULDER PRESS",
+  "image": "life-shoulder-press.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "LIFE FITNESS",
+  "category": "어깨",
+  "aliases": "라이프 숄더 프레스 어깨",
+  "setup": [
+    "손잡이가 어깨 높이 부근에 오도록 좌석을 조절하고 가벼운 중량을 선택하세요.",
+    "등과 엉덩이를 패드에 붙이고 발바닥을 안정적으로 지지하세요."
+  ],
+  "steps": [
+    "손목이 과하게 꺾이지 않게 손잡이를 잡고 복부에 힘을 주세요.",
+    "숨을 내쉬며 기구 궤적을 따라 손잡이를 위로 밀어 올리세요.",
+    "팔꿈치를 튕기거나 허리를 젖히지 말고 천천히 어깨 높이로 돌아오세요."
+  ],
+  "tip": "손바닥으로 무게를 받는 느낌을 유지하며 밀고, 내려올 때도 같은 긴장감으로 천천히 받아내 주세요.",
+  "source": "https://www.lifefitness.com.au/wp-content/uploads/2015/02/Optima_user_manual_for_all_strength_2_585_1371787541.pdf",
+  "sourceLabel": "Life Fitness · Optima 사용 설명서",
+  "note": "사진의 패드와 조절 장치를 기준으로 세팅하고, 처음에는 가벼운 강도로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "26",
+  "name": "라이프 피트니스 랫풀다운",
+  "en": "LIFE FITNESS LAT PULLDOWN",
+  "image": "life-lat-pulldown.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "LIFE FITNESS",
+  "category": "등",
+  "aliases": "라이프 렛풀다운 랫 풀 다운",
+  "setup": [
+    "가벼운 중량을 선택하고 허벅지가 롤러 아래에 안정적으로 고정되도록 좌석을 맞추세요.",
+    "손잡이를 잡고 가볍게 당긴 상태에서 앉아 발바닥을 지지하세요."
+  ],
+  "steps": [
+    "가슴을 자연스럽게 열고 손목과 팔의 정렬을 유지하세요.",
+    "팔꿈치를 아래로 보내 손잡이를 몸통 쪽으로 당기세요.",
+    "엉덩이는 좌석에 둔 채 팔을 천천히 올려 등을 늘리세요."
+  ],
+  "tip": "앉기 전에 손잡이를 가볍게 당겨 등 자극을 잡고, 그 느낌을 유지하며 진행해 주세요. 손목은 꺾지 말고, 엉덩이가 들리려는 지점에서는 좌석 접촉을 유지할 수 있는 범위까지만 늘려주세요.",
+  "source": "https://www.lifefitness.com.au/wp-content/uploads/2015/02/Optima_user_manual_for_all_strength_2_585_1371787541.pdf",
+  "sourceLabel": "Life Fitness · Optima 사용 설명서",
+  "note": "사진의 패드와 조절 장치를 기준으로 세팅하고, 처음에는 가벼운 강도로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "27",
+  "name": "케이블 랫풀다운",
+  "en": "CABLE LAT PULLDOWN",
+  "image": "cable-lat-pulldown.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "1986 원흥점",
+  "category": "등",
+  "aliases": "케이블 렛풀다운 랫 풀 다운 맥그립 mag grip",
+  "setup": [
+    "중량과 허벅지 패드를 맞추고 손잡이 연결 고리가 완전히 잠겼는지 확인하세요.",
+    "바를 잡아 가볍게 당긴 채 앉고, 허벅지를 패드 아래에 넣어 발을 지지하세요."
+  ],
+  "steps": [
+    "몸통을 안정시킨 채 바를 머리 앞으로 당길 준비를 하세요.",
+    "팔꿈치를 아래로 보내 바를 가슴 윗부분 방향으로 당기세요.",
+    "반동 없이 천천히 바를 올리며 등을 늘리고 엉덩이는 좌석에 유지하세요."
+  ],
+  "tip": "앉기 전에 가볍게 당겨 잡은 등 자극을 유지하고 손목은 꺾지 마세요. 엉덩이가 들리기 전까지 조절하며 늘려주세요. 그립이 어렵다면 직원과 함께 맥그립 등 편한 손잡이로 바꿔 진행해 주세요.",
+  "source": "https://www.lifefitness.com.au/wp-content/uploads/2015/02/Optima_user_manual_for_all_strength_2_585_1371787541.pdf",
+  "sourceLabel": "Life Fitness · 케이블 풀다운 일반 사용 안내",
+  "note": "사진의 패드와 조절 장치를 기준으로 세팅하고, 처음에는 가벼운 강도로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "28",
+  "name": "롱풀",
+  "en": "LONG PULL / SEATED CABLE ROW",
+  "image": "long-pull.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "1986 원흥점",
+  "category": "등",
+  "aliases": "시티드 케이블 로우 롱 풀",
+  "setup": [
+    "가벼운 중량을 선택하고 손잡이 연결 상태를 확인하세요.",
+    "벤치에 앉아 발판에 발바닥을 붙이고 무릎을 살짝 굽혀 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "허리를 길게 세우고 팔을 뻗어 준비하세요.",
+    "몸통을 크게 뒤로 젖히지 않고 팔꿈치를 뒤로 보내 손잡이를 배 쪽으로 당기세요.",
+    "하나, 둘 세며 팔을 천천히 뻗어 돌아가세요."
+  ],
+  "tip": "늘릴 때는 하나, 둘 세며 천천히, 당길 때는 반동 없이 한 번에 당겨주세요. 몸통이 너무 뒤로 눕지 않도록 유지해 주세요.",
+  "source": "https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/",
+  "sourceLabel": "ACE · 시티드 케이블 로우",
+  "note": "사진의 패드와 조절 장치를 기준으로 세팅하고, 처음에는 가벼운 강도로 편안한 가동 범위를 확인하세요."
 }
 ];
 let category='전체';
