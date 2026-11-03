@@ -26,7 +26,13 @@
 
 저장소: https://github.com/1986fitnessk/1986-wonheung-machine-guide
 
-공통 QR에는 위 공개 사이트 주소를 사용합니다.
+## Cloudflare Pages 운영 배포
+
+공유 및 신규 QR 주소: https://wonheung-machine-guide-1986.pages.dev/
+
+변경 사항을 커밋한 뒤 `sh deploy-cloudflare.sh`로 배포합니다. 기존 Cloudflare 로그인 계정을 사용하며 추적 중인 dist 파일만 전송합니다. URL 공유 이미지는 덤벨을 든 호랑이 마스코트입니다.
+
+기존 GitHub Pages 배포는 아래 명령으로 별도 유지할 수 있습니다.
 
 ## GitHub Pages 배포
 공개 소스에는 서비스 파일과 누끼 처리된 머신 사진만 포함하며 원본 사진, 로컬 검수 화면, 비밀정보는 제외합니다.
