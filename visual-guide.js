@@ -267,17 +267,18 @@ function motionFigure(id){
     +shape('M-13-25 H-6 V3 H-13 Z',palette.pad)
     +line('M-9 5 V48 M-13 48 H21',palette.metal,5))+'</g>';
   art=line('M76 216 H244 M184 215 V108 M183 125 L220 213 M89 215 H160',palette.metal,6)
-   +line('M139 172 Q92 171 85 122',palette.muscle,1.8,'stroke-dasharray="4 4"')
-   +line('M80 130 L85 121 L92 128',palette.muscle,1.8)
-   +movingLeg(5,19,34,.4)+movingLeg(0,-47,44,1)
+   +line('M135 180 Q121 184 105 178',palette.muscle,1.8,'stroke-dasharray="4 4"')
+   +line('M111 174 L104 178 L110 183',palette.muscle,1.8)
+   +movingLeg(5,8,2,.4)
    +shape('M169 91 Q173 89 178 94 L175 120 Q171 123 166 116 Z',palette.pad)
    +translate([125,135],null,rotate(30,30,shape('M-7-78 H5 L7-62 L-8-59 Z')))
    +torso(125,135,30)+head(166,63,20)
    +shape('M111 126 Q119 119 128 125 L126 134 L114 137 Z',palette.muscle)
+   +movingLeg(-10,-24,3,1)
    +arm({x:164,y:88,upper:27,lower:24,a:[-35,-35],bend:[-60,-60]})
    +line('M200 108 H218 M210 108 V135 H184',palette.metal,5)
    +'<text x="227" y="44" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>'
-   +'<text x="150" y="25" fill="#aeb8ac" font-size="9" text-anchor="middle">바깥으로 벌어지는 궤적을 펼쳐 표시했습니다</text>';
+   +'<text x="150" y="25" fill="#aeb8ac" font-size="9" text-anchor="middle">골반 바깥으로 벌리기 · 높이 들지 않기</text>';
  }
 
  if(id==='30'){
