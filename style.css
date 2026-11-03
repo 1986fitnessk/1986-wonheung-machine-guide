@@ -93,3 +93,49 @@
 .routine-weight{display:flex;align-items:baseline;gap:12px;margin:16px 0;font-size:13px;line-height:1.7;word-break:keep-all;overflow-wrap:anywhere}.routine-weight>span{flex-shrink:0;color:var(--muted)}.routine-weight strong{color:#e5d5ad;font-weight:600}
 .routine-exercise .routine-machine-link{width:100%;text-align:center}.routine-machine-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:360px){.routine-dose{padding:14px 10px;gap:6px}.routine-dose dd{font-size:19px}}
+
+/* Routine screens: a compact workout sheet with persistent level choices. */
+dialog:has(.routine-page){width:min(760px,calc(100% - 32px));scrollbar-gutter:stable}
+.routine-page{--routine-surface:#24221f}
+.routine-level-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:4px;margin:16px 0 24px;background:#101111;border:1px solid var(--line);border-radius:8px}
+.routine-level-nav button{min-height:44px;border:0;border-radius:5px;color:var(--muted);background:transparent;font-size:14px;font-weight:600}
+.routine-level-nav button[aria-current=page]{color:#211d17;background:var(--accent)}
+.routine-page .routine-eyebrow{margin:24px 0 8px;font-size:10px;line-height:1.6}
+.routine-page #detail-title{margin:8px 0 10px;font-size:30px;line-height:1.35;text-wrap:pretty}
+.routine-page .detail-sub{margin:0 0 20px;font-size:14px;line-height:1.75}
+.routine-page .beginner-options{grid-template-columns:repeat(2,minmax(0,1fr));margin:24px 0;gap:12px}
+.routine-page .routine-slot,.routine-page .routine-slot:first-child{padding:20px;gap:10px;background:var(--routine-surface);border:1px solid #494237;border-radius:8px;min-height:148px}
+.routine-page .routine-slot strong{font-size:21px;line-height:1.5}
+.routine-card-meta{font-size:13px;color:var(--muted);line-height:1.6}.routine-card-meta>span{margin:0 5px;color:#827b70}
+.routine-page .routine-bottom{font-size:13px;color:var(--accent);padding-top:12px;margin-top:auto;border-top:1px solid var(--line)}
+.routine-page .routine-bottom b{position:static;font-size:20px}
+.routine-page .routine-back{margin:0;min-height:44px;border:0;padding:10px 0;font-size:13px;text-align:left}
+.routine-page .routine-load-guide{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:20px;margin:20px 0 28px;border-radius:8px;background:#141312}
+.routine-load-guide .routine-volume{border-right:1px solid var(--line);padding-right:20px}
+.routine-page .routine-load-guide p{line-height:1.75;margin:8px 0 0;color:var(--muted)}
+.routine-page .routine-load-guide strong{color:var(--ink)}
+.routine-page .routine-exercise{padding:24px 0;scroll-margin-top:80px}
+.routine-page .routine-exercise-title{font-size:18px;line-height:1.6;text-wrap:pretty}
+.routine-page .routine-exercise-title>span{min-width:24px;font-variant-numeric:tabular-nums}
+.routine-page .routine-dose{padding:18px 16px;gap:12px;background:var(--routine-surface);font-variant-numeric:tabular-nums}
+.routine-page .routine-dose dt{font-size:12px}.routine-page .routine-dose dd{font-size:26px;line-height:1.4}
+.routine-page .routine-weight{font-size:14px;line-height:1.8}
+.routine-page .routine-machine-link{min-height:48px;font-size:14px;border-radius:6px}
+.routine-page .machine-note{font-size:13px;line-height:1.8}.routine-page .sources summary{min-height:44px;padding:12px 0;line-height:1.6}
+@media(max-width:600px){
+ dialog:has(.routine-page){width:100%;max-height:96dvh;scrollbar-gutter:auto;padding:16px 18px max(24px,env(safe-area-inset-bottom))}
+ dialog:has(.routine-page) .dialog-top{top:-16px}
+ .routine-page .routine-level-nav{margin:12px 0 18px}
+ .routine-page #detail-title{font-size:26px}
+ .routine-page .beginner-options{grid-template-columns:1fr;gap:10px;margin:20px 0}
+ .routine-page .routine-slot{min-height:0;display:grid;grid-template-columns:1fr auto;align-items:center;padding:18px;gap:6px 12px}
+ .routine-page .routine-slot:first-child{min-height:0;padding:18px;gap:6px 12px}
+ .routine-page .routine-slot strong{font-size:20px;grid-column:1}
+ .routine-page .routine-card-meta{grid-column:1}
+ .routine-page .routine-bottom{grid-column:2;grid-row:1 / 3;display:flex;gap:8px;border:0;padding:0;margin:0;font-size:12px}
+ .routine-page .routine-load-guide{grid-template-columns:1fr;gap:16px;padding:16px;margin:16px 0 22px}
+ .routine-load-guide .routine-volume{border-right:0;border-bottom:1px solid var(--line);padding:0 0 16px}
+ .routine-page .routine-dose{padding:16px 12px;gap:8px}.routine-page .routine-dose dd{font-size:23px}
+ .routine-page .routine-exercise-title{font-size:17px;gap:8px}.routine-page .routine-weight{gap:10px;font-size:13px}
+}
+@media(max-width:359px){.routine-page .routine-dose dd{font-size:20px}.routine-page .routine-slot,.routine-page .routine-slot:first-child{padding:16px 14px}.routine-page .routine-slot strong{font-size:18px}.routine-page .routine-bottom{font-size:0}.routine-page .routine-bottom b{font-size:22px}}
