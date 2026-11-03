@@ -468,8 +468,9 @@ function motionFigure(id){
    +(press?line('M221 117 V189 M221 184 L245 211',palette.metal,7):line('M77 211 V86 M108 175 V211',palette.metal,6))
    +moving(hips,pad)+bone(hips,knees,11,palette.muscle)+bone(knees,ankles,7,palette.skin)
    +moving(ankles,rotate(press?-90:-20,press?-90:-20,shoe))
+   +(press?moving(hips,arm({x:-10,y:-62,upper:35,lower:31,a:[-45,-45],bend:[45,45],opacity:.45})): '')
    +moving(hips,torso(0,0,lean,'')+head(-83*Math.sin(-lean*Math.PI/180),-83*Math.cos(lean*Math.PI/180),lean))
-   +moving(hips,line('M5-58 Q29-32 20 3',palette.skin,11)+line('M14 5 H29',palette.metal,4));
+   +moving(hips,press?line('M12 5 H30 M28 5 V16',palette.metal,5)+arm({x:-6,y:-60,upper:35,lower:31,a:[-45,-45],bend:[45,45]}):line('M5-58 Q29-32 20 3',palette.skin,11)+line('M14 5 H29',palette.metal,4));
   if(!press){const rolls=ankles.map((a,i)=>[a[0]+4,a[1]-3]);art+=`<path d="M154 160 L${rolls[0].join(' ')}" stroke="#53625a" stroke-width="6" fill="none">${animation('d',rolls.map(a=>`M154 160 L${a.map(number).join(' ')}`))}</path>`+bolt(154,160,5)+moving(rolls,shape('M-8-7 H9 Q14 0 9 7 H-8 Q-13 0-8-7 Z',palette.pad));}
  }
 
