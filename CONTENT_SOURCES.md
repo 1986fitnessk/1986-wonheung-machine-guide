@@ -115,3 +115,11 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 - https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-row
 - 하이로우: 높은 당김 각도, 좌석·허벅지 지지. 프론트 렛풀다운: 수직 당김 및 허벅지 패드. 벤치프레스: 앉은 자세의 수평 프레스. 숄더프레스: 등받이 지지와 머리 위 프레스. 로우: 가슴 패드 접촉을 유지한 전후 당김.
 - 사진은 중앙 머신만 투명 배경으로 편집해 WebP 저장. 모션은 지지 패드와 몸 위치를 고정한 이해용 도식이며 실제 관절 각도를 처방하는 영상이 아님.
+
+## 2026-11-03 — 머신 6종 추가
+- 로만체어: https://www.konami.com/sportsclub/fitness/machine/back-extension.html — 패드 높이, 몸통 일직선 범위.
+- 뉴텍 킥백: https://newtechworldwide.com/products/glute-kick-back-2 — 둔근 운동 개요만 참고. 사진의 스택형 모델과 다른 모델임을 상세 화면에 명시. 패드 구성은 현장 사진 기준.
+- 라이프 숄더프레스·랫풀다운, 케이블 랫풀다운: https://www.lifefitness.com.au/wp-content/uploads/2015/02/Optima_user_manual_for_all_strength_2_585_1371787541.pdf — 일반 세팅 및 동작.
+- 롱풀: https://www.acefitness.org/resources/everyone/exercise-library/48/seated-row/ — 좌석·발 지지와 제어된 당기기.
+- 트레이너 팁은 운영자 제공. 엉덩이가 뜨려는 느낌은 좌석 접촉 유지 범위로 표현하고, 빠른 당김은 반동 없는 연속 동작으로 정리.
+- 여섯 사진은 중앙 머신만 분리한 투명 WebP로 제공. 모션은 단순화한 측면 도식이며 실제 기구의 정확한 궤적 재현은 아님.
