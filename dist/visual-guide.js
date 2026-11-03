@@ -161,7 +161,7 @@ function motionFigure(id){
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
  // Frontal views make inward/outward travel and pad contact visible.
- if(['29-ab','29-ad','31','32','33'].includes(id)){
+ if(['29-ab','29-ad','32','33'].includes(id)){
   const standing=id==='31',inward=['29-ad','33'].includes(id),hipY=standing?116:130;
   const from=inward?34:8,to=inward?8:34;
   const frontBody=shape(`M134 ${hipY-65} Q150 ${hipY-71} 166 ${hipY-65} Q174 ${hipY-54} 168 ${hipY-36} L163 ${hipY-8} L137 ${hipY-8} L132 ${hipY-36} Q126 ${hipY-54} 134 ${hipY-65} Z`)
@@ -199,6 +199,25 @@ function motionFigure(id){
    +(standing?shape('M132 91 H168 V105 H132 Z',palette.pad):'')
    +`<text x="150" y="${standing?8:23}" fill="#aeb8ac" font-size="9" text-anchor="middle">정면 도식</text>`;
  }
+ if(id==='31'){
+  // Side projection: near/far legs separate in depth while torso stays on the support.
+  const movingLeg=(offset,travel,opacity)=>`<g opacity="${opacity}">`
+   +shape(`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset} 162 Q${148+offset} 170 ${138+offset} 170 L${123+offset} 145 Z`,palette.skin,'',`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset+travel} 162 Q${148+offset+travel} 170 ${138+offset+travel} 170 L${123+offset} 145 Z`)
+   +translate([143+offset,166],[143+offset+travel,166],
+    segment(36,7,4)+translate([0,36],null,shape('M-5-4 H4 L17 4 V9 H-6 Z'))
+    +shape('M-13-25 H-6 V3 H-13 Z',palette.pad)
+    +line('M-9 5 V48 M-13 48 H21',palette.metal,5))+'</g>';
+  art=line('M76 216 H244 M184 215 V108 M183 125 L220 213 M89 215 H160',palette.metal,6)
+   +movingLeg(5,9,.4)+movingLeg(0,-17,1)
+   +shape('M169 91 L178 94 L175 120 L166 116 Z',palette.pad)
+   +torso(125,135,30)+head(166,63,20)
+   +shape('M111 126 Q119 119 128 125 L126 134 L114 137 Z',palette.muscle)
+   +arm({x:164,y:88,upper:27,lower:24,a:[-35,-35],bend:[-60,-60]})
+   +line('M200 108 H218 M210 108 V135 H184',palette.metal,5)
+   +'<text x="227" y="44" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>'
+   +'<text x="150" y="25" fill="#aeb8ac" font-size="9" text-anchor="middle">다리는 화면 앞뒤 방향으로 벌립니다</text>';
+ }
+
  if(id==='30'){
   const hips=phases.map(p=>[127-18*p,119+3*p]),leans=phases.map(p=>5+60*p);
   const at=(pts,content)=>`<g transform="translate(${pts[0].join(' ')})">${animation('transform',pts.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
@@ -224,7 +243,8 @@ function motionFigure(id){
    +shape('M229 31 H258 V195 H229 Z',palette.pad)
    +line('M234 55 V185 M252 55 V185',palette.edge,2)
    +shape('M69 143 L151 137 L201 148 V158 L151 149 L69 155 Z',palette.pad)
-   +torso(155,129,-85)+head(72,122,-65)
+   +translate([155,129],null,rotate(-85,-85,'<g transform="scale(-1 1)">'+torso(0,0,0)+'</g>'))
+   +translate([72,122],null,rotate(-85,-85,'<g transform="scale(-1 1)">'+profile()+'</g>'))
    +translate([155,129],null,rotate(-79,-79,segment(45,11,6,palette.muscle)))
    +translate(knee,null,movingShin)+bolt(...knee)
    +arm({x:96,y:114,upper:25,lower:23,a:[25,25],bend:[70,70]})
