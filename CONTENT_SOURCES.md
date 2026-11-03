@@ -105,3 +105,13 @@ https://www.manualslib.com/manual/1528282/Life-Fitness-Optima-Series.html?page=2
 - 사용자 피드백 반영: 힙 쓰러스트의 두 지지 패드, 브이스쿼트 두 모드·힙힌지·후방 발 위치, 핵스쿼트 사선 레일과 몸 위치, 두 프레스의 발바닥 밀착.
 - 320/390/430px에서 하체 5종 및 역방향 모드 가로 넘침 없음. 사진 로딩, 모드 왕복 전환 및 단일 모션 유지 확인.
 - 검색 46개 통과, 전체 19개 운동 도식의 유효 좌표 생성, 동작 감소 설정·일시정지 회귀 검사 통과. 모드 변경은 사진을 유지하고 설명과 동작 영역만 갱신하도록 최적화.
+
+## ISO 레터럴 상체 5종 (2026-11-03)
+사진 순서대로 18 하이로우, 19 프론트 렛풀다운, 20 벤치 프레스, 21 숄더프레스, 22 로우. 센터 제공 팁은 의미를 유지하며 문장 분리·중복 축약. 사진과 제조사 최신 모델의 세부 장치는 다를 수 있어 일반 설정·동작 원리만 참고. 각 안내에 제조사 링크 표시.
+- https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-high-row
+- https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-front-lat-pulldown
+- https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-bench-press
+- https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-shoulder-press
+- https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-row
+- 하이로우: 높은 당김 각도, 좌석·허벅지 지지. 프론트 렛풀다운: 수직 당김 및 허벅지 패드. 벤치프레스: 앉은 자세의 수평 프레스. 숄더프레스: 등받이 지지와 머리 위 프레스. 로우: 가슴 패드 접촉을 유지한 전후 당김.
+- 사진은 중앙 머신만 투명 배경으로 편집해 WebP 저장. 모션은 지지 패드와 몸 위치를 고정한 이해용 도식이며 실제 관절 각도를 처방하는 영상이 아님.

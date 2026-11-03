@@ -1,5 +1,11 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+ '18':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 등 상부 근육',assist:'상완이두근 · 후면 삼각근',cue:'가슴은 패드에 · 팔꿈치를 아래·뒤로',action:'위에서 대각선으로 당기기 → 천천히 늘리기'},
+ '19':{primary:['lats'],secondary:['biceps','midback'],main:'광배근',assist:'상완이두근 · 등 상부 근육',cue:'몸통 고정 · 팔꿈치는 아래로',action:'위에서 아래로 당기기 → 천천히 올리기'},
+ '20':{primary:['chest'],secondary:['triceps','shoulder'],main:'대흉근',assist:'상완삼두근 · 전면 삼각근',cue:'등·엉덩이 밀착 · 가슴 앞쪽으로',action:'앞으로 밀기 → 천천히 받아오기'},
+ '21':{primary:['shoulder'],secondary:['triceps'],main:'전면·측면 삼각근',assist:'상완삼두근',cue:'등받이 지지 · 허리 과신전 없이',action:'머리 위로 밀기 → 어깨 높이로 내리기'},
+ '22':{primary:['lats','midback'],secondary:['biceps','rearshoulder'],main:'광배근 · 중부 승모근 · 능형근',assist:'상완이두근 · 후면 삼각근',cue:'가슴 밀착 · 팔꿈치를 몸통 뒤로',action:'앞에서 몸통 쪽으로 당기기 → 천천히 늘리기'},
+
  '13':{primary:['glutes'],secondary:['hamstrings'],main:'대둔근',assist:'햄스트링',cue:'등 상부와 발은 지지 · 허리 과신전 없이',action:'엉덩이 올리기 → 천천히 내려오기'},
  '14':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'무릎은 발끝 방향 · 발바닥 전체로',action:'패드와 함께 앉기 → 밀어 일어서기'},
  '14-reverse':{primary:['quads','glutes'],secondary:[],main:'대퇴사두근 · 대둔근',assist:'',cue:'어깨 아래 정강이 · 엉덩이는 뒤로',action:'어깨 지지하며 앉기 → 밀어 일어서기'},
@@ -201,6 +207,35 @@ function motionFigure(id){
   const hackRail=line('M177 212 L239 43 M164 212 L226 43 M42 216 H252',palette.metal,6);
   const hackLinks=hack?[-51,-13].map(y=>{const paths=poses.map(p=>{const r=p.lean*Math.PI/180;const end=[300-(p.hip[0]-25*Math.cos(r)-y*Math.sin(r)),p.hip[1]-25*Math.sin(r)+y*Math.cos(r)];const railX=177+(212-end[1])*62/169;return `M${number(railX)} ${number(end[1])} L${end.map(number).join(' ')}`;});return `<path d="${paths[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',paths)}</path>`;}).join(''):'';
   art=(hack?hackRail+hackLinks+`<g transform="translate(300 0) scale(-1 1)">${shape('M171 210 H238 V217 H171 Z',palette.pad)+pad+legs+upper}</g>`:assembly)+'<text x="248" y="225" text-anchor="middle" fill="#aeb8ac" font-size="9">측면 도식</text>';
+ }
+
+
+ if(['18','19','20','21','22'].includes(id)){
+  const pull=['18','19','22'].includes(id),overhead=id==='21';
+  const hip=[112,155],lean=pull?5:-12;
+  const bodyPoint=(x,y)=>[hip[0]+x*Math.cos(lean*Math.PI/180)-y*Math.sin(lean*Math.PI/180),hip[1]+x*Math.sin(lean*Math.PI/180)+y*Math.cos(lean*Math.PI/180)];
+  const shoulder=bodyPoint(10,-60),headPos=bodyPoint(0,-83);
+  const start=id==='18'?[177,56]:id==='19'?[141,31]:id==='22'?[195,106]:id==='21'?[140,77]:[139,109];
+  const end=id==='18'?[142,117]:id==='19'?[145,96]:id==='22'?[143,115]:id==='21'?[119,28]:[177,101];
+  const hands=phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]);
+  const upper=36,lower=35;
+  const angles=hands.map(([x,y])=>{
+   const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
+   const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
+   return [(Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
+  });
+  const spec={x:shoulder[0],y:shoulder[1],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:pull?'biceps':overhead?'shoulder':'triceps'};
+  const pivot=id==='22'?[230,165]:pull?[229,38]:overhead?[84,115]:[85,35];
+  const leverValues=hands.map(h=>`M${pivot.join(' ')} L${h.map(number).join(' ')}`);
+  const support=pull
+   ?line('M150 212 V110 M150 166 H112',palette.metal,6)+translate(hip,null,rotate(lean,lean,shape('M19-59 H29 V-22 H19 Z',palette.pad)))
+   :line('M77 212 V80 M77 97 H92 M77 181 L106 154',palette.metal,6)+translate(hip,null,rotate(lean,lean,shape('M-26-74 H-17 V7 H-26 Z',palette.pad)));
+  const thighPad=(id==='18'||id==='19')?shape('M137 149 H165 V158 H137 Z',palette.pad)+line('M163 154 V210',palette.metal,4):'';
+  art=line(`M60 212 H253 M${pivot[0]} 212 V${pivot[1]}`,palette.metal,6)+seat+support
+   +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',leverValues)}</path>`+bolt(...pivot,4)
+   +leg([110,155],[148,167],[160,203],.4)+leg([114,156],[154,165],[172,203])+thighPad
+   +arm({...spec,opacity:.3,x:shoulder[0]-3,y:shoulder[1]-2})+torso(...hip,lean,pull?'back':overhead?'':'chest')+head(...headPos,lean)+arm(spec)
+   +'<text x="242" y="193" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>';
  }
 
  if(['09','10','12'].includes(id)){
