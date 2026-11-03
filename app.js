@@ -1439,24 +1439,24 @@ const routinePlans={
 };
 const routineLoadPolicy={
  "beginner": {
-  "summary": "5종 · 종목당 2세트 · 12–15회",
+  "summary": "5종 · 종목당 3세트 · 12–15회",
   "reserve": "3–4회",
-  "note": "처음 1–2주는 종목당 1세트로 익혀도 좋습니다. 동작이 안정되면 2세트로 진행하세요."
+  "note": "모든 종목을 3세트씩 진행하세요."
  },
  "intermediate": {
-  "summary": "5종 · 주요 3세트 / 보조 2세트",
+  "summary": "5종 · 주요 5세트 / 보조 4세트",
   "reserve": "2–3회",
-  "note": "앞의 두 종목은 3세트, 나머지는 2세트입니다. 같은 부위가 아직 피로하면 쉬는 날을 넣으세요."
+  "note": "앞의 두 종목은 5세트, 나머지는 4세트로 진행하세요."
  },
  "advanced": {
-  "summary": "6종 · 주요 3세트 / 보조 2세트",
+  "summary": "6종 · 종목당 6세트",
   "reserve": "2회",
-  "note": "앞의 두 종목은 3세트, 나머지는 2세트입니다. 어깨·팔의 바이킹 프레스는 중복 부담을 줄여 2세트로 진행하세요."
+  "note": "모든 종목을 6세트씩 진행하세요."
  }
 };
 function routineDose(key,index,id){
  const isolation=['02','04','05','06','11','23','29','31','32','33','34','38'].includes(id);
- return {sets:key==='beginner'?2:(index<2&&!(key==='advanced'&&id==='03')?3:2),reps:key==='beginner'?'12–15':isolation?'10–15':'8–12',rest:key==='beginner'?'60–90초':isolation?'60–90초':'90–120초'};
+ return {sets:key==='beginner'?3:key==='advanced'?6:index<2?5:4,reps:key==='beginner'?'12–15':isolation?'10–15':'8–12',rest:key==='beginner'?'60–90초':isolation?'60–90초':'90–120초'};
 }
 function routineLoadGuide(key){const p=routineLoadPolicy[key];return `<section class="routine-load-guide" aria-label="무게와 운동량 안내"><h3>오늘의 운동량</h3><p><strong>${p.summary}</strong></p><p>${p.note}</p><h3>무게는 이렇게 고르세요</h3><p>표시된 횟수를 마친 뒤, 바른 자세로 <strong>${p.reserve} 더 할 여유</strong>가 남는 무게를 선택하세요. 머신마다 저항이 달라 공통 kg는 지정하지 않습니다.</p></section>`;}
 function focusRoutineTitle(){const title=document.querySelector('#detail-title');title.setAttribute('tabindex','-1');title.focus({preventScroll:true});dialog.scrollTop=0;}
@@ -1468,7 +1468,7 @@ function showRoutineLevel(key){
 }
 function showRoutine(key,index){
  const level=routinePlans[key],plan=level.plans[index];
- open(`<button class="routine-back" id="back-level">← ${level.name} 루틴 선택</button><p class="eyebrow" style="margin-top:24px">${level.en} / MACHINE ROUTINE</p><h2 id="detail-title">${plan.name}</h2><p class="detail-sub">${plan.items.length}가지 머신 · 위에서부터 순서대로</p>${routineLoadGuide(key)}<div class="routine-exercises">${plan.items.map(([id,mode,label],i)=>{const machine=machines.find(m=>m.id===id),dose=routineDose(key,i,id);return `<article class="routine-exercise"><h3 class="routine-exercise-title"><span>${String(i+1).padStart(2,'0')}</span>${label||machine.name}</h3><dl class="routine-dose"><div><dt>세트</dt><dd>${dose.sets}<small>세트</small></dd></div><div><dt>횟수${id==='31'?' · 좌우 각각':''}</dt><dd>${dose.reps}<small>회</small></dd></div><div><dt>휴식</dt><dd>${dose.rest.replace('초','')}<small>초</small></dd></div></dl><p class="routine-weight"><span>${id==='08'?'보조 무게':'무게'}</span><strong>${id==='23'?'추가 중량 없이 시작':`목표 횟수 후 ${routineLoadPolicy[key].reserve} 더 할 여유`}</strong></p><button class="routine-machine-link" data-routine-machine="${i}" aria-label="${label||machine.name} 머신 사용법 보기">머신 사용법 보기 ↗</button></article>`;}).join('')}</div><p class="machine-note">동작이 흐트러지거나 통증이 생기면 멈추고 자세를 확인하세요. 다음 운동일은 같은 부위의 피로가 회복되었는지 확인해 결정하세요.</p><details class="sources"><summary>루틴 구성 근거</summary><p>Life Time의 공개 입문 커리큘럼, EGYM의 단계별 운동량·개인 강도 안내와 ACSM·NSCA 원칙을 참고했습니다. 표시된 단계별 세트·횟수·휴식·여유 횟수는 원흥점 보유 머신에 맞춰 편집한 일반 회원용 시작 기준이며, 해당 업체의 공식 프로그램이나 자동 중량 측정 기능은 아닙니다. 특정 조합이 모든 사람에게 최적이라는 의미는 아닙니다. 초보자 전신은 센터가 지정한 종목·순서를 반영했습니다.</p><a href="https://experiencelife.lifetime.life/article/your-first-week-of-strength-training-workouts/" target="_blank" rel="noopener noreferrer">Life Time · 일반 회원 입문 커리큘럼 ↗</a><br><a href="https://knowledge.egym.com/cs/smart-strength/workout-settings/training-programs" target="_blank" rel="noopener noreferrer">EGYM · 단계별 트레이닝 시스템 ↗</a><br><a href="https://acsm.org/resistance-training-guidelines-update-2026/" target="_blank" rel="noopener noreferrer">ACSM · 2026 저항 운동 가이드 ↗</a><br><a href="https://www.nsca.com/education/articles/kinetic-select/determination-of-resistance-training-frequency/" target="_blank" rel="noopener noreferrer">NSCA · 운동 빈도와 회복 ↗</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/19204579/" target="_blank" rel="noopener noreferrer">ACSM · 운동 순서와 점진적 훈련 ↗</a></details>`);
+ open(`<button class="routine-back" id="back-level">← ${level.name} 루틴 선택</button><p class="eyebrow" style="margin-top:24px">${level.en} / MACHINE ROUTINE</p><h2 id="detail-title">${plan.name}</h2><p class="detail-sub">${plan.items.length}가지 머신 · 위에서부터 순서대로</p>${routineLoadGuide(key)}<div class="routine-exercises">${plan.items.map(([id,mode,label],i)=>{const machine=machines.find(m=>m.id===id),dose=routineDose(key,i,id);return `<article class="routine-exercise"><h3 class="routine-exercise-title"><span>${String(i+1).padStart(2,'0')}</span>${label||machine.name}</h3><dl class="routine-dose"><div><dt>세트</dt><dd>${dose.sets}<small>세트</small></dd></div><div><dt>횟수${id==='31'?' · 좌우 각각':''}</dt><dd>${dose.reps}<small>회</small></dd></div><div><dt>휴식</dt><dd>${dose.rest.replace('초','')}<small>초</small></dd></div></dl><p class="routine-weight"><span>${id==='08'?'보조 무게':'무게'}</span><strong>${id==='23'?'추가 중량 없이 시작':`목표 횟수 후 ${routineLoadPolicy[key].reserve} 더 할 여유`}</strong></p><button class="routine-machine-link" data-routine-machine="${i}" aria-label="${label||machine.name} 머신 사용법 보기">머신 사용법 보기 ↗</button></article>`;}).join('')}</div><p class="machine-note">동작이 흐트러지거나 통증이 생기면 멈추고 자세를 확인하세요. 다음 운동일은 같은 부위의 피로가 회복되었는지 확인해 결정하세요.</p><details class="sources"><summary>루틴 구성 근거</summary><p>Life Time의 공개 입문 커리큘럼, EGYM의 단계별 운동량·개인 강도 안내와 ACSM·NSCA 원칙을 참고했습니다. 세트 수는 센터가 지정한 운영 기준입니다. 횟수·휴식·여유 횟수는 원흥점 보유 머신에 맞춰 편집한 일반 회원용 시작 기준이며, 해당 업체의 공식 프로그램이나 자동 중량 측정 기능은 아닙니다. 특정 조합이 모든 사람에게 최적이라는 의미는 아닙니다. 초보자 전신은 센터가 지정한 종목·순서를 반영했습니다.</p><a href="https://experiencelife.lifetime.life/article/your-first-week-of-strength-training-workouts/" target="_blank" rel="noopener noreferrer">Life Time · 일반 회원 입문 커리큘럼 ↗</a><br><a href="https://knowledge.egym.com/cs/smart-strength/workout-settings/training-programs" target="_blank" rel="noopener noreferrer">EGYM · 단계별 트레이닝 시스템 ↗</a><br><a href="https://acsm.org/resistance-training-guidelines-update-2026/" target="_blank" rel="noopener noreferrer">ACSM · 2026 저항 운동 가이드 ↗</a><br><a href="https://www.nsca.com/education/articles/kinetic-select/determination-of-resistance-training-frequency/" target="_blank" rel="noopener noreferrer">NSCA · 운동 빈도와 회복 ↗</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/19204579/" target="_blank" rel="noopener noreferrer">ACSM · 운동 순서와 점진적 훈련 ↗</a></details>`);
  document.querySelector('#back-level').onclick=()=>showRoutineLevel(key);
  document.querySelectorAll('[data-routine-machine]').forEach(button=>button.onclick=()=>{
   const itemIndex=Number(button.dataset.routineMachine),[id,mode]=plan.items[itemIndex];
