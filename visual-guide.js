@@ -237,13 +237,13 @@ function motionFigure(id){
   const moving=(pts,body)=>`<g transform="translate(${pts[0].join(' ')})">${animation('transform',pts.map(p=>p.map(number).join(' ')),'translate')}${body}</g>`;
   const bone=(a,b,w,fill)=>{const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return moving(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(48,w,4,fill)}</g>`);};
   const hips=feet.map(()=>hip),paths=feet.map(f=>`M52 70 L${number(f[0]-7)} ${number(f[1]+4)}`);
-  art=line('M40 212 H244 M139 212 V185 M190 212 V116 M52 212 V70',palette.metal,6)
+  art=line('M40 212 H244 M139 212 V185 M190 212 V151 M52 212 V70',palette.metal,6)
    +shape('M123 182 H157 V192 H123 Z',palette.pad)
    +leg(hip,[140,174],[105,181],.4)
-   +torso(...hip,45)+head(199,71,35)
-   +shape('M168 115 L193 90 L201 98 L176 123 Z',palette.pad)
-   +arm({x:189,y:95,upper:31,lower:28,a:[-15,-15],bend:[-65,-65]})
-   +line('M218 133 H235',palette.metal,5)
+   +shape('M162 145 H207 Q211 145 211 150 V156 H162 Z',palette.pad)
+   +torso(...hip,85)+head(223,123,65)
+   +arm({x:201,y:135,upper:27,lower:26,a:[0,0],bend:[-75,-75]})
+   +line('M222 170 H240 M232 170 V212',palette.metal,5)
    +bone(hips,knees,10,palette.muscle)+bone(knees,feet,7,palette.skin)
    +moving(feet,shape('M-5-5 L3-4 L7 1 L5 10 L-7 10 L-8 2 Z',palette.skin))
    +`<path d="${paths[0]}" fill="none" stroke="#a5a18c" stroke-width="5">${animation('d',paths)}</path>`
@@ -273,7 +273,14 @@ function motionFigure(id){
    ?line('M150 212 V110 M150 166 H112',palette.metal,6)+translate(hip,null,rotate(lean,lean,shape('M19-59 H29 V-22 H19 Z',palette.pad)))
    :line('M77 212 V80 M77 97 H92 M77 181 L106 154',palette.metal,6)+translate(hip,null,rotate(lean,lean,shape('M-26-74 H-17 V7 H-26 Z',palette.pad)));
   const thighPad=(kind==='18'||kind==='19')?shape('M137 149 H165 V158 H137 Z',palette.pad)+line('M163 154 V210',palette.metal,4):'';
-  art=line(id==='27'?'M60 212 H253 M235 212 V14 H145':`M60 212 H253 M${pivot[0]} 212 V${pivot[1]}`,palette.metal,6)+seat+support
+  // Long bench and full-height weight tower distinguish the cable row from a seated lever row.
+  const rowFrame=line('M37 212 H279 M52 212 V161 M133 212 V161 M53 178 H241 M240 212 V25 H274 V212',palette.metal,6)
+   +shape('M244 29 H270 V193 H244 Z',palette.pad)
+   +line('M249 41 V181 M265 41 V181','#899a8c',2)
+   +Array.from({length:10},(_,i)=>line('M248 '+(111+i*7)+' H267','#899a8c',2)).join('')
+   +shape('M35 151 H145 Q150 151 150 157 V163 H35 Q31 157 35 151 Z',palette.pad)
+   +line('M183 210 L200 172',palette.metal,7);
+  art=(freeRow?rowFrame:line(id==='27'?'M60 212 H253 M235 212 V14 H145':`M60 212 H253 M${pivot[0]} 212 V${pivot[1]}`,palette.metal,6)+seat)+support
    +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="${cable?1.6:4}">${animation('d',leverValues)}</path>`+bolt(...pivot,cable?7:4)
    +(freeRow?line('M192 211 L209 173',palette.metal,7)+leg([110,155],[159,157],[190,194],.4,-66)+leg([114,156],[161,160],[192,195],1,-66):leg([110,155],[148,167],[160,203],.4)+leg([114,156],[154,165],[172,203]))+thighPad
    +arm({...spec,opacity:.3,x:shoulder[0]-3,y:shoulder[1]-2})+torso(...hip,lean,pull?'back':overhead?'':'chest')+head(...headPos,lean)+arm(spec)
