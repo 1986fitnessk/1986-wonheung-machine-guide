@@ -60,3 +60,23 @@
 .dialog-top{position:sticky;top:-30px;z-index:2;background:var(--panel);padding:12px 0;margin-top:-12px;box-shadow:0 8px 12px var(--panel)}
 .hero-mascot:disabled{cursor:default}
 @media(max-width:600px){.dialog-top{top:-18px}}
+
+/* Detail reading: keep Korean words together and allow long English labels to wrap. */
+#detail-content{min-width:0;word-break:keep-all;overflow-wrap:anywhere}
+#detail-content :is(p,li){text-wrap:pretty}
+#detail-content :is(h2,h3){text-wrap:balance}
+#detail-content>.eyebrow{line-height:1.8;letter-spacing:1.1px}
+.detail-section :is(p,li){font-size:15px;line-height:1.85}
+.setup-list li,.exercise-steps li{margin-bottom:12px;padding-left:5px}
+.trainer-tip p+p{margin-top:12px}
+.trainer-tip p{line-height:1.85}
+.motion-action,.motion-cue{line-height:1.7}
+.visual-footnote{font-size:12px!important;line-height:1.75!important}
+.sources p{font-size:12px}
+@media(max-width:600px){
+ #detail-title{font-size:25px;line-height:1.4}
+ .trainer-tip{padding:20px 16px}
+ .detail-section h3{line-height:1.5}
+ .muscle-key p{font-size:12px}
+ .exercise-mode-buttons button{line-height:1.5;overflow-wrap:anywhere}
+}
