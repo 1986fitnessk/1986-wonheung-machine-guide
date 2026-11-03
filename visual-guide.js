@@ -109,6 +109,64 @@ function muscleFigure(view,v){
  return `<svg viewBox="0 0 120 214" role="img" aria-label="${label} 사용 근육"><g fill="#2c3532" stroke="#8b9790" stroke-width=".95" stroke-linejoin="round">${body}</g>${muscles}${details}<text x="60" y="211" text-anchor="middle" fill="#b9c0b8" font-size="10">${label}</text></svg>`;
 }
 
+// Equipment-only drawing layer. All athlete joints, pivots and animation samples
+// remain in motionFigure; these silhouettes follow the registered machine photos.
+function machineHardware(id){
+ const hammer=['09','10','11','12','18','19','20','21','22'].includes(id);
+ const purple=['32','33'].includes(id);
+ const frame=hammer?'#b83e38':purple?'#824782':['23','29-ab','29-ad','03'].includes(id)?'#81908e':'#485351';
+ const tube=(d,w=7)=>`<path d="${d}" fill="none" stroke="#1a2425" stroke-width="${w+3}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${frame}" stroke-width="${w}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#d2dad5" stroke-opacity=".16" stroke-width="1.2"/>`;
+ const rect=(x,y,w,h,fill='#283233',r=3)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="#8b9690" stroke-width=".65"/>`;
+ const bolt=(x,y)=>`<circle cx="${x}" cy="${y}" r="2.5" fill="#c2cac5" stroke="#24312c"/><circle cx="${x}" cy="${y}" r=".8" fill="#34443d"/>`;
+ const plate=(x,y,r=16)=>`<g>${tube(`M${x-8} ${y} H${x+24}`,4)}<ellipse cx="${x}" cy="${y}" rx="${r*.65}" ry="${r}" fill="#20282a" stroke="#687471" stroke-width="1.4"/><ellipse cx="${x}" cy="${y}" rx="${r*.45}" ry="${r*.78}" fill="none" stroke="#485451"/><circle cx="${x}" cy="${y}" r="3.3" fill="#b9c3be" stroke="#33403b"/>${[0,120,240].map(a=>`<ellipse cx="${x}" cy="${y-r*.52}" rx="2.5" ry="4" fill="#111b1b" transform="rotate(${a} ${x} ${y})"/>`).join('')}</g>`;
+ const tower=(x,y,w,h)=>rect(x,y,w,h,'#222d30',7)+rect(x+4,y+5,w-8,19,purple?'#824782':'#485658',3)+rect(x+7,y+28,w-14,h-39,'#141e20',2)+tube(`M${x+10} ${y+33} V${y+h-13} M${x+w-10} ${y+33} V${y+h-13}`,2)+Array.from({length:9},(_,i)=>rect(x+9,y+h-72+i*6,w-18,4,'#59635e',1)).join('')+`<circle cx="${x+w/2}" cy="${y+h-43}" r="2.6" fill="#d5b961"/>`;
+ const foot=(x,y,w=18)=>rect(x,y,w,5,'#1b2527',2);
+ const rack=(x,y)=>tube(`M${x} 212 V${y}`)+plate(x+5,171,16)+plate(x+5,133,12);
+ const adjust=(x,y)=>tube(`M${x} ${y} v27`,5)+[0,6,12,18].map(n=>`<circle cx="${x}" cy="${y+n}" r="1" fill="#d1d8cc"/>`).join('')+`<circle cx="${x+3}" cy="${y+21}" r="2.8" fill="#ceba61"/>`;
+ let back='';
+ if(['09','12','20'].includes(id)) back=tube('M60 211 L66 34 H219 L236 211 M66 64 H83 M69 181 H230 M217 35 L233 119')+rack(229,72)+foot(50,211)+foot(228,211)+adjust(106,169)+bolt(66,35)+bolt(219,35);
+ if(id==='10') back=tube('M53 211 L76 113 L90 70 M74 114 H211 L238 211 M90 70 L213 49 L234 140 M67 191 H235')+rack(230,89)+foot(45,211)+foot(231,211)+adjust(106,169)+bolt(213,49);
+ if(id==='11') back=tube('M57 211 L72 79 L113 45 H224 L243 211 M73 166 H234 M76 97 H114')+rack(236,85)+plate(193,61,17)+adjust(106,169)+foot(49,211)+foot(237,211);
+ if(id==='18') back=tube('M69 212 L61 40 H229 L249 212 M61 66 H110 M161 174 H241 M61 198 H246')+rack(242,89)+tube('M150 166 L175 211')+adjust(111,177)+bolt(229,38)+foot(53,212)+foot(242,212);
+ if(id==='19') back=tube('M64 212 L62 67 H229 L248 212 M65 184 H241 M167 160 L180 212')+rack(241,104)+tube('M229 38 V67 H151')+adjust(111,177)+foot(55,212)+foot(241,212);
+ if(id==='21') back=tube('M59 212 L78 43 H213 L244 212 M78 115 H84 M79 182 H234 M214 45 L231 115')+rack(234,94)+adjust(111,177)+foot(51,212)+foot(237,212);
+ if(id==='22') back=tube('M62 212 H252 M151 212 V111 M230 165 Q253 117 235 73 M235 73 L201 66 M63 206 L151 167 L230 165')+plate(237,186,17)+adjust(111,177)+bolt(230,165)+foot(55,212)+foot(246,212);
+ if(id==='01') back=tube('M55 211 H210 M92 207 L148 123 M148 123 L190 208 M106 189 L166 168')+plate(179,187,17)+tube('M66 201 L100 196 M63 207 L99 203')+adjust(145,133)+foot(48,211)+foot(201,211);
+ if(id==='02') back=rect(137,145,26,40)+tube('M88 162 H212 M93 156 V172 M207 156 V172')+bolt(93,156)+bolt(207,156)+rect(139,160,22,8,'#69756e');
+ if(id==='03') back=tube('M64 211 V31 H250 V211 M66 190 H249 M64 211 L92 170 M250 211 L275 187')+plate(250,98,20)+plate(67,142,17)+tube('M61 28 H253')+foot(55,211)+foot(247,211);
+ if(['04','05','06'].includes(id)) back=tower(209,32,46,177)+tube('M91 211 H261 M150 153 H218 M204 208 L216 174')+adjust(106,174)+foot(82,211)+foot(248,211)+bolt(150,131);
+ if(id==='07') back=tube('M61 211 H235 M70 211 L90 138 M139 107 L194 175 M143 105 L201 174 M90 143 L156 210')+plate(201,178,18)+tube('M137 211 L174 202',11)+foot(53,211)+foot(225,211)+bolt(143,105)+bolt(201,174);
+ if(id.startsWith('08-')) back=tower(214,27,32,183)+tube('M108 220 H259 M222 14 H158 M248 220 L268 181 M244 132 H185')+rect(188,198,23,6)+rect(185,181,20,6)+foot(103,220)+foot(251,220);
+ if(id==='13') back=tube('M48 215 H239 M88 145 L62 214 M130 184 L155 215 M89 160 H132')+plate(225,190,18)+adjust(88,158)+tube('M178 215 H225',9)+foot(42,216)+foot(230,216);
+ if(['14','14-reverse'].includes(id)) back=tube('M47 215 H228 M62 112 L91 211 M62 112 L43 164 L50 211 M92 198 H213')+plate(59,125,21)+tube('M54 210 H206',11)+bolt(62,112)+foot(40,216)+foot(216,216);
+ if(id==='15') back=tube('M34 212 H265 M241 207 L260 113 M241 207 L218 155 M67 210 L113 188')+plate(248,163,19)+adjust(82,182)+foot(27,213)+foot(254,213);
+ if(id==='16') back=tube('M164 212 L226 43 M177 212 L239 43 M233 44 H260 L267 213 M42 216 H272 M215 115 H261')+plate(258,161,19)+plate(259,111,14)+foot(35,216)+foot(261,216)+bolt(226,43)+bolt(239,43);
+ if(id==='17') back=tube('M38 213 H265 M139 190 L221 92 M151 201 L233 103 M230 100 H257 V211 M67 210 L113 188')+plate(250,166,19)+plate(250,128,14)+foot(30,213)+foot(254,213)+adjust(81,182);
+ if(id==='23') back=tube('M41 213 H227 M75 204 L137 139 M132 145 L193 213 M113 168 L173 191')+adjust(111,163)+tube('M48 198 H90',10)+foot(35,213)+foot(215,213)+bolt(132,165);
+ if(id==='24') back=tower(37,32,38,179)+tube('M39 212 H250 M141 185 V211 M190 151 V212 M86 212 H232 M141 186 H192')+rect(119,184,39,11)+adjust(190,167)+foot(31,212)+foot(240,212);
+ if(id==='25') back=tower(218,30,40,181)+tube('M60 212 H263 M84 115 H233 M78 194 H234')+adjust(111,176)+bolt(84,115)+foot(51,212)+foot(253,212);
+ if(id==='26') back=tower(224,45,37,166)+tube('M60 212 H267 M229 38 H173 M165 153 V211 M87 195 H240')+adjust(111,176)+foot(52,212)+foot(255,212)+bolt(229,38);
+ if(id==='27') back=tower(230,30,39,182)+tube('M145 14 H249 V211 M145 14 L166 40 M65 212 H274')+`<circle cx="145" cy="14" r="8" fill="#273334" stroke="#aeb9b0"/><circle cx="145" cy="14" r="3" fill="#83918a"/>`+adjust(111,176)+foot(56,212)+foot(261,212);
+ if(id==='28') back=tower(240,25,34,187)+tube('M33 212 H280 M52 164 L39 211 M133 164 L151 211 M190 210 L209 173')+foot(26,212)+foot(268,212)+bolt(245,153);
+ if(['29-ab','29-ad','32','33'].includes(id)) back=tower(227,39,38,174)+tube('M61 216 H268 M150 149 V214 M150 197 H245 M116 80 H184')+adjust(150,159)+rect(141,199,18,9)+foot(53,216)+foot(257,216)+bolt(150,199);
+ if(id==='30') back=tube('M70 215 H275 M250 214 V100 M164 211 L249 100 M249 100 H270 V212 M177 201 L253 132')+plate(252,105,22)+plate(263,176,19)+tube('M99 215 H167',10)+foot(63,216)+foot(263,216)+bolt(249,100);
+ if(id==='31') back=tube('M77 216 H253 M184 215 L211 55 H227 V213 M184 135 L223 120 M184 180 H237')+plate(229,158,18)+tube('M203 59 L212 61 M219 61 L227 61',3)+foot(69,216)+foot(242,216)+bolt(223,120);
+ if(id==='34') back=tower(229,31,29,182)+tube('M51 213 H267 M79 153 L64 212 M180 151 L199 212 M74 172 H242')+adjust(180,167)+foot(43,213)+foot(255,213);
+ return `<g class="machine-hardware" aria-hidden="true">${back}</g>`;
+}
+function detailMachineArtwork(art,id){
+ const hammer=['09','10','11','12','18','19','20','21','22'].includes(id);
+ const frame=hammer?'#b83e38':['32','33'].includes(id)?'#824782':['23','29-ab','29-ad','03'].includes(id)?'#81908e':'#485351';
+ const pad=['15','16','17'].includes(id)?'#b47e51':'#303b3c';
+ // Change only the paint of equipment paths. Paths and nested animations are
+ // kept verbatim: no edits to joint positions, contact points or travel axes.
+ return art.replace(/<path\b[^>]*>/g,tag=>{
+  if(/stroke="(?:#53625a|#899a8c)"/.test(tag)) return tag.replace(/stroke="[^"]+"/,`stroke="${frame}"`).replace('stroke-linecap="round"','stroke-linecap="square"');
+  if(tag.includes('fill="#34413a"')||tag.includes('fill="#647267"')) return tag.replace(/fill="[^"]+"/,`fill="${tag.includes('M-29-36')||tag.includes('V217')?'#303b3c':pad}"`).replace('stroke="#6f7d70"','stroke="#9aaba1"');
+  return tag;
+ });
+}
+
 function motionFigure(id){
  const palette={skin:'#c8cbbf',shade:'#a3ac9e',edge:'#6f7d70',muscle:'#de876e',assist:'#d8c7a6',metal:'#53625a',pad:'#34413a',shorts:'#3b4840'};
  const number=n=>Math.round(n*100)/100;
@@ -193,7 +251,7 @@ function motionFigure(id){
     +(!inward?shape('M-8 2 Q0-6 8 2 L6 11 H-6 Z',palette.muscle):'')));
   };
   art=line(standing?'M56 216 H244 M100 216 V87 H200 V216':'M65 216 H235 M117 216 V78 M183 216 V78 M112 78 H188 M150 149 V214',palette.metal,6)
-   +(standing?'':shape('M126 60 H174 V126 H126 Z',palette.pad)+shape('M118 131 H182 V146 H118 Z',palette.pad))
+   +(standing?'':shape('M126 66 Q126 59 134 59 H166 Q174 59 174 66 V126 H126 Z',palette.pad)+shape('M118 131 Q150 127 182 131 V141 Q182 148 175 148 H125 Q118 148 118 141 Z',palette.pad))
    +lower(-1)+lower(1)+frontBody
    +line(standing?'M132 58 L118 82 L103 88 M168 58 L182 82 L197 88':`M130 76 L115 104 L114 133 M170 76 L185 104 L186 133`,palette.skin,11)
    +line(standing?'M93 88 H112 M188 88 H207':'M103 135 H122 M178 135 H197',palette.metal,5)
@@ -212,7 +270,7 @@ function motionFigure(id){
    +line('M139 172 Q92 171 85 122',palette.muscle,1.8,'stroke-dasharray="4 4"')
    +line('M80 130 L85 121 L92 128',palette.muscle,1.8)
    +movingLeg(5,19,34,.4)+movingLeg(0,-47,44,1)
-   +shape('M169 91 L178 94 L175 120 L166 116 Z',palette.pad)
+   +shape('M169 91 Q173 89 178 94 L175 120 Q171 123 166 116 Z',palette.pad)
    +translate([125,135],null,rotate(30,30,shape('M-7-78 H5 L7-62 L-8-59 Z')))
    +torso(125,135,30)+head(166,63,20)
    +shape('M111 126 Q119 119 128 125 L126 134 L114 137 Z',palette.muscle)
@@ -244,8 +302,7 @@ function motionFigure(id){
   const knee=[199,137],angles=phases.map(p=>-78-80*p);
   const movingShin=`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(41,7,4)}${translate([0,41],null,shape('M-5-4 H4 L14 3 V9 H-6 Z'))}${line('M-10 34 H10',palette.pad,12)}</g>`;
   art=line('M51 213 H267 M79 213 V153 M180 213 V151 M235 213 V35',palette.metal,6)
-   +shape('M229 31 H258 V195 H229 Z',palette.pad)
-   +line('M234 55 V185 M252 55 V185',palette.edge,2)
+
    +shape('M69 143 L151 137 L201 148 V158 L151 149 L69 155 Z',palette.pad)
    +translate([155,129],null,rotate(-85,-85,'<g transform="scale(-1 1)">'+torso(0,0,0)+'</g>'))
    +translate([72,122],null,rotate(-85,-85,'<g transform="scale(-1 1)">'+profile()+'</g>'))
@@ -307,14 +364,14 @@ function motionFigure(id){
    pad=moving(hips,shape('M-13-14 H15 Q22-9 15-3 H-13 Q-20-8-13-14 Z',palette.pad));
   }else if(squat){
    frame=line(hack?'M82 212 L144 43 M69 212 L131 43 M62 216 H230':'M55 212 H220 M62 212 V112',palette.metal,6)+shape(hack?'M171 210 H238 V217 H171 Z':'M52 210 H202 V216 H52 Z',palette.pad);
-   pad=moving(hips,turning(leans,shape(reverse?'M-24-73 H16 V-64 H-24 Z':'M-24-70 H-15 V9 H-24 Z M-24-73 H16 V-64 H-24 Z',palette.pad)));
+   pad=moving(hips,turning(leans,shape(reverse?'M-27-77 Q-27-81-22-81 H14 Q20-81 20-75 V-64 H-27 Z':'M-28-69 Q-28-74-23-74 H-15 V9 H-24 Q-28 9-28 4 Z M-27-77 Q-27-81-22-81 H14 Q20-81 20-75 V-64 H-27 Z',palette.pad)));
    if(hack)frame+=moving(hips,turning(leans,line('M-51-56 V-8 M-51-51 H-25 M-51-13 H-25',palette.metal,5)+bolt(-51,-51,4)+bolt(-51,-13,4)));
    if(!hack){const links=poses.map(p=>{const r=p.lean*Math.PI/180;const end=reverse?[p.hip[0]-10*Math.cos(r)+64*Math.sin(r),p.hip[1]-10*Math.sin(r)-64*Math.cos(r)]:[p.hip[0]-22,p.hip[1]-25];return `M62 112 L${end.map(number).join(' ')}`;});frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(62,112);}
   }else{
    frame=line('M38 212 H252 M64 212 L47 145 M112 212 V187',palette.metal,6)+shape('M38 139 L44 131 L113 178 L108 187 Z',palette.pad);
    if(id==='17')frame+=line('M139 190 L221 92 M151 201 L233 103',palette.metal,5);
    else{const links=feet.map(a=>`M242 207 L${a[0]+10} ${a[1]}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(242,207);}
-   pad=moving(feet,shape('M-13-20 L-7-25 L29 11 L23 17 Z',palette.pad));
+   pad=moving(feet,shape('M-29-36 L-23-42 L46 27 L40 33 Z',palette.pad)+line('M-23-30 L34 27 M-18-35 L39 22','#909c96',1));
   }
   const assembly=frame+pad+legs+upper+(hipThrust?pad:'');
   const hackRail=line('M177 212 L239 43 M164 212 L226 43 M42 216 H252',palette.metal,6);
@@ -352,7 +409,7 @@ function motionFigure(id){
    +line('M222 170 H240 M232 170 V212',palette.metal,5)
    +bone(hips,knees,10,palette.muscle)+bone(knees,feet,7,palette.skin)
    +moving(feet,shape('M-5-5 L3-4 L7 1 L5 10 L-7 10 L-8 2 Z',palette.skin))
-   +`<path d="${paths[0]}" fill="none" stroke="#a5a18c" stroke-width="5">${animation('d',paths)}</path>`
+   +`<path d="${paths[0]}" fill="none" stroke="#b83e38" stroke-width="7">${animation('d',paths)}</path>`
    +moving(feet,line('M-9 9 H5',palette.metal,5))+bolt(52,70,5);
  }
 
@@ -381,9 +438,7 @@ function motionFigure(id){
   const thighPad=(kind==='18'||kind==='19')?shape('M137 149 H165 V158 H137 Z',palette.pad)+line('M163 154 V210',palette.metal,4):'';
   // Long bench and full-height weight tower distinguish the cable row from a seated lever row.
   const rowFrame=line('M37 212 H279 M52 212 V161 M133 212 V161 M53 178 H241 M240 212 V25 H274 V212',palette.metal,6)
-   +shape('M244 29 H270 V193 H244 Z',palette.pad)
-   +line('M249 41 V181 M265 41 V181','#899a8c',2)
-   +Array.from({length:10},(_,i)=>line('M248 '+(111+i*7)+' H267','#899a8c',2)).join('')
+
    +shape('M35 151 H145 Q150 151 150 157 V163 H35 Q31 157 35 151 Z',palette.pad)
    +line('M183 210 L200 172',palette.metal,7);
   art=(freeRow?rowFrame:line(id==='27'?'M60 212 H253 M235 212 V14 H145':`M60 212 H253 M${pivot[0]} 212 V${pivot[1]}`,palette.metal,6)+seat)+support
@@ -533,7 +588,7 @@ function motionFigure(id){
    +arm(working)+bolt(...elbow,2.5)
    +line('M182 82 Q211 114 183 149','#75816c',.8,'stroke-dasharray="3 5" opacity=".5"');
  }
- return `<svg class="motion-svg" viewBox="0 0 300 230" role="img" aria-label="${visualGuides[id].action} 동작 이해용 애니메이션">${id==='02'?'':line('M42 216 H273','#34443a',1)}${art}</svg>`;
+ return `<svg class="motion-svg" viewBox="0 0 300 230" role="img" aria-label="${visualGuides[id].action} 동작 이해용 애니메이션">${id==='02'?'':line('M42 216 H273','#34443a',1)}${machineHardware(id)}${detailMachineArtwork(art,id)}</svg>`;
 }
 function renderVisualGuide(m){const v=visualGuides[m.id];return `<section class="visual-guide" aria-label="사용 근육과 동작 안내"><div class="visual-heading"><p class="eyebrow">MUSCLE MAP</p><h3>어디에 힘이 들어가나요?</h3></div><div class="muscle-views">${['front','side','back'].map(view=>muscleFigure(view,v)).join('')}</div><div class="muscle-key"><p><i class="primary-dot"></i><strong>주요 근육</strong> ${v.main}</p>${v.secondary.length?`<p><i class="secondary-dot"></i><strong>보조 근육</strong> ${v.assist}</p>`:''}</div><p class="visual-footnote">주요 부위를 간략히 표시한 그림입니다. 자세와 손잡이에 따라 자극 부위가 달라집니다.</p><div class="motion-panel"><div class="motion-heading"><div><p class="eyebrow">MOVEMENT</p><h3>동작을 한눈에</h3></div><button type="button" id="motion-toggle" aria-pressed="false">일시정지</button></div>${motionFigure(m.id)}<p class="motion-action">${v.action}</p><p class="motion-cue">${v.cue}</p><p class="visual-footnote">동작 이해용 그림 · 실제 머신의 형태·이동 범위와는 차이가 있습니다.</p></div></section>`;}
 // Pause off-screen work and detach all listeners when the dialog changes.
