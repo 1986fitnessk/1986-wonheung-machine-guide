@@ -13,7 +13,7 @@
  .routine-slots .routine-index,.routine-slots .routine-description{display:none}
  .routine-slots .routine-slot strong{font-size:18px;white-space:nowrap}
  .routine-slots .routine-bottom{width:100%;font-size:0;gap:4px;line-height:1.4}
- .routine-slots .routine-bottom:before{content:'준비 중';font-size:10px}
+ .routine-slots .routine-bottom:before{content:'루틴 보기';font-size:10px}
  .routine-slots #beginner-level .routine-bottom:before{content:'루틴 보기'}
  .routine-slots .routine-bottom b{position:static;font-size:18px}
  dialog{max-width:100%;width:100%;max-height:92vh;max-height:92dvh;padding:18px 18px max(22px,env(safe-area-inset-bottom));overscroll-behavior:contain;-webkit-overflow-scrolling:touch}

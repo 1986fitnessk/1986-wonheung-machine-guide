@@ -1029,14 +1029,48 @@ dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog
 document.querySelector('#help').onclick=()=>open('<h2 id="detail-title">머신 가이드 이용 안내</h2><p class="detail-sub">머신과 블랙보드에 부착한 같은 QR로 이 페이지에 접속합니다.</p><section class="detail-section"><h3>01 · 이름 또는 운동 부위로 찾기</h3><p>머신에 적힌 이름을 검색하거나 부위 버튼을 눌러보세요. 띄어쓰기를 하지 않아도 검색됩니다.</p></section><section class="detail-section"><h3>02 · 머신 선택 후 안내 확인</h3><p>세팅, 사용법, 티칭 포인트 순서로 확인할 수 있도록 구성했습니다.</p></section><section class="detail-section"><h3>03 · 도움이 필요할 때</h3><p>머신을 찾기 어렵거나 조절 방법이 궁금하면 현장 직원에게 문의해주세요.</p></section><p class="draft">처음 이용하는 머신의 무게와 조절 방법은 현장 직원에게 확인해주세요.</p>');
 render();
 
-const routineNames={full:'전신 루틴',upper:'상체 루틴',lower:'하체 루틴'};
-function showBeginner(){
- open(`<p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / BEGINNER</p><h2 id="detail-title">초보자 운동 가이드</h2><p class="detail-sub">원하는 루틴을 선택해주세요.</p><div class="beginner-options">${Object.entries(routineNames).map(([key,name],i)=>`<button class="routine-slot" data-routine="${key}"><span class="routine-index">0${i+1} / BEGINNER</span><strong>${name}</strong><span class="routine-bottom">루틴 준비 중 <b aria-hidden="true">↗</b></span></button>`).join('')}</div>`);
- dialog.scrollTop=0;
- document.querySelectorAll('[data-routine]').forEach(button=>button.onclick=()=>{open(`<button class="routine-back" id="back-beginner">← 초보자 루틴 선택</button><p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / BEGINNER</p><h2 id="detail-title">초보자 ${routineNames[button.dataset.routine]}</h2><div class="routine-rule"><p><strong>루틴을 준비하고 있어요.</strong></p><p>원흥점 머신 등록이 끝나면 운동 순서와 사용법을 안내해드릴게요.</p></div>`);dialog.scrollTop=0;document.querySelector('#back-beginner').onclick=()=>{showBeginner();document.querySelector('#detail-title').setAttribute('tabindex','-1');document.querySelector('#detail-title').focus();};document.querySelector('#back-beginner').focus();});
+// Machine IDs keep routine links aligned with the equipment catalogue.
+const routinePlans={
+ beginner:{name:'초보자',en:'BEGINNER',intro:'전신·상체·하체 중 오늘 진행할 루틴 하나를 선택하세요.',plans:[
+  {name:'전신 루틴',note:'센터 지정 5종을 안내한 순서대로 구성했습니다. 가슴 운동은 상체 루틴에서 확인할 수 있어요.',items:[['29',0,'아웃타이 · 벌리기','바깥 엉덩이로 패드를 천천히 밀어주세요.'],['38',0,'','허벅지 앞쪽으로 롤러를 들어주세요.'],['36',0,'','발바닥 전체로 발판을 눌러주세요.'],['25',0,'','등을 붙이고 손바닥으로 밀어 올려주세요.'],['37',0,'','상체를 세운 채 팔꿈치를 뒤로 당겨주세요.']]},
+  {name:'하체 루틴',note:'발판 밀기부터 허벅지 앞·뒤, 엉덩이 옆·허벅지 안쪽까지 익히는 5종입니다.',items:[['36',0,'','등과 엉덩이를 붙인 채 발판을 밀어주세요.'],['34',0,'','골반을 붙이고 뒤꿈치를 당겨주세요.'],['38',0,'','반동 없이 무릎을 펴주세요.'],['29',0,'아웃타이 · 벌리기','무릎 바깥쪽으로 패드를 밀어주세요.'],['33',0,'','무릎 안쪽으로 패드를 천천히 모아주세요.']]},
+  {name:'상체 루틴',note:'가슴 밀기·등 당기기·어깨 밀기를 익히고 팔 운동으로 마무리합니다.',items:[['35',0,'','손잡이를 쇄골과 명치 사이 높이에 맞춰주세요.'],['26',0,'','몸통을 고정하고 팔꿈치를 아래로 내려주세요.'],['37',0,'','뒤로 눕지 않고 손잡이를 당겨주세요.'],['25',0,'','허리를 꺾지 않고 손잡이를 위로 밀어주세요.'],['05',0,'','팔꿈치 위치를 유지하며 팔을 펴주세요.']]}
+ ]},
+ intermediate:{name:'중급자',en:'INTERMEDIATE',intro:'가슴·팔 → 등·어깨 → 하체 순서의 3분할입니다. 피로가 남으면 중간에 쉬는 날을 넣어주세요.',plans:[
+  {name:'가슴 / 팔',note:'가슴의 수평·상향 밀기와 모으기 후 삼두·이두를 진행합니다.',items:[['20',0,'','가슴 높이에서 손바닥으로 밀어주세요.'],['10',0,'','등을 붙이고 궤적을 따라 밀어 올려주세요.'],['02',0,'','어깨가 들리지 않게 가슴으로 모아주세요.'],['05',0,'','몸통을 고정하고 팔꿈치를 펴주세요.'],['06',0,'','팔꿈치를 고정하고 천천히 말아 올려주세요.']]},
+  {name:'등 / 어깨',note:'수직·수평 당기기와 어깨 프레스 후 풀오버로 마무리합니다. 전날 팔의 피로가 남으면 하루 쉬고 진행하세요.',items:[['19',0,'','어깨를 내리고 팔꿈치를 아래로 당겨주세요.'],['22',0,'','가슴을 패드에 붙이고 팔꿈치를 뒤로 보내주세요.'],['25',0,'','복부에 힘을 주고 머리 위로 밀어주세요.'],['11',0,'','어깨가 편안한 범위에서 천천히 내려주세요.']]},
+  {name:'하체',note:'스쿼트·고관절 펴기 후 허벅지 앞뒤와 엉덩이 옆을 보완합니다.',items:[['14',0,'브이스쿼트 · 등 밀착','등을 패드에 붙인 상태로 앉았다 일어나세요.'],['13',0,'','어깨와 발을 지지하며 엉덩이를 올려주세요.'],['34',0,'','골반이 들리지 않게 뒤꿈치를 당겨주세요.'],['38',0,'','무릎을 튕기지 않고 펴주세요.'],['29',0,'아웃타이 · 벌리기','패드 접촉을 유지하며 다리를 벌려주세요.']]}
+ ]},
+ advanced:{name:'상급자',en:'ADVANCED',intro:'가슴 → 등 → 하체 → 어깨·팔 순서의 4분할입니다. 회복 상태에 따라 쉬는 날을 넣고 다음 순서로 이어가세요.',plans:[
+  {name:'가슴',note:'수평·상향·하향 프레스와 플라이로 구성했습니다. 비슷한 프레스를 추가로 겹치지 않습니다.',items:[['20',0,'','가슴 중앙 높이에서 앞으로 밀어주세요.'],['10',0,'','손목과 팔꿈치를 맞추고 위로 밀어주세요.'],['12',0,'','패드에 밀착해 손잡이 궤적으로 밀어주세요.'],['02',0,'','반동 없이 가슴을 모으고 천천히 돌아오세요.']]},
+  {name:'등',note:'수직·대각·수평 당기기와 풀오버를 조합했습니다.',items:[['19',0,'','팔꿈치를 아래로 내려 등을 수축하세요.'],['18',0,'','가슴을 붙이고 팔꿈치를 아래·뒤로 당겨주세요.'],['22',0,'','몸통을 고정하고 등으로 당겨주세요.'],['11',0,'','복부에 힘을 주고 팔꿈치 패드를 내려주세요.']]},
+  {name:'하체',note:'무릎 중심 스쿼트와 고관절 중심 힌지 후 허벅지 앞뒤·엉덩이 옆을 보완합니다. 힌지는 자세가 익숙할 때 진행하세요.',items:[['16',0,'','등과 골반을 패드에 붙여 레일을 따라 내려가세요.'],['30',0,'','허리를 꺾지 않고 고관절을 뒤로 접어주세요.'],['34',0,'','골반을 고정하고 뒷벅지로 당겨주세요.'],['38',0,'','허벅지 앞쪽의 긴장감을 유지하세요.'],['31',0,'','몸통을 지지하고 다리를 바깥으로 밀어주세요.']]},
+  {name:'어깨 / 팔',note:'보유 머신의 어깨 프레스·삼두·이두 3종에 집중합니다. 현재 목록에 측면·후면 어깨 전용 머신이 없어 해당 부위의 단독 운동은 포함하지 않았습니다.',items:[['21',0,'','등을 붙이고 귀 옆에서 위로 밀어주세요.'],['05',0,'','팔꿈치 위치를 유지하며 삼두로 밀어주세요.'],['06',0,'','반동 없이 이두로 손잡이를 들어주세요.']]}
+ ]}
+};
+function focusRoutineTitle(){const title=document.querySelector('#detail-title');title.setAttribute('tabindex','-1');title.focus({preventScroll:true});dialog.scrollTop=0;}
+function showRoutineLevel(key){
+ const level=routinePlans[key];
+ open(`<p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / ${level.en}</p><h2 id="detail-title">${level.name} 운동 가이드</h2><p class="detail-sub">${level.intro}</p><div class="beginner-options">${level.plans.map((plan,i)=>`<button class="routine-slot" data-routine="${i}"><span class="routine-index">${String(i+1).padStart(2,'0')} / ${level.en}</span><strong>${plan.name}</strong><span class="routine-bottom">${plan.items.length}가지 머신 · 운동 순서 보기 <b aria-hidden="true">↗</b></span></button>`).join('')}</div><p class="machine-note">분할 수가 많다고 더 좋은 루틴은 아닙니다. 출석 빈도와 회복에 맞춰 선택하세요. 무게·세트·반복 횟수·목적별 설정은 추후 제공됩니다.</p>`);
+ document.querySelectorAll('[data-routine]').forEach(button=>button.onclick=()=>showRoutine(key,Number(button.dataset.routine)));
+ focusRoutineTitle();
 }
+function showRoutine(key,index){
+ const level=routinePlans[key],plan=level.plans[index];
+ open(`<button class="routine-back" id="back-level">← ${level.name} 루틴 선택</button><p class="eyebrow" style="margin-top:24px">${level.en} / MACHINE ROUTINE</p><h2 id="detail-title">${plan.name}</h2><p class="detail-sub">${plan.items.length}가지 머신 · 위에서부터 순서대로</p><div class="routine-rule"><p>${plan.note}</p><p>무게와 운동량은 아직 지정하지 않았습니다. 개인별 설정은 현장 트레이너와 확인하세요.</p></div><div class="routine-exercises">${plan.items.map(([id,mode,label,cue],i)=>{const machine=machines.find(m=>m.id===id);return `<details class="routine-exercise"><summary data-step="${String(i+1).padStart(2,'0')}"><span><strong>${label||machine.name}</strong><small>${label?machine.name+' · ':''}${cue}</small></span></summary><div class="routine-exercise-body"><p>${(machine.modes?machine.modes[mode]:machine).tip}</p><button class="routine-machine-link" data-routine-machine="${i}">머신 사진 · 모션 · 사용법 보기 ↗</button></div></details>`;}).join('')}</div><p class="machine-note">동작이 흐트러지거나 통증이 생기면 멈추고 자세를 확인하세요. 다음 운동일은 같은 부위의 피로가 회복되었는지 확인해 결정하세요.</p><details class="sources"><summary>루틴 구성 근거</summary><p>ACSM·NSCA의 운동 구성 및 회복 원칙을 참고해 원흥점 보유 머신에 맞춘 기본안입니다. 특정 조합이 모든 사람에게 최적이라는 의미는 아닙니다. 초보자 전신은 센터가 지정한 종목·순서를 반영했습니다.</p><a href="https://acsm.org/resistance-training-guidelines-update-2026/" target="_blank" rel="noopener noreferrer">ACSM · 2026 저항 운동 가이드 ↗</a><br><a href="https://www.nsca.com/education/articles/kinetic-select/determination-of-resistance-training-frequency/" target="_blank" rel="noopener noreferrer">NSCA · 운동 빈도와 회복 ↗</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/19204579/" target="_blank" rel="noopener noreferrer">ACSM · 운동 순서와 점진적 훈련 ↗</a></details>`);
+ document.querySelector('#back-level').onclick=()=>showRoutineLevel(key);
+ document.querySelectorAll('[data-routine-machine]').forEach(button=>button.onclick=()=>{
+  const itemIndex=Number(button.dataset.routineMachine),[id,mode]=plan.items[itemIndex];
+  showMachine(machines.find(m=>m.id===id),mode);
+  const back=document.createElement('button');back.className='routine-back';back.textContent='← '+plan.name+'으로 돌아가기';
+  back.onclick=()=>{showRoutine(key,index);const entry=document.querySelectorAll('.routine-exercise')[itemIndex];entry.open=true;entry.querySelector('summary').focus();};
+  document.querySelector('#detail-content').prepend(back);back.focus({preventScroll:true});
+ });
+ focusRoutineTitle();
+}
+function showBeginner(){showRoutineLevel('beginner');}
 document.querySelector('#beginner-level').onclick=showBeginner;
-document.querySelectorAll('[data-level]').forEach(button=>button.onclick=()=>{open(`<p class="eyebrow" style="margin-top:24px">1986 WONHEUNG / TRAINING GUIDE</p><h2 id="detail-title">${button.dataset.level} 운동 가이드</h2><div class="routine-rule"><p><strong>준비 중입니다.</strong></p><p>머신 등록 후 단계에 맞는 루틴을 안내해드릴게요.</p></div>`);dialog.scrollTop=0;});
+document.querySelectorAll('[data-level]').forEach(button=>button.onclick=()=>showRoutineLevel(button.dataset.level==='중급자'?'intermediate':'advanced'));
 
 const mascot = document.querySelector('.hero-mascot');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
