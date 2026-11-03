@@ -1,5 +1,13 @@
 /* Original schematic artwork. Movement references are linked in each machine guide. */
 const visualGuides={
+"29-ab":{"primary": ["hipabductors"], "secondary": [], "main": "중둔근 · 소둔근", "assist": "", "cue": "패드 접촉 유지 · 몸통 고정", "action": "바깥쪽으로 벌리기 → 천천히 돌아오기"},
+"31":{"primary": ["hipabductors"], "secondary": [], "main": "중둔근 · 소둔근", "assist": "", "cue": "패드 접촉 유지 · 몸통 고정", "action": "바깥쪽으로 벌리기 → 천천히 돌아오기"},
+"32":{"primary": ["hipabductors"], "secondary": [], "main": "중둔근 · 소둔근", "assist": "", "cue": "패드 접촉 유지 · 몸통 고정", "action": "바깥쪽으로 벌리기 → 천천히 돌아오기"},
+"29-ad":{"primary": ["adductors"], "secondary": [], "main": "고관절 내전근군", "assist": "", "cue": "무릎 안쪽으로 · 반동 없이", "action": "안쪽으로 모으기 → 천천히 벌리기"},
+"33":{"primary": ["adductors"], "secondary": [], "main": "고관절 내전근군", "assist": "", "cue": "무릎 안쪽으로 · 반동 없이", "action": "안쪽으로 모으기 → 천천히 벌리기"},
+"30":{"primary": ["hamstrings", "glutes"], "secondary": ["lowerback"], "main": "햄스트링 · 대둔근", "assist": "척추기립근 (몸통 안정)", "cue": "발바닥 지지 · 고관절 접기", "action": "엉덩이 뒤로 보내기 → 고관절 펴기"},
+"34":{"primary": ["hamstrings"], "secondary": [], "main": "햄스트링", "assist": "", "cue": "골반은 패드에 · 무릎만 굽히기", "action": "뒤꿈치 당기기 → 천천히 펴기"},
+
 "23":{"primary": ["glutes"], "secondary": ["hamstrings", "lowerback"], "main": "대둔근", "assist": "햄스트링 · 척추기립근", "cue": "골반 패드 · 발목 지지 유지", "action": "고관절 접기 → 몸이 일직선까지 펴기"},
 "24":{"primary": ["glutes"], "secondary": ["hamstrings"], "main": "대둔근", "assist": "햄스트링", "cue": "몸통·무릎 지지 · 골반 고정", "action": "발 받침 뒤로 밀기 → 천천히 받아오기"},
 "25":{"primary": ["shoulder"], "secondary": ["triceps"], "main": "전면·측면 삼각근", "assist": "상완삼두근", "cue": "등·엉덩이 밀착 · 손바닥으로", "action": "위로 밀기 → 천천히 받아오기"},
@@ -57,7 +65,7 @@ function muscleFigure(view,v){
   muscles+=abs.flat().map(d=>muscle('abs',d)).join('')
    +muscle('quads','M45 115 Q49 113 55 119 L55 134 Q53 145 49 151 Q44 143 44 132 Z')
    +muscle('quads','M75 115 Q71 113 65 119 L65 134 Q67 145 71 151 Q76 143 76 132 Z')
-   +neutral('M57 120 L59 128 L56 149 L53 155 L51 150 Z M63 120 L61 128 L64 149 L67 155 L69 150 Z')
+   +muscle('adductors','M57 120 L59 128 L56 149 L53 155 L51 150 Z M63 120 L61 128 L64 149 L67 155 L69 150 Z')
    +neutral('M46 159 Q50 156 54 159 L52 172 L49 182 L47 181 Z M74 159 Q70 156 66 159 L68 172 L71 182 L73 181 Z');
   details=line('M54 36 L57 44 L60 47 L63 44 L66 36 M44 46 L54 46 M66 46 L76 46 M60 51 V69 M46 155 Q50 153 54 155 M66 155 Q70 153 74 155 M47 184 L52 184 M68 184 L73 184')
    +line('M54 19 H57 M63 19 H66 M60 20 L58 25 H61 M56 29 Q60 31 64 29',.45);
@@ -76,6 +84,7 @@ function muscleFigure(view,v){
    +muscle('glutes','M47 112 Q54 109 59 114 L59 126 Q49 131 43 123 Z M73 112 Q66 109 61 114 L61 126 Q71 131 77 123 Z')
    +muscle('hamstrings','M44 130 Q48 132 55 130 L55 143 L51 155 L47 151 Z M76 130 Q72 132 65 130 L65 143 L69 155 L73 151 Z')
    +neutral('M46 159 Q49 154 53 159 L54 166 L50 179 L47 174 Z M74 159 Q71 154 67 159 L66 166 L70 179 L73 174 Z');
+  if(v.primary.includes('hipabductors'))muscles+=muscle('hipabductors','M46 109 Q50 104 57 109 L54 116 L44 120 Z M74 109 Q70 104 63 109 L66 116 L76 120 Z');
   details=line('M60 39 V112 M46 54 Q43 62 48 68 M74 54 Q77 62 72 68 M59 115 V125 M49 180 L49 187 M71 180 L71 187 M46 156 H53 M67 156 H74')
    +line('M51 27 Q60 30 69 27 M54 32 L54 37 M66 32 L66 37',.4);
  }else{
@@ -92,6 +101,7 @@ function muscleFigure(view,v){
    +muscle('quads','M64 125 L70 122 L67 140 L62 154 L56 153 L55 143 Z')
    +muscle('hamstrings','M45 126 L51 129 L55 146 L54 154 L50 145 Z')
    +neutral('M56 160 Q62 156 64 161 L63 171 L59 182 L57 181 Z');
+  if(v.primary.includes('hipabductors'))muscles+=muscle('hipabductors','M47 107 Q54 101 62 107 L60 115 L46 119 Z');
   details=line('M59 22 Q55 20 55 25 Q55 29 59 27 M68 22 H70 M64 34 L69 34 M54 36 L59 43 M48 50 L52 48 M54 155 Q59 158 64 155 M58 185 L64 185')
    +line('M69 80 L72 80 M68 87 L70 88 M66 94 L68 95 M61 114 Q54 119 49 117',.5);
  }
@@ -150,6 +160,78 @@ function motionFigure(id){
  const seatedLegs=()=>leg([111,149],[150,162],[160,202],.5)+leg([113,151],[158,158],[171,203]);
  const seat=line('M106 162 V211 M77 212 H179',palette.metal,6)+shape('M88 151 H135 Q140 151 140 156 V162 H88 Q83 162 83 157 Q83 151 88 151 Z',palette.pad)+bolt(106,180);
  let art='';
+ // Frontal views make inward/outward travel and pad contact visible.
+ if(['29-ab','29-ad','31','32','33'].includes(id)){
+  const standing=id==='31',inward=['29-ad','33'].includes(id),hipY=standing?116:130;
+  const from=inward?34:8,to=inward?8:34;
+  const frontBody=shape(`M134 ${hipY-65} Q150 ${hipY-71} 166 ${hipY-65} Q174 ${hipY-54} 168 ${hipY-36} L163 ${hipY-8} L137 ${hipY-8} L132 ${hipY-36} Q126 ${hipY-54} 134 ${hipY-65} Z`)
+   +shape(`M134 ${hipY-59} Q143 ${hipY-64} 149 ${hipY-57} V${hipY-42} Q139 ${hipY-39} 133 ${hipY-47} Z M166 ${hipY-59} Q157 ${hipY-64} 151 ${hipY-57} V${hipY-42} Q161 ${hipY-39} 167 ${hipY-47} Z`,'#d3d4c7')
+   +line(`M150 ${hipY-39} V${hipY-15} M140 ${hipY-31} H160 M141 ${hipY-23} H159`,palette.edge,.8)
+   +shape(`M137 ${hipY-10} H163 L169 ${hipY+8} L153 ${hipY+14} L150 ${hipY+5} L147 ${hipY+14} L131 ${hipY+8} Z`,palette.shorts)
+   +translate([150,hipY-83],null,shape('M-11-7 Q-12-20 0-20 Q12-20 11-7 L9 3 Q0 14-9 3 Z')+line('M-6-5 H-3 M3-5 H6 M0-4 L-2 1 H1 M-4 5 H4',palette.edge,.8));
+  const lower=(side)=>{
+   const hip=[150+side*13,hipY],angle0=-side*from,angle1=-side*to;
+   if(!standing){
+    const a=-side*(inward?73:43),b=-side*(inward?43:73),padSide=side*(inward?-12:12);
+    return translate(hip,null,rotate(a,b,
+     segment(34,11,6,inward?palette.muscle:palette.skin)
+     +translate([0,34],null,rotate(-a,-b,
+      segment(37,7,4)+shape('M-6 34 H6 L11 42 V47 H-9 Z')
+      +shape(`M${padSide-4} -13 H${padSide+4} V13 H${padSide-4} Z`,palette.pad)
+      +line('M-13 49 H13',palette.metal,5)))
+     +(!inward?shape('M-8 2 Q0-6 8 2 L6 11 H-6 Z',palette.muscle):'')));
+   }
+   // The pad, thigh and foot support share one moving assembly.
+   const thigh=standing?42:28,shin=standing?39:37,padX=side*(inward?-12:12);
+   return translate(hip,null,rotate(angle0,angle1,
+    line(`M0 8 V${thigh+shin+10}`,palette.metal,5)
+    +segment(thigh,10,6,inward?palette.muscle:palette.skin)
+    +translate([0,thigh],null,segment(shin,7,4)+shape(`M-6 ${shin-3} H6 L11 ${shin+5} Q10 ${shin+10} 0 ${shin+10} H-9 Z`))
+    +shape(`M${padX-4} 10 H${padX+4} V${thigh+10} H${padX-4} Z`,palette.pad)
+    +line(`M-12 ${thigh+shin+11} H12`,palette.metal,5)
+    +(!inward?shape('M-8 2 Q0-6 8 2 L6 11 H-6 Z',palette.muscle):'')));
+  };
+  art=line(standing?'M56 216 H244 M100 216 V87 H200 V216':'M65 216 H235 M117 216 V78 M183 216 V78 M112 78 H188 M150 149 V214',palette.metal,6)
+   +(standing?'':shape('M126 60 H174 V126 H126 Z',palette.pad)+shape('M118 131 H182 V146 H118 Z',palette.pad))
+   +lower(-1)+lower(1)+frontBody
+   +line(standing?'M132 58 L118 82 L103 88 M168 58 L182 82 L197 88':`M130 76 L115 104 L114 133 M170 76 L185 104 L186 133`,palette.skin,11)
+   +line(standing?'M93 88 H112 M188 88 H207':'M103 135 H122 M178 135 H197',palette.metal,5)
+   +(standing?shape('M132 91 H168 V105 H132 Z',palette.pad):'')
+   +`<text x="150" y="${standing?8:23}" fill="#aeb8ac" font-size="9" text-anchor="middle">정면 도식</text>`;
+ }
+ if(id==='30'){
+  const hips=phases.map(p=>[127-18*p,119+3*p]),leans=phases.map(p=>5+60*p);
+  const at=(pts,content)=>`<g transform="translate(${pts[0].join(' ')})">${animation('transform',pts.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
+  const bone=(a,b,len,w,fill)=>{const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return at(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(len,w,4,fill)}</g>`);};
+  const ankles=phases.map(()=>[139,202]);
+  const knees=hips.map(h=>{const dx=139-h[0],dy=202-h[1],d=Math.hypot(dx,dy),height=Math.sqrt(Math.max(0,43*43-d*d/4));return [(h[0]+139)/2+dy/d*height,(h[1]+202)/2-dx/d*height];});
+  const shoulders=hips.map((h,i)=>{const a=leans[i]*Math.PI/180;return [h[0]+10*Math.cos(a)+60*Math.sin(a),h[1]+10*Math.sin(a)-60*Math.cos(a)];});
+  const grips=shoulders.map(s=>[s[0],s[1]+61]);
+  const leverPaths=grips.map(g=>`M249 100 L${g.map(number).join(' ')}`);
+  art=line('M70 215 H274 M250 214 V100 M164 211 L249 100',palette.metal,6)
+   +shape('M99 211 H167 V217 H99 Z',palette.pad)
+   +`<path d="${leverPaths[0]}" fill="none" stroke="#899a8c" stroke-width="6">${animation('d',leverPaths)}</path>`+bolt(249,100,12)
+   +bone(hips,knees,43,10,palette.muscle)+bone(knees,ankles,43,7,palette.skin)
+   +translate([139,202],null,shape('M-6-3 H5 L19 4 V9 H-7 Z'))
+   +at(hips,`<g transform="rotate(${leans[0]})">${animation('transform',leans.map(number),'rotate')}${torso(0,0,0)}${head(0,-83,0)}</g>`)
+   +at(shoulders,arm({x:0,y:0,upper:29,lower:28,a:[0,0],bend:[0,0]}))
+   +'<text x="236" y="72" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>';
+ }
+ if(id==='34'){
+  const knee=[199,137],angles=phases.map(p=>-78-80*p);
+  const movingShin=`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(41,7,4)}${translate([0,41],null,shape('M-5-4 H4 L14 3 V9 H-6 Z'))}${line('M-10 34 H10',palette.pad,12)}</g>`;
+  art=line('M51 213 H267 M79 213 V153 M180 213 V151 M235 213 V35',palette.metal,6)
+   +shape('M229 31 H258 V195 H229 Z',palette.pad)
+   +line('M234 55 V185 M252 55 V185',palette.edge,2)
+   +shape('M69 143 L151 137 L201 148 V158 L151 149 L69 155 Z',palette.pad)
+   +torso(155,129,-85)+head(72,122,-65)
+   +translate([155,129],null,rotate(-79,-79,segment(45,11,6,palette.muscle)))
+   +translate(knee,null,movingShin)+bolt(...knee)
+   +arm({x:96,y:114,upper:25,lower:23,a:[25,25],bend:[70,70]})
+   +line('M56 130 H76 M63 130 V155',palette.metal,5)
+   +'<text x="151" y="47" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>';
+ }
+
 
  if(['13','14','14-reverse','15','16','17'].includes(id)){
   // Fixed-length thigh/shin IK keeps feet attached to the moving or fixed footplate.
