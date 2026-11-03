@@ -776,7 +776,7 @@ const machines = [
       "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요."
     }
   ],
-  "image": "inner-outer-thigh.webp",
+  "image": "inner-outer-thigh-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440
 },
@@ -799,7 +799,7 @@ const machines = [
   "source": "https://www.acefitness.org/continuing-education/certified/may-2025/8865/the-ace-do-it-better-series-the-romanian-deadlift/",
   "sourceLabel": "ACE · 고관절 힌지 동작 참고",
   "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요.",
-  "image": "stiff-deadlift.webp",
+  "image": "stiff-deadlift-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
   "brand": "1986 원흥점"
@@ -823,7 +823,7 @@ const machines = [
   "source": "",
   "sourceLabel": "1986 원흥점 · 트레이너 제공 안내",
   "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요.",
-  "image": "standing-hip-abduction.webp",
+  "image": "standing-hip-abduction-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
   "brand": "1986 원흥점"
@@ -847,7 +847,7 @@ const machines = [
   "source": "",
   "sourceLabel": "1986 원흥점 · 트레이너 제공 안내",
   "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요.",
-  "image": "life-hip-abduction.webp",
+  "image": "life-hip-abduction-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
   "brand": "LIFE FITNESS"
@@ -871,7 +871,7 @@ const machines = [
   "source": "",
   "sourceLabel": "1986 원흥점 · 트레이너 제공 안내",
   "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요.",
-  "image": "life-hip-adduction.webp",
+  "image": "life-hip-adduction-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
   "brand": "LIFE FITNESS"
@@ -895,7 +895,7 @@ const machines = [
   "source": "https://www.nasm.org/resource-center/exercise-library/lying-leg-curl",
   "sourceLabel": "NASM · 라잉 레그컬",
   "note": "패드와 조절 장치를 확인하고, 가벼운 중량으로 편안하게 통제할 수 있는 범위에서 진행하세요.",
-  "image": "life-lying-leg-curl.webp",
+  "image": "life-lying-leg-curl-cutout.webp",
   "imageWidth": 1080,
   "imageHeight": 1440,
   "brand": "LIFE FITNESS"
