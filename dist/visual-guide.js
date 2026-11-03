@@ -202,14 +202,16 @@ function motionFigure(id){
  }
  if(id==='31'){
   // Side projection: near/far legs separate in depth while torso stays on the support.
-  const movingLeg=(offset,travel,opacity)=>`<g opacity="${opacity}">`
-   +shape(`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset} 162 Q${148+offset} 170 ${138+offset} 170 L${123+offset} 145 Z`,palette.skin,'',`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset+travel} 162 Q${148+offset+travel} 170 ${138+offset+travel} 170 L${123+offset} 145 Z`)
-   +translate([143+offset,166],[143+offset+travel,166],
+  const movingLeg=(offset,travel,lift,opacity)=>`<g opacity="${opacity}">`
+   +shape(`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset} 162 Q${148+offset} 170 ${138+offset} 170 L${123+offset} 145 Z`,palette.skin,'',`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset+travel} ${162-lift} Q${148+offset+travel} ${170-lift} ${138+offset+travel} ${170-lift} L${123+offset} 145 Z`)
+   +translate([143+offset,166],[143+offset+travel,166-lift],
     segment(36,7,4)+translate([0,36],null,shape('M-5-4 H4 L17 4 V9 H-6 Z'))
     +shape('M-13-25 H-6 V3 H-13 Z',palette.pad)
     +line('M-9 5 V48 M-13 48 H21',palette.metal,5))+'</g>';
   art=line('M76 216 H244 M184 215 V108 M183 125 L220 213 M89 215 H160',palette.metal,6)
-   +movingLeg(5,9,.4)+movingLeg(0,-17,1)
+   +line('M139 172 Q92 171 85 122',palette.muscle,1.8,'stroke-dasharray="4 4"')
+   +line('M80 130 L85 121 L92 128',palette.muscle,1.8)
+   +movingLeg(5,19,34,.4)+movingLeg(0,-47,44,1)
    +shape('M169 91 L178 94 L175 120 L166 116 Z',palette.pad)
    +translate([125,135],null,rotate(30,30,shape('M-7-78 H5 L7-62 L-8-59 Z')))
    +torso(125,135,30)+head(166,63,20)
@@ -217,7 +219,7 @@ function motionFigure(id){
    +arm({x:164,y:88,upper:27,lower:24,a:[-35,-35],bend:[-60,-60]})
    +line('M200 108 H218 M210 108 V135 H184',palette.metal,5)
    +'<text x="227" y="44" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>'
-   +'<text x="150" y="25" fill="#aeb8ac" font-size="9" text-anchor="middle">다리는 화면 앞뒤 방향으로 벌립니다</text>';
+   +'<text x="150" y="25" fill="#aeb8ac" font-size="9" text-anchor="middle">바깥으로 벌어지는 궤적을 펼쳐 표시했습니다</text>';
  }
 
  if(id==='30'){
