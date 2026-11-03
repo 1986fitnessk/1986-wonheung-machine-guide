@@ -123,30 +123,29 @@ function machineHardware(id){
  const tube=(d,w=7)=>`<path d="${d}" fill="none" stroke="#1a2425" stroke-width="${w+3}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="${frame}" stroke-width="${w}" stroke-linejoin="round"/><path d="${d}" fill="none" stroke="#d2dad5" stroke-opacity=".16" stroke-width="1.2"/>`;
  const rect=(x,y,w,h,fill='#283233',r=3)=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="#8b9690" stroke-width=".65"/>`;
  const bolt=(x,y)=>`<circle cx="${x}" cy="${y}" r="2.5" fill="#c2cac5" stroke="#24312c"/><circle cx="${x}" cy="${y}" r=".8" fill="#34443d"/>`;
- const plate=(x,y,r=16)=>`<g>${tube(`M${x-8} ${y} H${x+24}`,4)}<ellipse cx="${x}" cy="${y}" rx="${r*.65}" ry="${r}" fill="#20282a" stroke="#687471" stroke-width="1.4"/><ellipse cx="${x}" cy="${y}" rx="${r*.45}" ry="${r*.78}" fill="none" stroke="#485451"/><circle cx="${x}" cy="${y}" r="3.3" fill="#b9c3be" stroke="#33403b"/>${[0,120,240].map(a=>`<ellipse cx="${x}" cy="${y-r*.52}" rx="2.5" ry="4" fill="#111b1b" transform="rotate(${a} ${x} ${y})"/>`).join('')}</g>`;
  const tower=(x,y,w,h)=>rect(x,y,w,h,'#222d30',7)+rect(x+4,y+5,w-8,19,purple?'#824782':'#485658',3)+rect(x+7,y+28,w-14,h-39,'#141e20',2)+tube(`M${x+10} ${y+33} V${y+h-13} M${x+w-10} ${y+33} V${y+h-13}`,2)+Array.from({length:9},(_,i)=>rect(x+9,y+h-72+i*6,w-18,4,'#59635e',1)).join('')+`<circle cx="${x+w/2}" cy="${y+h-43}" r="2.6" fill="#d5b961"/>`;
  const foot=(x,y,w=18)=>rect(x,y,w,5,'#1b2527',2);
- const rack=(x,y)=>tube(`M${x} 212 V${y}`)+plate(x+5,171,16)+plate(x+5,133,12);
+ const rack=(x,y)=>tube(`M${x} 212 V${y}`);
  const adjust=(x,y)=>tube(`M${x} ${y} v27`,5)+[0,6,12,18].map(n=>`<circle cx="${x}" cy="${y+n}" r="1" fill="#d1d8cc"/>`).join('')+`<circle cx="${x+3}" cy="${y+21}" r="2.8" fill="#ceba61"/>`;
  let back='';
  if(['09','12','20'].includes(id)) back=tube('M60 211 L66 34 H219 L236 211 M66 64 H83 M69 181 H230 M217 35 L233 119')+rack(229,72)+foot(50,211)+foot(228,211)+adjust(106,169)+bolt(66,35)+bolt(219,35);
  if(id==='10') back=tube('M53 211 L76 113 L90 70 M74 114 H211 L238 211 M90 70 L213 49 L234 140 M67 191 H235')+rack(230,89)+foot(45,211)+foot(231,211)+adjust(106,169)+bolt(213,49);
- if(id==='11') back=tube('M57 211 L72 79 L113 45 H224 L243 211 M73 166 H234 M76 97 H114')+rack(236,85)+plate(193,61,17)+adjust(106,169)+foot(49,211)+foot(237,211);
+ if(id==='11') back=tube('M57 211 L72 79 L113 45 H224 L243 211 M73 166 H234 M76 97 H114')+rack(236,85)+adjust(106,169)+foot(49,211)+foot(237,211);
  if(id==='18') back=tube('M69 212 L61 40 H229 L249 212 M61 66 H110 M161 174 H241 M61 198 H246')+rack(242,89)+tube('M150 166 L175 211')+adjust(111,177)+bolt(229,38)+foot(53,212)+foot(242,212);
  if(id==='19') back=tube('M64 212 L62 67 H229 L248 212 M65 184 H241 M167 160 L180 212')+rack(241,104)+tube('M229 38 V67 H151')+adjust(111,177)+foot(55,212)+foot(241,212);
  if(id==='21') back=tube('M59 212 L78 43 H213 L244 212 M78 115 H84 M79 182 H234 M214 45 L231 115')+rack(234,94)+adjust(111,177)+foot(51,212)+foot(237,212);
- if(id==='22') back=tube('M62 212 H252 M151 212 V111 M230 165 Q253 117 235 73 M235 73 L201 66 M63 206 L151 167 L230 165')+plate(237,186,17)+adjust(111,177)+bolt(230,165)+foot(55,212)+foot(246,212);
- if(id==='01') back=tube('M55 211 H210 M92 207 L148 123 M148 123 L190 208 M106 189 L166 168')+plate(179,187,17)+tube('M66 201 L100 196 M63 207 L99 203')+adjust(145,133)+foot(48,211)+foot(201,211);
+ if(id==='22') back=tube('M62 212 H252 M151 212 V111 M230 165 Q253 117 235 73 M235 73 L201 66 M63 206 L151 167 L230 165')+adjust(111,177)+bolt(230,165)+foot(55,212)+foot(246,212);
+ if(id==='01') back=tube('M55 211 H210 M92 207 L148 123 M148 123 L190 208 M106 189 L166 168')+tube('M66 201 L100 196 M63 207 L99 203')+adjust(145,133)+foot(48,211)+foot(201,211);
  if(id==='02') back=rect(137,145,26,40)+tube('M88 162 H212 M93 156 V172 M207 156 V172')+bolt(93,156)+bolt(207,156)+rect(139,160,22,8,'#69756e');
- if(id==='03') back=tube('M64 211 V31 H250 V211 M66 190 H249 M64 211 L92 170 M250 211 L275 187')+plate(250,98,20)+plate(67,142,17)+tube('M61 28 H253')+foot(55,211)+foot(247,211);
+ if(id==='03') back=tube('M64 211 V31 H250 V211 M66 190 H249 M64 211 L92 170 M250 211 L275 187')+tube('M61 28 H253')+foot(55,211)+foot(247,211);
  if(['04','05','06'].includes(id)) back=tower(209,32,46,177)+tube('M91 211 H261 M150 153 H218 M204 208 L216 174')+adjust(106,174)+foot(82,211)+foot(248,211)+bolt(150,131);
- if(id==='07') back=tube('M61 211 H235 M70 211 L90 138 M139 107 L194 175 M143 105 L201 174 M90 143 L156 210')+plate(201,178,18)+tube('M137 211 L174 202',11)+foot(53,211)+foot(225,211)+bolt(143,105)+bolt(201,174);
+ if(id==='07') back=tube('M61 211 H235 M70 211 L90 138 M139 107 L194 175 M143 105 L201 174 M90 143 L156 210')+tube('M137 211 L174 202',11)+foot(53,211)+foot(225,211)+bolt(143,105)+bolt(201,174);
  if(id.startsWith('08-')) back=tower(214,27,32,183)+tube('M108 220 H259 M222 14 H158 M248 220 L268 181 M244 132 H185')+rect(188,198,23,6)+rect(185,181,20,6)+foot(103,220)+foot(251,220);
- if(id==='13') back=tube('M48 215 H239 M88 145 L62 214 M130 184 L155 215 M89 160 H132')+plate(225,190,18)+adjust(88,158)+tube('M178 215 H225',9)+foot(42,216)+foot(230,216);
- if(['14','14-reverse'].includes(id)) back=tube('M47 215 H228 M62 112 L91 211 M62 112 L43 164 L50 211 M92 198 H213')+plate(59,125,21)+tube('M54 210 H206',11)+bolt(62,112)+foot(40,216)+foot(216,216);
- if(id==='15') back=tube('M34 212 H265 M241 207 L260 113 M241 207 L218 155 M67 210 L113 188')+plate(248,163,19)+adjust(82,182)+foot(27,213)+foot(254,213);
- if(id==='16') back=tube('M164 212 L226 43 M177 212 L239 43 M233 44 H260 L267 213 M42 216 H272 M215 115 H261')+plate(258,161,19)+plate(259,111,14)+foot(35,216)+foot(261,216)+bolt(226,43)+bolt(239,43);
- if(id==='17') back=tube('M38 213 H265 M139 190 L221 92 M151 201 L233 103 M230 100 H257 V211 M67 210 L113 188')+plate(250,166,19)+plate(250,128,14)+foot(30,213)+foot(254,213)+adjust(81,182);
+ if(id==='13') back=tube('M48 215 H239 M88 145 L62 214 M130 184 L155 215 M89 160 H132')+adjust(88,158)+tube('M178 215 H225',9)+foot(42,216)+foot(230,216);
+ if(['14','14-reverse'].includes(id)) back=tube('M47 215 H228 M62 112 L91 211 M62 112 L43 164 L50 211 M92 198 H213')+tube('M54 210 H206',11)+bolt(62,112)+foot(40,216)+foot(216,216);
+ if(id==='15') back=tube('M34 212 H265 M241 207 L260 113 M241 207 L218 155 M67 210 L113 188')+adjust(82,182)+foot(27,213)+foot(254,213);
+ if(id==='16') back=tube('M164 212 L226 43 M177 212 L239 43 M233 44 H260 L267 213 M42 216 H272 M215 115 H261')+foot(35,216)+foot(261,216)+bolt(226,43)+bolt(239,43);
+ if(id==='17') back=tube('M38 213 H265 M139 190 L221 92 M151 201 L233 103 M230 100 H257 V211 M67 210 L113 188')+foot(30,213)+foot(254,213)+adjust(81,182);
  if(id==='23') back=tube('M41 213 H227 M75 204 L137 139 M132 145 L193 213 M113 168 L173 191')+adjust(111,163)+tube('M48 198 H90',10)+foot(35,213)+foot(215,213)+bolt(132,165);
  if(id==='24') back=tower(37,32,38,179)+tube('M39 212 H250 M141 185 V211 M190 151 V212 M86 212 H232 M141 186 H192')+rect(119,184,39,11)+adjust(190,167)+foot(31,212)+foot(240,212);
  if(id==='25') back=tower(218,30,40,181)+tube('M60 212 H263 M84 115 H233 M78 194 H234')+adjust(111,176)+bolt(84,115)+foot(51,212)+foot(253,212);
@@ -154,8 +153,8 @@ function machineHardware(id){
  if(id==='27') back=tower(230,30,39,182)+tube('M145 14 H249 V211 M145 14 L166 40 M65 212 H274')+`<circle cx="145" cy="14" r="8" fill="#273334" stroke="#aeb9b0"/><circle cx="145" cy="14" r="3" fill="#83918a"/>`+adjust(111,176)+foot(56,212)+foot(261,212);
  if(id==='28') back=tower(240,25,34,187)+tube('M33 212 H280 M52 164 L39 211 M133 164 L151 211 M190 210 L209 173')+foot(26,212)+foot(268,212)+bolt(245,153);
  if(['29-ab','29-ad','32','33'].includes(id)) back=tower(227,39,38,174)+tube('M61 216 H268 M150 149 V214 M150 197 H245 M116 80 H184')+adjust(150,159)+rect(141,199,18,9)+foot(53,216)+foot(257,216)+bolt(150,199);
- if(id==='30') back=tube('M70 215 H275 M250 214 V100 M164 211 L249 100 M249 100 H270 V212 M177 201 L253 132')+plate(252,105,22)+plate(263,176,19)+tube('M99 215 H167',10)+foot(63,216)+foot(263,216)+bolt(249,100);
- if(id==='31') back=tube('M77 216 H253 M184 215 L211 55 H227 V213 M184 135 L223 120 M184 180 H237')+plate(229,158,18)+tube('M203 59 L212 61 M219 61 L227 61',3)+foot(69,216)+foot(242,216)+bolt(223,120);
+ if(id==='30') back=tube('M70 215 H275 M250 214 V100 M164 211 L249 100 M249 100 H270 V212 M177 201 L253 132')+tube('M99 215 H167',10)+foot(63,216)+foot(263,216)+bolt(249,100);
+ if(id==='31') back=tube('M77 216 H253 M184 215 L211 55 H227 V213 M184 135 L223 120 M184 180 H237')+tube('M203 59 L212 61 M219 61 L227 61',3)+foot(69,216)+foot(242,216)+bolt(223,120);
  if(id==='34') back=tower(229,31,29,182)+tube('M51 213 H267 M79 153 L64 212 M180 151 L199 212 M74 172 H242')+adjust(180,167)+foot(43,213)+foot(255,213);
  if(['35','36','37','38'].includes(id)) back=tower(235,30,35,182)+tube('M54 213 H274 M84 194 H247 M110 165 V211')+adjust(111,178)+foot(47,214)+foot(263,214);
  return `<g class="machine-hardware" aria-hidden="true">${back}</g>`;
@@ -173,11 +172,11 @@ function detailMachineArtwork(art,id){
  });
 }
 
-function motionFigure(id){
+function motionFigure(id,audit=[]){
  const palette={skin:'#c8cbbf',shade:'#a3ac9e',edge:'#6f7d70',muscle:'#de876e',assist:'#d8c7a6',metal:'#53625a',pad:'#34413a',shorts:'#3b4840'};
  const number=n=>Math.round(n*100)/100;
  // Shared cosine samples keep joints, hands and machine levers in the same 4 s loop.
- const phases=Array.from({length:33},(_,i)=>(1-Math.cos(i*Math.PI/16))/2);
+ const phases=Array.from({length:129},(_,i)=>(1-Math.cos(i*Math.PI/64))/2);
  const animation=(attribute,values,type)=>`<${type?'animateTransform':'animate'} attributeName="${attribute}"${type?` type="${type}"`:''} values="${values.join(';')}" dur="4s" repeatCount="indefinite" calcMode="linear"/>`;
  const rotate=(from,to,content)=>`<g transform="rotate(${from})">${from===to?'':animation('transform',phases.map(p=>number(from+(to-from)*p)),'rotate')}${content}</g>`;
  const translate=(from,to,content)=>`<g transform="translate(${from.join(' ')})">${to?animation('transform',phases.map(p=>from.map((n,i)=>number(n+(to[i]-n)*p)).join(' ')),'translate'):''}${content}</g>`;
@@ -200,14 +199,47 @@ function motionFigure(id){
    +line(`M-5 ${lower+4} H6`,'#3b4840',3)+line(`M-2 ${lower+2} L2 ${lower+5}`,palette.shade,2);
   return `<g opacity="${opacity}">${translate([x,y],to,joint(a,aValues,upperArt+translate([0,upper],null,joint(bend,bendValues,forearm))))}</g>`;
  };
+ // Constant-length mechanics: a lever rotates; a cable may change exposed length.
+ const solveArm=(shoulder,hand,upper,lower,sign=-1)=>{
+  const dx=hand[0]-shoulder[0],dy=hand[1]-shoulder[1],reach=lower+4;
+  const bend=sign*Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-reach*reach)/(2*upper*reach))));
+  return [(Math.atan2(-dx,dy)-Math.atan2(reach*Math.sin(bend),upper+reach*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
+ };
+ const arcHands=(pivot,start,end)=>{
+  const radius=Math.hypot(start[0]-pivot[0],start[1]-pivot[1]);
+  const a=Math.atan2(start[1]-pivot[1],start[0]-pivot[0]);
+  let delta=Math.atan2(end[1]-pivot[1],end[0]-pivot[0])-a;
+  if(delta>Math.PI)delta-=2*Math.PI;if(delta< -Math.PI)delta+=2*Math.PI;
+  return phases.map(p=>[pivot[0]+radius*Math.cos(a+delta*p),pivot[1]+radius*Math.sin(a+delta*p)]);
+ };
+ const rigidBar=(origins,ends,width=4,color='#899a8c')=>{
+  const length=Math.hypot(ends[0][0]-origins[0][0],ends[0][1]-origins[0][1]);
+  audit.push({kind:'rigid',length,distances:ends.map((e,i)=>Math.hypot(e[0]-origins[i][0],e[1]-origins[i][1]))});
+  const angles=ends.map((e,i)=>Math.atan2(-(e[0]-origins[i][0]),e[1]-origins[i][1])*180/Math.PI);
+  // Unwrap so the renderer never takes a full turn across the +/-180 boundary.
+  for(let i=1;i<angles.length;i++){while(angles[i]-angles[i-1]>180)angles[i]-=360;while(angles[i]-angles[i-1]<-180)angles[i]+=360;}
+  return `<g class="rigid-link" data-length="${number(length)}" transform="translate(${origins[0].join(' ')})">${animation('transform',origins.map(p=>p.map(number).join(' ')),'translate')}<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${line(`M0 0 V${number(length)}`,color,width)}</g></g>`;
+ };
+ // Articulated supports preserve approved carriage travel without stretching metal.
+ const supportLink=(paths,width=4,color='#899a8c')=>{
+  const coords=paths.map(d=>d.match(/-?\d*\.?\d+/g).map(Number)),a=coords.map(c=>c.slice(0,2)),b=coords.map(c=>c.slice(2,4));
+  const distances=a.map((v,i)=>Math.hypot(b[i][0]-v[0],b[i][1]-v[1]));
+  if(Math.max(...distances)-Math.min(...distances)<.05)return rigidBar(a,b,width,color);
+  const length=Math.max(...distances)*.55;
+  const joints=a.map((v,i)=>{const dx=b[i][0]-v[0],dy=b[i][1]-v[1],d=distances[i],h=Math.sqrt(Math.max(0,length*length-d*d/4));return [(v[0]+b[i][0])/2-dy/d*h,(v[1]+b[i][1])/2+dx/d*h];});
+  return rigidBar(a,joints,width,color)+rigidBar(joints,b,width,color)+`<g transform="translate(${joints[0].join(' ')})">${animation('transform',joints.map(p=>p.map(number).join(' ')),'translate')}${bolt(0,0,3)}</g>`;
+ };
  const pointOnArm=(spec,p)=>{
   const angle=(spec.a[0]+(spec.a[1]-spec.a[0])*p)*Math.PI/180;
   const bend=angle+(spec.bend[0]+(spec.bend[1]-spec.bend[0])*p)*Math.PI/180;
   return [spec.x-Math.sin(angle)*spec.upper-Math.sin(bend)*(spec.lower+4),spec.y+Math.cos(angle)*spec.upper+Math.cos(bend)*(spec.lower+4)];
  };
  const lever=(origin,spec)=>{
-  const values=phases.map(p=>{const end=pointOnArm(spec,p);return `M${origin.join(' ')} L${end.map(number).join(' ')}`;});
-  return `<path d="${values[0]}" fill="none" stroke="#899a8c" stroke-width="4" stroke-linecap="round">${animation('d',values)}</path>`+bolt(...origin,4);
+  const hands=arcHands(origin,pointOnArm(spec,0),pointOnArm(spec,1));
+  audit.push({kind:'reach',max:spec.upper+spec.lower+4,min:Math.abs(spec.upper-spec.lower-4),distances:hands.map(h=>Math.hypot(h[0]-spec.x,h[1]-spec.y))});
+  const angles=hands.map(h=>solveArm([spec.x,spec.y],h,spec.upper,spec.lower,spec.bend[0]>0?1:-1));
+  spec.aValues=angles.map(a=>a[0]);spec.bendValues=angles.map(a=>a[1]);
+  return rigidBar(phases.map(()=>origin),hands)+bolt(...origin,4);
  };
  const leg=(hip,knee,ankle,opacity=1,footAngle=0)=>{
   const bone=(a,b,wide,narrow)=>{const dx=b[0]-a[0],dy=b[1]-a[1];return translate(a,null,rotate(Math.atan2(-dx,dy)*180/Math.PI,Math.atan2(-dx,dy)*180/Math.PI,segment(Math.hypot(dx,dy),wide,narrow)));};
@@ -266,12 +298,13 @@ function motionFigure(id){
  }
  if(id==='31'){
   // Side projection: near/far legs separate in depth while torso stays on the support.
-  const movingLeg=(offset,travel,lift,opacity)=>`<g opacity="${opacity}">`
-   +shape(`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset} 162 Q${148+offset} 170 ${138+offset} 170 L${123+offset} 145 Z`,palette.skin,'',`M${119+offset} 128 Q${128+offset} 126 ${135+offset} 135 L${147+offset+travel} ${162-lift} Q${148+offset+travel} ${170-lift} ${138+offset+travel} ${170-lift} L${123+offset} 145 Z`)
-   +translate([143+offset,166],[143+offset+travel,166-lift],
-    segment(36,7,4)+translate([0,36],null,shape('M-5-4 H4 L17 4 V9 H-6 Z'))
-    +shape('M-13-25 H-6 V3 H-13 Z',palette.pad)
-    +line('M-9 5 V48 M-13 48 H21',palette.metal,5))+'</g>';
+  const movingLeg=(offset,travel,lift,opacity)=>{
+   const angle=travel<0?14:-5;
+   return `<g opacity="${opacity}">`+translate([125+offset,135],null,rotate(0,angle,
+    leg([0,0],[18,31],[18,67],1,-angle/2)
+    +shape('M5 6 H12 V34 H5 Z',palette.pad)
+    +line('M9 36 V79 M5 79 H39',palette.metal,5)))+'</g>';
+  };
   art=line('M76 216 H244 M184 215 V108 M183 125 L220 213 M89 215 H160',palette.metal,6)
    +line('M135 180 Q121 184 105 178',palette.muscle,1.8,'stroke-dasharray="4 4"')
    +line('M111 174 L104 178 L110 183',palette.muscle,1.8)
@@ -290,7 +323,7 @@ function motionFigure(id){
  if(id==='30'){
   const hips=phases.map(p=>[127-18*p,119+3*p]),leans=phases.map(p=>5+60*p);
   const at=(pts,content)=>`<g transform="translate(${pts[0].join(' ')})">${animation('transform',pts.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
-  const bone=(a,b,len,w,fill)=>{const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return at(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(len,w,4,fill)}</g>`);};
+  const bone=(a,b,len,w,fill)=>{audit.push({kind:'rigid',length:len,distances:a.map((p,i)=>Math.hypot(b[i][0]-p[0],b[i][1]-p[1]))});const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return at(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(len,w,4,fill)}</g>`);};
   const ankles=phases.map(()=>[139,202]);
   const knees=hips.map(h=>{const dx=139-h[0],dy=202-h[1],d=Math.hypot(dx,dy),height=Math.sqrt(Math.max(0,43*43-d*d/4));return [(h[0]+139)/2+dy/d*height,(h[1]+202)/2-dx/d*height];});
   const shoulders=hips.map((h,i)=>{const a=leans[i]*Math.PI/180;return [h[0]+10*Math.cos(a)+60*Math.sin(a),h[1]+10*Math.sin(a)-60*Math.cos(a)];});
@@ -298,7 +331,7 @@ function motionFigure(id){
   const leverPaths=grips.map(g=>`M249 100 L${g.map(number).join(' ')}`);
   art=line('M70 215 H274 M250 214 V100 M164 211 L249 100',palette.metal,6)
    +shape('M99 211 H167 V217 H99 Z',palette.pad)
-   +`<path d="${leverPaths[0]}" fill="none" stroke="#899a8c" stroke-width="6">${animation('d',leverPaths)}</path>`+bolt(249,100,12)
+   +supportLink(leverPaths,6)+bolt(249,100,12)
    +bone(hips,knees,43,10,palette.muscle)+bone(knees,ankles,43,7,palette.skin)
    +translate([139,202],null,shape('M-6-3 H5 L19 4 V9 H-7 Z'))
    +at(hips,`<g transform="rotate(${leans[0]})">${animation('transform',leans.map(number),'rotate')}${torso(0,0,0)}${head(0,-83,0)}</g>`)
@@ -367,22 +400,22 @@ function motionFigure(id){
     +bolt(88,145,5)
     +'<text x="25" y="135" fill="#bfc9ba" font-size="9">등받이 패드</text><text x="103" y="204" fill="#bfc9ba" font-size="9">엉덩이 패드</text>';
    const links=hips.map(h=>`M88 145 L${number(h[0])} ${number(h[1]-7)}`);
-   frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',links)}</path>`;
+   frame+=supportLink(links,4);
    pad=moving(hips,shape('M-13-14 H15 Q22-9 15-3 H-13 Q-20-8-13-14 Z',palette.pad));
   }else if(squat){
    frame=line(hack?'M82 212 L144 43 M69 212 L131 43 M62 216 H230':'M55 212 H220 M62 212 V112',palette.metal,6)+shape(hack?'M171 210 H238 V217 H171 Z':'M52 210 H202 V216 H52 Z',palette.pad);
    pad=moving(hips,turning(leans,shape(reverse?'M-27-77 Q-27-81-22-81 H14 Q20-81 20-75 V-64 H-27 Z':'M-28-69 Q-28-74-23-74 H-15 V9 H-24 Q-28 9-28 4 Z M-27-77 Q-27-81-22-81 H14 Q20-81 20-75 V-64 H-27 Z',palette.pad)));
    if(hack)frame+=moving(hips,turning(leans,line('M-51-56 V-8 M-51-51 H-25 M-51-13 H-25',palette.metal,5)+bolt(-51,-51,4)+bolt(-51,-13,4)));
-   if(!hack){const links=poses.map(p=>{const r=p.lean*Math.PI/180;const end=reverse?[p.hip[0]-10*Math.cos(r)+64*Math.sin(r),p.hip[1]-10*Math.sin(r)-64*Math.cos(r)]:[p.hip[0]-22,p.hip[1]-25];return `M62 112 L${end.map(number).join(' ')}`;});frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(62,112);}
+   if(!hack){const links=poses.map(p=>{const r=p.lean*Math.PI/180;const end=reverse?[p.hip[0]-10*Math.cos(r)+64*Math.sin(r),p.hip[1]-10*Math.sin(r)-64*Math.cos(r)]:[p.hip[0]-22,p.hip[1]-25];return `M62 112 L${end.map(number).join(' ')}`;});frame+=supportLink(links,5)+bolt(62,112);}
   }else{
    frame=line('M38 212 H252 M64 212 L47 145 M112 212 V187',palette.metal,6)+shape('M38 139 L44 131 L113 178 L108 187 Z',palette.pad);
    if(id==='17')frame+=line('M139 190 L221 92 M151 201 L233 103',palette.metal,5);
-   else{const links=feet.map(a=>`M242 207 L${a[0]+10} ${a[1]}`);frame+=`<path d="${links[0]}" fill="none" stroke="#899a8c" stroke-width="5">${animation('d',links)}</path>`+bolt(242,207);}
+   else{const links=feet.map(a=>`M242 207 L${a[0]+10} ${a[1]}`);frame+=supportLink(links,5)+bolt(242,207);}
    pad=moving(feet,shape('M-29-36 L-23-42 L46 27 L40 33 Z',palette.pad)+line('M-23-30 L34 27 M-18-35 L39 22','#909c96',1));
   }
   const assembly=frame+pad+legs+upper+(hipThrust?pad:'');
   const hackRail=line('M177 212 L239 43 M164 212 L226 43 M42 216 H252',palette.metal,6);
-  const hackLinks=hack?[-51,-13].map(y=>{const paths=poses.map(p=>{const r=p.lean*Math.PI/180;const end=[300-(p.hip[0]-25*Math.cos(r)-y*Math.sin(r)),p.hip[1]-25*Math.sin(r)+y*Math.cos(r)];const railX=177+(212-end[1])*62/169;return `M${number(railX)} ${number(end[1])} L${end.map(number).join(' ')}`;});return `<path d="${paths[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',paths)}</path>`;}).join(''):'';
+  const hackLinks=hack?[-51,-13].map(y=>{const paths=poses.map(p=>{const r=p.lean*Math.PI/180;const end=[300-(p.hip[0]-25*Math.cos(r)-y*Math.sin(r)),p.hip[1]-25*Math.sin(r)+y*Math.cos(r)];const railX=177+(212-end[1])*62/169;return `M${number(railX)} ${number(end[1])} L${end.map(number).join(' ')}`;});return supportLink(paths,4);}).join(''):'';
   art=(hack?hackRail+hackLinks+`<g transform="translate(300 0) scale(-1 1)">${shape('M171 210 H238 V217 H171 Z',palette.pad)+pad+legs+upper}</g>`:assembly)+'<text x="248" y="225" text-anchor="middle" fill="#aeb8ac" font-size="9">측면 도식</text>';
  }
 
@@ -405,7 +438,7 @@ function motionFigure(id){
   const hip=[140,130],feet=phases.map(p=>[87-34*p,169-31*p]);
   const knees=feet.map(f=>{const dx=f[0]-hip[0],dy=f[1]-hip[1],d=Math.hypot(dx,dy),h=Math.sqrt(Math.max(0,48*48-d*d/4));return [(hip[0]+f[0])/2+dy/d*h,(hip[1]+f[1])/2-dx/d*h];});
   const moving=(pts,body)=>`<g transform="translate(${pts[0].join(' ')})">${animation('transform',pts.map(p=>p.map(number).join(' ')),'translate')}${body}</g>`;
-  const bone=(a,b,w,fill)=>{const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return moving(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(48,w,4,fill)}</g>`);};
+  const bone=(a,b,w,fill)=>{audit.push({kind:'rigid',length:48,distances:a.map((p,i)=>Math.hypot(b[i][0]-p[0],b[i][1]-p[1]))});const angles=a.map((p,i)=>Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI);return moving(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles.map(number),'rotate')}${segment(48,w,4,fill)}</g>`);};
   const hips=feet.map(()=>hip),paths=feet.map(f=>`M52 70 L${number(f[0]-7)} ${number(f[1]+4)}`);
   art=line('M40 212 H244 M139 212 V185 M190 212 V151 M52 212 V70',palette.metal,6)
    +shape('M123 182 H157 V192 H123 Z',palette.pad)
@@ -416,7 +449,7 @@ function motionFigure(id){
    +line('M222 170 H240 M232 170 V212',palette.metal,5)
    +bone(hips,knees,10,palette.muscle)+bone(knees,feet,7,palette.skin)
    +moving(feet,shape('M-5-5 L3-4 L7 1 L5 10 L-7 10 L-8 2 Z',palette.skin))
-   +`<path d="${paths[0]}" fill="none" stroke="#b83e38" stroke-width="7">${animation('d',paths)}</path>`
+   +supportLink(paths,7,'#b83e38')
    +moving(feet,line('M-9 9 H5',palette.metal,5))+bolt(52,70,5);
  }
 
@@ -429,15 +462,16 @@ function motionFigure(id){
   const shoulder=bodyPoint(10,-60),headPos=bodyPoint(0,-83);
   const start=id==='37'?[181,106]:kind==='18'?[177,56]:kind==='19'?[141,31]:kind==='22'?[195,106]:kind==='21'?[140,77]:[139,109];
   const end=kind==='18'?[142,117]:kind==='19'?[145,96]:kind==='22'?[143,115]:kind==='21'?[119,28]:[177,101];
-  const hands=phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]);
+  const pivot=id==='35'?[85,165]:cable?(freeRow?[245,153]:[145,14]):kind==='22'?[230,165]:pull?[229,38]:overhead?[84,115]:[85,35];
+  const hands=(cable||!pull)?phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]):arcHands(pivot,start,end);
   const upper=36,lower=35;
+  audit.push({kind:'reach',max:upper+lower+4,min:Math.abs(upper-lower-4),distances:hands.map(h=>Math.hypot(h[0]-shoulder[0],h[1]-shoulder[1]))});
   const angles=hands.map(([x,y])=>{
    const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
    const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
    return [(Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
   });
   const spec={x:shoulder[0],y:shoulder[1],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:pull?'biceps':overhead?'shoulder':'triceps'};
-  const pivot=id==='35'?[85,165]:cable?(freeRow?[245,153]:[145,14]):kind==='22'?[230,165]:pull?[229,38]:overhead?[84,115]:[85,35];
   const leverValues=hands.map(h=>`M${pivot.join(' ')} L${h.map(number).join(' ')}`);
   const support=(lat||freeRow||id==='37')?'':pull
    ?line('M150 212 V110 M150 166 H112',palette.metal,6)+translate(hip,null,rotate(lean,lean,shape('M19-59 H29 V-22 H19 Z',palette.pad)))
@@ -449,7 +483,7 @@ function motionFigure(id){
    +shape('M35 151 H145 Q150 151 150 157 V163 H35 Q31 157 35 151 Z',palette.pad)
    +line('M183 210 L200 172',palette.metal,7);
   art=(freeRow?rowFrame:line(id==='27'?'M60 212 H253 M235 212 V14 H145':`M60 212 H253 M${pivot[0]} 212 V${pivot[1]}`,palette.metal,6)+seat)+support
-   +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="${cable?1.6:4}">${animation('d',leverValues)}</path>`+bolt(...pivot,cable?7:4)
+   +(cable?`<path class="motion-cable" d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="1.6">${animation('d',leverValues)}</path>`:supportLink(leverValues))+bolt(...pivot,cable?7:4)
    +((freeRow||id==='37')?line('M192 211 L209 173',palette.metal,7)+leg([110,155],[159,157],[190,194],.4,-66)+leg([114,156],[161,160],[192,195],1,-66):leg([110,155],[148,167],[160,203],.4)+leg([114,156],[154,165],[172,203]))+thighPad
    +arm({...spec,opacity:.3,x:shoulder[0]-3,y:shoulder[1]-2})+torso(...hip,lean,pull?'back':overhead?'':'chest')+head(...headPos,lean)+arm(spec)
    +'<text x="242" y="193" fill="#aeb8ac" font-size="9" text-anchor="middle">측면 도식</text>';
@@ -457,7 +491,7 @@ function motionFigure(id){
 
  if(['36','38'].includes(id)){
   const moving=(points,content)=>`<g transform="translate(${points[0].join(' ')})">${animation('transform',points.map(p=>p.map(number).join(' ')),'translate')}${content}</g>`;
-  const bone=(a,b,width,fill)=>{const length=Math.hypot(b[0][0]-a[0][0],b[0][1]-a[0][1]);const angles=a.map((p,i)=>number(Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI));return moving(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles,'rotate')}${segment(length,width,width*.65,fill)}</g>`);};
+  const bone=(a,b,width,fill)=>{const length=Math.hypot(b[0][0]-a[0][0],b[0][1]-a[0][1]);audit.push({kind:'rigid',length,distances:a.map((p,i)=>Math.hypot(b[i][0]-p[0],b[i][1]-p[1]))});const angles=a.map((p,i)=>number(Math.atan2(-(b[i][0]-p[0]),b[i][1]-p[1])*180/Math.PI));return moving(a,`<g transform="rotate(${angles[0]})">${animation('transform',angles,'rotate')}${segment(length,width,width*.65,fill)}</g>`);};
   const press=id==='36',lean=-15;
   const hips=phases.map(p=>press?[142-26*p,166]:[112,155]);
   const ankles=phases.map(p=>press?[207,153]:[154+43*Math.cos((80-72*p)*Math.PI/180),160+43*Math.sin((80-72*p)*Math.PI/180)]);
@@ -471,7 +505,7 @@ function motionFigure(id){
    +(press?moving(hips,arm({x:-10,y:-62,upper:35,lower:31,a:[0,0],bend:[-45,-45],opacity:.45})): '')
    +moving(hips,torso(0,0,lean,'')+head(-83*Math.sin(-lean*Math.PI/180),-83*Math.cos(lean*Math.PI/180),lean))
    +moving(hips,press?line('M12 5 H30 M28 5 V16',palette.metal,5)+arm({x:-6,y:-60,upper:35,lower:31,a:[0,0],bend:[-45,-45]}):line('M5-58 Q29-32 20 3',palette.skin,11)+line('M14 5 H29',palette.metal,4));
-  if(!press){const rolls=ankles.map((a,i)=>[a[0]+4,a[1]-3]);art+=`<path d="M154 160 L${rolls[0].join(' ')}" stroke="#53625a" stroke-width="6" fill="none">${animation('d',rolls.map(a=>`M154 160 L${a.map(number).join(' ')}`))}</path>`+bolt(154,160,5)+moving(rolls,shape('M-8-7 H9 Q14 0 9 7 H-8 Q-13 0-8-7 Z',palette.pad));}
+  if(!press){const rolls=ankles;art+=rigidBar(phases.map(()=>[154,160]),rolls,6,palette.metal)+bolt(154,160,5)+moving(rolls,shape('M-8-7 H9 Q14 0 9 7 H-8 Q-13 0-8-7 Z',palette.pad));}
  }
 
  if(['09','10','12'].includes(id)){
@@ -482,15 +516,16 @@ function motionFigure(id){
   const start=id==='12'?[139,104]:[145,98];
   const end=id==='10'?[163,51]:id==='12'?[182,108]:[181,108];
   const upper=36,lower=35;
+  const axisX=number(headPos[0]);
+  const pivot=[axisX,id==='10'?104:35];
   const hands=phases.map(p=>[start[0]+(end[0]-start[0])*p,start[1]+(end[1]-start[1])*p]);
+  audit.push({kind:'reach',max:upper+lower+4,min:Math.abs(upper-lower-4),distances:hands.map(h=>Math.hypot(h[0]-shoulder[0],h[1]-shoulder[1]))});
   const angles=hands.map(([x,y])=>{
    const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
    const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
    return [(Math.atan2(-dx,dy)-Math.atan2(length*Math.sin(bend),upper+length*Math.cos(bend)))*180/Math.PI,bend*180/Math.PI];
   });
   // Place the press axis on the ear/chest line, behind the athlete rather than in front.
-  const axisX=number(headPos[0]);
-  const pivot=[axisX,id==='10'?104:35];
   const leverValues=hands.map(h=>`M${pivot.join(' ')} L${h.map(number).join(' ')}`);
   const pressing={x:shoulder[0],y:shoulder[1],upper,lower,aValues:angles.map(a=>a[0]),bendValues:angles.map(a=>a[1]),focus:'triceps'};
   // Rear upright and diagonal brace visibly support the back pad and share the floor base.
@@ -498,7 +533,7 @@ function motionFigure(id){
    +line('M82 78 L103 151','#899a8c',5)+bolt(72,82)+bolt(72,139);
   art=backSupport+line(`M${axisX} 212 V${pivot[1]} M72 177 H${axisX}`,palette.metal,6)+seat
    +shape('M86 79 L94 76 L115 151 L103 154 Z',palette.pad)
-   +`<path d="${leverValues[0]}" fill="none" stroke="#899a8c" stroke-width="4">${animation('d',leverValues)}</path>`+bolt(...pivot,4)
+   +supportLink(leverValues)+bolt(...pivot,4)
    +leg([118,155],[151,165],[162,203],.45)+leg([122,156],[159,164],[173,203])
    +arm({...pressing,x:shoulder[0]-3,y:shoulder[1]-2,opacity:.35})
    +torso(...hip,lean,'chest')+head(...headPos,lean)+arm(pressing)
@@ -550,6 +585,7 @@ function motionFigure(id){
   // Solve the elbow at each shared phase so the hand follows the straight rail.
   const shoulder=[147,93],upper=35,lower=34;
   const hands=phases.map(p=>[177-25*p,154-30*p]);
+  audit.push({kind:'reach',max:upper+lower+4,min:Math.abs(upper-lower-4),distances:hands.map(h=>Math.hypot(h[0]-shoulder[0],h[1]-shoulder[1]))});
   const angles=hands.map(([x,y])=>{
    const dx=x-shoulder[0],dy=y-shoulder[1],length=lower+4;
    const bend=-Math.acos(Math.max(-1,Math.min(1,(dx*dx+dy*dy-upper*upper-length*length)/(2*upper*length))));
@@ -559,7 +595,7 @@ function motionFigure(id){
   const carriage=shape('M-8-5 H8 V5 H-8 Z',palette.metal)+line('M-9 0 H9','#c8cbbf',3)+bolt(0,0,3);
   art=line('M65 211 H216 M80 207 L89 140 M89 140 L112 211',palette.metal,6)
    +line('M194 175 L138 107','#99a69d',4)
-   +translate(hands[0],hands[16],carriage)
+   +translate(hands[0],hands[64],carriage)
    +shape('M84 120 Q87 117 92 120 L103 151 Q104 155 98 158 L92 159 L81 127 Q80 123 84 120 Z',palette.pad)
    +line('M89 141 H61','#d8c7a6',1)
    +'<text x="52" y="130" fill="#d8c7a6" font-size="10" text-anchor="middle">엉덩이 지지</text>'
@@ -584,7 +620,7 @@ function motionFigure(id){
    +'<text x="150" y="205" text-anchor="middle" fill="#aeb8ac" font-size="11">위에서 본 모습</text>';
  }
  if(id==='03'){
-  const pressing={x:133,y:97,upper:35,lower:36,a:[-50,-148],bend:[-108,-8],focus:'shoulder'};
+  const pressing={x:133,y:97,upper:36,lower:37,a:[-50,-132],bend:[-108,-8],focus:'shoulder'};
   art=line('M250 211 V77 M229 211 H268 M250 158 L269 210',palette.metal,6)+lever([250,77],pressing)
    +leg([122,147],[112,176],[103,202],.5)+leg([127,147],[139,177],[145,202])
    +torso(126,147)+head(127,65)
@@ -592,15 +628,10 @@ function motionFigure(id){
    +line('M254 88 V147','#83917f',1)+bolt(250,158);
  }
  if(id==='04'){
+  const body=torso(0,0,0)+shape('M5-40 H14 L11-15 H3 Z',palette.muscle)+head(0,-83)
+   +arm({x:10,y:-60,upper:27,lower:26,a:[-43,-43],bend:[-145,-145]});
   art=seat+line('M89 151 V107',palette.metal,5)+shape('M88 113 Q92 108 97 113 L100 141 L91 145 Z',palette.pad)+seatedLegs()
-   +shape('M105 80 L118 81 Q134 87 133 103 Q133 119 125 134 L124 149 L106 153 Q95 143 96 126 L98 103 Q97 89 105 80 Z',palette.skin,'','M126 97 L139 102 Q153 109 148 123 Q144 136 129 143 L124 149 L106 153 Q97 145 99 131 L107 114 Q114 102 126 97 Z')
-   +shape('M102 92 Q96 113 103 134 L110 143 L113 128 L112 106 Z',palette.shade,'','M122 108 Q106 118 105 135 L110 143 L119 132 L129 118 Z')
-   +shape('M124 106 L131 104 Q132 120 124 135 L118 141 L117 126 Z',palette.muscle,'','M142 121 L149 119 Q143 135 129 142 L121 145 L124 135 Z')
-   +line('M122 115 L130 115 M120 123 L127 124 M119 132 L124 133','#a75f4b',.8,'','M138 126 L145 129 M132 132 L139 135 M126 138 L132 140')
-   +shape('M104 143 Q114 145 127 143 L132 153 L124 165 L104 160 L99 151 Z',palette.shorts)
-   +head(112,63,0,[137,85],25)
-   +arm({x:116,y:91,to:[138,111],upper:27,lower:26,a:[-43,-16],bend:[-145,-145]})
-   +line('M80 216 H188',palette.metal,2);
+   +translate([111,150],null,rotate(0,25,body))+line('M80 216 H188',palette.metal,2);
  }
  if(id==='05'||id==='06'){
   const extending=id==='05';

@@ -1,4 +1,4 @@
-// Equipment restyling must not change the user's approved motion axes/timing.
+// Rigid-motion baseline; pair with motion-rigidity.test.cjs for geometry invariants.
 const fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto'),assert=require('node:assert/strict');
 const baseline=require('./fixtures/motion-axes.json');
 const ctx=vm.createContext({});vm.runInContext(fs.readFileSync('dist/visual-guide.js','utf8'),ctx);
