@@ -458,6 +458,126 @@ const machines = [
   "note": "사진 속 기구는 경사 레일형입니다. 참고 매뉴얼과 세부 모델이 다를 수 있어 공통 설정 원리만 반영했습니다. 3:7은 뒤꿈치 지지를 강조하는 큐이며 발 앞쪽을 떼지 마세요.",
   "brand": "CYBEX",
   "category": "하체"
+},
+{
+  "id": "18",
+  "name": "ISO 레터럴 하이로우",
+  "en": "ISO-LATERAL HIGH ROW",
+  "image": "iso-high-row.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "HAMMER STRENGTH",
+  "category": "등",
+  "aliases": "하이로우 하이 로우 해머 highrow",
+  "setup": [
+    "좌석 높이를 조절해 가슴을 앞 패드에 편안하게 붙이고 발을 안정적으로 놓으세요.",
+    "양쪽에 같은 가벼운 중량을 준비하고, 상체를 들지 않고 위쪽 손잡이를 잡을 수 있게 맞추세요."
+  ],
+  "steps": [
+    "가슴을 패드에 붙이고 복부에 힘을 준 채 팔을 뻗어 준비하세요.",
+    "숨을 내쉬며 팔꿈치를 아래·뒤로 보내 손잡이를 몸통 쪽으로 당기세요.",
+    "몸통을 고정한 채 팔을 천천히 뻗어 시작 위치로 돌아가세요."
+  ],
+  "tip": "가슴을 패드에 밀착시키고 허리가 과하게 젖혀지지 않도록 자세를 잡은 후, 팔꿈치를 아래쪽에서 뒤쪽으로 당겨주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-high-row",
+  "sourceLabel": "Hammer Strength · ISO-LATERAL HIGH ROW",
+  "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "19",
+  "name": "ISO 레터럴 프론트 렛풀다운",
+  "en": "ISO-LATERAL FRONT LAT PULLDOWN",
+  "image": "iso-front-lat-pulldown.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "HAMMER STRENGTH",
+  "category": "등",
+  "aliases": "프론트 랫풀다운 렛풀다운 랫 풀 다운 해머 lat pulldown",
+  "setup": [
+    "좌석과 허벅지 패드를 조절해 당길 때 몸이 들리지 않도록 맞추세요.",
+    "양쪽에 같은 가벼운 중량을 준비하고 위쪽 손잡이를 편안하게 잡으세요."
+  ],
+  "steps": [
+    "몸통을 안정시키고 어깨를 으쓱하지 않은 상태로 준비하세요.",
+    "숨을 내쉬며 팔꿈치를 아래로 내려 손잡이를 몸 앞쪽으로 당기세요.",
+    "허리를 젖히거나 반동을 쓰지 않고 천천히 팔을 위로 뻗으세요."
+  ],
+  "tip": "가슴을 자연스럽게 열고 허리가 과하게 젖혀지지 않도록 앉아주세요. 양손으로 손잡이를 잡고 어깨를 귀에서 멀어지게 내린 상태에서 팔꿈치를 아래로 내려주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-front-lat-pulldown",
+  "sourceLabel": "Hammer Strength · ISO-LATERAL FRONT LAT PULLDOWN",
+  "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "20",
+  "name": "ISO 레터럴 벤치 프레스",
+  "en": "ISO-LATERAL BENCH PRESS",
+  "image": "iso-bench-press.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "HAMMER STRENGTH",
+  "category": "가슴",
+  "aliases": "벤치프레스 벤치 프레스 해머 체스트프레스",
+  "setup": [
+    "좌석을 조절해 손잡이가 가슴 중앙 높이에 오도록 맞추세요.",
+    "등과 엉덩이를 등받이에 붙이고 발바닥을 안정적으로 둔 뒤 양쪽에 같은 중량을 준비하세요."
+  ],
+  "steps": [
+    "손목이 뒤로 꺾이지 않게 잡고 등받이에 몸을 지지하세요.",
+    "숨을 내쉬며 손잡이를 가슴 앞쪽으로 밀어내세요.",
+    "팔꿈치를 튕기지 않고 가슴의 긴장을 유지하며 천천히 받아오세요."
+  ],
+  "tip": "등과 엉덩이를 등받이에 붙이고 가슴을 자연스럽게 열어주세요. 손잡이는 가슴 중앙 높이, 손목과 팔꿈치는 자연스럽게 일직선이 되도록 잡고 가슴의 긴장을 유지하며 손바닥 면으로 앞쪽을 밀어주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-bench-press",
+  "sourceLabel": "Hammer Strength · ISO-LATERAL BENCH PRESS",
+  "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "21",
+  "name": "ISO 레터럴 숄더프레스",
+  "en": "ISO-LATERAL SHOULDER PRESS",
+  "image": "iso-shoulder-press.webp",
+  "imageWidth": 1086,
+  "imageHeight": 1448,
+  "brand": "HAMMER STRENGTH",
+  "category": "어깨",
+  "aliases": "숄더프레스 숄더 프레스 해머 shoulder press",
+  "setup": [
+    "좌석 높이를 조절해 손잡이가 어깨 높이 또는 귀 옆에 오도록 맞추세요.",
+    "등을 등받이에 붙이고 발을 안정적으로 놓은 뒤 양쪽에 같은 가벼운 중량을 준비하세요."
+  ],
+  "steps": [
+    "복부에 힘을 주고 손목이 팔꿈치 위에 가깝게 오도록 준비하세요.",
+    "숨을 내쉬며 기구 궤적을 따라 손잡이를 머리 위쪽으로 밀어 올리세요.",
+    "허리를 젖히거나 팔꿈치를 튕기지 않고 천천히 시작 위치로 내리세요."
+  ],
+  "tip": "등을 등받이에 붙이고 복부에 힘을 줘 허리가 과하게 꺾이지 않도록 해주세요. 손잡이를 어깨 높이 또는 귀 옆에서 잡고, 팔꿈치와 손목을 수직에 가깝게 맞춘 뒤 머리 위쪽으로 밀어 올려주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-shoulder-press",
+  "sourceLabel": "Hammer Strength · ISO-LATERAL SHOULDER PRESS",
+  "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
+},
+{
+  "id": "22",
+  "name": "ISO 레터럴로우",
+  "en": "ISO-LATERAL ROW",
+  "image": "iso-row.webp",
+  "imageWidth": 1089,
+  "imageHeight": 1445,
+  "brand": "HAMMER STRENGTH",
+  "category": "등",
+  "aliases": "레터럴 로우 레터럴로우 해머 시티드로우 seated row",
+  "setup": [
+    "좌석을 조절해 가슴이 앞 패드에 안정적으로 닿도록 맞추세요.",
+    "발을 지지하고 양쪽에 같은 중량을 준비한 뒤, 몸을 떼지 않고 손잡이를 잡으세요."
+  ],
+  "steps": [
+    "가슴 패드 접촉을 유지하며 팔을 뻗어 등을 늘리세요.",
+    "숨을 내쉬며 팔꿈치를 몸통 뒤쪽으로 보내 손잡이를 당기세요.",
+    "몸을 뒤로 젖히지 않고 팔을 천천히 뻗어 돌아가세요."
+  ],
+  "tip": "가슴을 패드에 안정적으로 붙이고 허리가 과하게 꺾이지 않도록 해주세요. 어깨를 자연스럽게 앞으로 보내 등을 늘린 뒤, 팔꿈치를 몸통 뒤로 당기며 견갑골을 자연스럽게 모아주세요.",
+  "source": "https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-row",
+  "sourceLabel": "Hammer Strength · ISO-LATERAL ROW",
+  "note": "사진과 제조사 안내의 세부 조절 장치는 다를 수 있습니다. 패드 접촉을 유지하고, 처음에는 가벼운 중량으로 편안한 가동 범위를 확인하세요."
 }
 ];
 let category='전체';
